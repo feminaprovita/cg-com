@@ -4,7 +4,7 @@
   "description": "Base code to set up clairegilligan.com",
   "engines": {
     "node": "11.0.0",
-    "npm": "6.4.1"
+    "npm": "6.8.0"
   },
   "main": "index.js",
   "scripts": {
@@ -35,7 +35,7 @@
       "git add"
     ]
   },
-  "author": "Fullstack Academy of Code",
+  "author": "Claire Gilligan",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.15.3",
@@ -62,15 +62,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
-    "@babel/plugin-proposal-class-properties": "^7.3.3",
-    "@babel/plugin-proposal-decorators": "7.0.0-beta.54",
-    "@babel/plugin-proposal-export-namespace-from": "7.0.0-beta.54",
-    "@babel/plugin-proposal-function-sent": "7.0.0-beta.54",
-    "@babel/plugin-proposal-json-strings": "7.0.0-beta.54",
-    "@babel/plugin-proposal-numeric-separator": "7.0.0-beta.54",
-    "@babel/plugin-proposal-throw-expressions": "7.0.0-beta.54",
-    "@babel/plugin-syntax-dynamic-import": "7.0.0-beta.54",
-    "@babel/plugin-syntax-import-meta": "7.0.0-beta.54",
     "@babel/polyfill": "^7.0.0-beta.55",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0-beta.55",
