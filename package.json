@@ -1,12 +1,17 @@
 {
   "name": "cg-com",
   "version": "1.0.0",
+  "private": true,
   "description": "Base code to set up clairegilligan.com",
   "engines": {
     "node": "11.0.0",
     "npm": "6.8.0"
   },
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/feminaprovita/cg-com.git"
+  },
   "scripts": {
     "build-client": "webpack",
     "build-client-watch": "webpack -w",
@@ -17,9 +22,9 @@
     "precommit": "lint-staged",
     "prepare": "if [ -d .git ]; then npm-merge-driver install; fi",
     "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
-    "postinstall": "touch secrets.js",
+    "postinstall": "NODE_ENV='development' npm run build-client-watch",
     "seed": "node script/seed.js",
-    "start": "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
+    "start": "NODE_ENV='development' npm run start-server",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
     "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" \"./script/**/*.spec.js\" --require @babel/polyfill --require @babel/register"
   },
