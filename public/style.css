@@ -1,6 +1,6 @@
 body {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  background: linear-gradient(to right, #fffacd, #dcccfd);
+  background: linear-gradient(to right, #87c3fa, #dcccfd);
 }
 
 a {
@@ -12,15 +12,32 @@ a:hover {
 }
 
 #navbar {
+  padding: 1vw;
   text-align: center;
   text-decoration: wavy;
   color: #6341a9;
-  text-shadow: 0.1em 0.12em #fff59d;
+  text-shadow: 0.13em 0.11em #73b9fa;
   font-size: 3em;
 }
 
+#landing-container {
+  padding: 2vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#profile-pic {
+  padding: 4vw;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
 #landing-text {
-  padding: 20vw;
+  padding: 4vw;
   color: darkblue;
   text-align: center;
 }
