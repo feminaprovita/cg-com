@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 const Landing = () => (
   <div id="landing-container">
@@ -37,4 +38,4 @@ const Landing = () => (
   </div>
 )
 
-export default Landing
+export default connect(Landing)
