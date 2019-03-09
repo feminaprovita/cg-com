@@ -1,6 +1,6 @@
 body {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  background: linear-gradient(to right, #fffacd, #dcccfd);
+  background: linear-gradient(to right, #87c3fa, #dcccfd);
 }
 
 a {
@@ -15,7 +15,7 @@ a:hover {
   text-align: center;
   text-decoration: wavy;
   color: #6341a9;
-  text-shadow: 0.1em 0.12em #fff59d;
+  text-shadow: 0.13em 0.11em #73b9fa;
   font-size: 3em;
 }
 
