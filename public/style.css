@@ -12,6 +12,7 @@ a:hover {
 }
 
 #navbar {
+  padding: 1vw;
   text-align: center;
   text-decoration: wavy;
   color: #6341a9;
@@ -19,8 +20,24 @@ a:hover {
   font-size: 3em;
 }
 
+#landing-container {
+  padding: 2vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#profile-pic {
+  padding: 4vw;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
 #landing-text {
-  padding: 20vw;
+  padding: 4vw;
   color: darkblue;
   text-align: center;
 }
