@@ -20,7 +20,7 @@ const Landing = () => (
         <a href="https://github.com/feminaprovita/" target="blank">
           Github
         </a>
-        {', and'}
+        {', and '}
         <a href="https://medium.com/@feminaprovita" target="blank">
           Medium
         </a>,<br />
