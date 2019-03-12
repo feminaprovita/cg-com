@@ -1,4 +1,5 @@
 import React from 'react'
+// import {connect} from 'react-redux'
 
 const Landing = () => (
   <div id="landing-container">
