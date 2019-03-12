@@ -7,4 +7,4 @@ const Navbar = () => (
   </nav>
 )
 
-export default connect(Navbar)
+export default Navbar

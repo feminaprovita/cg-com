@@ -25,6 +25,7 @@
     "postinstall": "NODE_ENV='development' npm run build-client-watch",
     "seed": "node script/seed.js",
     "start": "NODE_ENV='development' npm run start-server",
+    "start-dev": "NODE_ENV='development' npm run start-server & NODE_ENV='development' npm run build-client-watch",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
     "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" \"./script/**/*.spec.js\" --require @babel/polyfill --require @babel/register"
   },
