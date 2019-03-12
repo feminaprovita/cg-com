@@ -1,5 +1,4 @@
 import React from 'react'
-// import {connect} from 'react-redux'
 
 const Landing = () => (
   <div id="landing-container">
@@ -16,10 +15,14 @@ const Landing = () => (
         You can find me on{' '}
         <a href="https://www.linkedin.com/in/claire-gilligan/" target="blank">
           LinkedIn
-        </a>{' '}
-        and{' '}
+        </a>
+        {', '}
         <a href="https://github.com/feminaprovita/" target="blank">
           Github
+        </a>
+        {', and '}
+        <a href="https://medium.com/@feminaprovita" target="blank">
+          Medium
         </a>,<br />
         or, if you're feeling informal, on{' '}
         <a href="https://www.facebook.com/feminaprovita/" target="blank">
@@ -28,6 +31,12 @@ const Landing = () => (
         and{' '}
         <a href="https://twitter.com/feminaprovita/" target="blank">
           Twitter
+        </a>.
+      </p>
+      <p>
+        And you can email me at{' '}
+        <a href="mailto:claire.gilligan.dev@gmail.com">
+          claire.gilligan.dev@gmail.com
         </a>.
       </p>
       <p>
