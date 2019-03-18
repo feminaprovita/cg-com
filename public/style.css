@@ -20,7 +20,7 @@ a:hover {
   font-size: 3em;
 }
 
-#landing-container {
+#profile-container {
   padding: 2vw;
   display: flex;
   flex-direction: row;
@@ -36,7 +36,7 @@ a:hover {
   width: 95%;
 }
 
-#landing-text {
+#profile-text {
   padding: 4vw;
   color: darkblue;
   text-align: center;

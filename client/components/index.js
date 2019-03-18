@@ -5,3 +5,8 @@
  */
 export {default as Landing} from './Landing'
 export {default as Navbar} from './Navbar'
+export {default as Article} from './Article'
+export {default as Button} from './Button'
+export {default as Project} from './Project'
+export {default as Skill} from './Skill'
+export {default as Profile} from './Profile'
