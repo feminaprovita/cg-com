@@ -13,7 +13,7 @@ const {
   Skill
 } = require('../server/db/models')
 
-const AffiliationData = [
+const affiliationData = [
   {
     name: 'Society for Catholic Liturgy',
     url: 'http://liturgysociety.org',
@@ -100,6 +100,7 @@ const jobData = [
     location: 'New York, NY',
     jobTitle: 'Advisory Board Member',
     monthStart: 'January 2018',
+    monthEnd: 'March 2019',
     bullets: [
       'Attend company’s readings, workshops, and theatrical productions, helping out as needed',
       'Attend quarterly board meetings, advising from the perspective of an audience member (focus: how to better serve our non-industry audience, how to draw in new audiences)'
@@ -115,9 +116,12 @@ const jobData = [
     jobTitle: 'Bible Study Coordinator',
     monthStart: 'February 2014',
     monthEnd: 'April 2018',
-    bullets: [],
+    bullets: [
+      'Coordinated, designed, and led bible studies for young adults in NYC, in 3 sessions of 10 weeks each throughout the year',
+      'Served in additional service, leadership, and liturgical roles as needed.'
+    ],
     paragraph:
-      'Coordinated, designed, and lead bible studies for young adults in NYC, in three sessions of ten weeks each throughout the year. Also served in additional service, leadership, and liturgical roles as needed.'
+      'Coordinated, designed, and led bible studies for young adults in NYC, in three sessions of ten weeks each throughout the year. Also served in additional service, leadership, and liturgical roles as needed.'
   },
   {
     company: 'Archdiocese of Atlanta',
@@ -143,7 +147,8 @@ const presentationData = [
     url: 'http://liturgysociety.org',
     location: 'St Louis, MO',
     dateStart: '2012-01-27',
-    details: ''
+    details:
+      'A thirty-minute academic presentation on how each participant\'s "art of celebrating" the liturgy impacts the prayer of the others praying the same. Highlighted how Rome has always asked for internal/external unity in how we pray the Mass: do the things as the Church has asked us to, and understand/pray what we do.'
   },
   {
     name: `Jesus' Lesser-Known Parables`,
@@ -158,10 +163,11 @@ const presentationData = [
   {
     name: 'Tertium Quid: Sacrosanctum Concilium',
     org: 'Georgia Institute of Technology Catholic Center',
-    url: '',
+    url: 'http://www.gtcatholic.org/',
     location: 'Atlanta, GA',
     dateStart: '2013-04-08',
-    details: ''
+    details:
+      "Spoke at the Catholic Center's monthly \"Third Way\" lecture series about Vatican II's document on the liturgy and its relevance to the life of today's young Catholic."
   },
   {
     name: 'Pope Benedict XVI on Liturgy',
@@ -247,7 +253,7 @@ const projectData = [
   {
     name: 'Website Copy',
     role: 'Editor',
-    paragraph: '',
+    // paragraph: '',
     bullets: [
       'Requested edit permissions for bookstore website to correct obvious errors',
       'Harmonized copy and formatting, improved links, in HTML of product pages'
@@ -259,8 +265,8 @@ const projectData = [
     name: 'New Translation Analysis',
     role: 'Solo Analyst',
     paragraph:
-      'After Rome released a new translation of the Mass, closely examined the instructional texts at the beginning of the missal (~200p) for changes in vocabulary and style (mostly capitalization), and returned a spreadsheet for office use. Corrected a few misplaced periods and commas in the official final edition, to boot.',
-    bullets: []
+      'After Rome released a new translation of the Mass, closely examined the instructional texts at the beginning of the missal (~200p) for changes in vocabulary and style (mostly capitalization), and returned a spreadsheet for office use. Corrected a few misplaced periods and commas in the official final edition, to boot.'
+    // bullets: []
     // job: freelance
   }
 ]
@@ -270,26 +276,29 @@ const publicationData = [
     title: 'Ars Celebrandi as Asceticism',
     book: 'Antiphon: A Journal for Liturgical Renewal',
     footnote: 'Vol. 16 No. 2 (Summer 2012), 114–129',
-    summary: '',
-    url: 'http://liturgysociety.org/journal/volume-16',
-    details: ''
+    summary:
+      'Paper after thirty-minute academic presentation on how each participant\'s "art of celebrating" the liturgy impacts the prayer of the others praying the same. Highlighted how Rome has always asked for internal/external unity in how we pray the Mass: do the things as the Church has asked us to, and understand/pray what we do.',
+    url: 'http://liturgysociety.org/journal/volume-16'
+    // details: ''
   },
   {
     title: 'Spiritual Communion',
     book: 'Magnificat',
     footnote: '(June 2014), 330–331',
-    summary: '',
-    url: 'http://us.magnificat.net',
-    details: ''
+    summary:
+      'A reflection on the traditional Catholic practice of spiritual communion. ',
+    url: 'http://us.magnificat.net'
+    // details: ''
   },
   {
     title: 'An Overview of the Book of Blessings: General Introduction',
     book: 'The Liturgy Documents, Volume II',
     footnote: '(Chicago: Liturgy Training Publications, 2012): 438–442',
-    summary: '',
+    summary:
+      'In this book on the major documents about the celebration of the liturgy, this essay introduces and gives context to the theological and practical introduction of the Book of Blessings, one of the rites that was revised most heavily after the Council.',
     url:
-      'https://www.ltp.org/products/details/LD2V2/liturgy-documents-volume-two-second-edition',
-    details: ''
+      'https://www.ltp.org/products/details/LD2V2/liturgy-documents-volume-two-second-edition'
+    // details: ''
   }
 ]
 
@@ -427,78 +436,358 @@ const skillData = [
   }
 ]
 
+// eslint-disable-next-line max-statements
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const destinations = await Promise.all(
-    destinationData.map(async destination => {
-      const allDestinations = await Destination.create(destination)
-      return allDestinations
+  const affiliations = await Promise.all(
+    affiliationData.map(async affiliation => {
+      const allAffiliations = await Affiliation.create(affiliation)
+      return allAffiliations
     })
   )
-  console.log(`seeded ${destinations.length} destinations`)
+  console.log(`seeded ${affiliations.length} affiliations`)
 
-  const users = await Promise.all(
-    userData.map(async user => {
-      const allUsers = await User.create(user)
-      return allUsers
+  const blogs = await Promise.all(
+    blogData.map(async blog => {
+      const allBlogs = await Blog.create(blog)
+      return allBlogs
     })
   )
-  console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${blogs.length} blogs`)
 
-  const orders = await Promise.all(
-    orderData.map(async order => {
-      const allOrders = await Order.create(order)
-      return allOrders
+  const categories = await Promise.all(
+    categoryData.map(async category => {
+      const allCategories = await Category.create(category)
+      return allCategories
     })
   )
-  console.log(`seeded ${orders.length} orders`)
+  console.log(`seeded ${categorys.length} categorys`)
 
-  const trips = await Promise.all(
-    tripData.map(async trip => {
-      const allTrips = await Trip.create(trip)
-      return allTrips
+  const jobs = await Promise.all(
+    jobData.map(async job => {
+      const allJobs = await Job.create(job)
+      return allJobs
     })
   )
-  console.log(`seeded ${trips.length} trips`)
+  console.log(`seeded ${jobs.length} jobs`)
+
+  const presentations = await Promise.all(
+    presentationData.map(async presentation => {
+      const allPresentations = await Presentation.create(presentation)
+      return allPresentations
+    })
+  )
+  console.log(`seeded ${presentations.length} presentations`)
+
+  const projects = await Promise.all(
+    projectData.map(async project => {
+      const allProjects = await Project.create(project)
+      return allProjects
+    })
+  )
+  console.log(`seeded ${projects.length} projects`)
+
+  const publications = await Promise.all(
+    publicationData.map(async publication => {
+      const allPublications = await Publication.create(publication)
+      return allPublications
+    })
+  )
+  console.log(`seeded ${publications.length} publications`)
+
+  const schools = await Promise.all(
+    schoolData.map(async school => {
+      const allSchools = await School.create(school)
+      return allSchools
+    })
+  )
+  console.log(`seeded ${schools.length} schools`)
+
+  const skills = await Promise.all(
+    skillData.map(async skill => {
+      const allSkill = await Skill.create(skill)
+      return allSkill
+    })
+  )
+  console.log(`seeded ${skills.length} skills`)
 
   // associations here
+  const [scl, cmaa, aces] = affiliations
+  const [errors, masks] = blogs
+  const [code, editorial, theology, hobbies] = categories
+  const [freelance, mag, ttf, frassati, atl] = jobs
+  const [arsCelebrandi, parables, tertiumQuid, bxvi, chant] = presentations
   const [
-    germany,
-    prehistoric,
-    paris,
-    olympics,
-    china,
-    india,
-    amazon
-  ] = destinations
-  const [janelle, awkwafina, beyonce, laura] = users
-  const [first, second, third, fourth, fifth] = orders
-  const [trip1, trip2, trip3, trip4, trip5, trip6, trip7] = trips
+    masksRescue,
+    moodify,
+    kfbc,
+    timelink,
+    blessedN,
+    website,
+    girm
+  ] = projects
+  const [antiphon, spiritualCommunion, bookOfBlessings] = publications
+  const [fus, li, gh] = schools
+  const [
+    french,
+    latin,
+    proofing,
+    copyediting,
+    js,
+    node,
+    express,
+    sequelize,
+    react,
+    redux,
+    html,
+    css,
+    flexbox,
+    git,
+    pg,
+    excel,
+    vscode,
+    heroku,
+    puppeteer,
+    python,
+    json,
+    chalk,
+    agile
+  ] = skills
 
   await Promise.all([
-    first.setUser(janelle),
-    second.setUser(awkwafina),
-    third.setUser(beyonce),
-    fourth.setUser(laura),
-    fifth.setUser(janelle),
+    scl.setCategory(theology),
+    scl.setJob(atl),
+    scl.setJob(mag),
+    scl.setSkill(latin),
+    cmaa.setCategory(theology),
+    cmaa.setJob(atl),
+    cmaa.setSkill(latin),
+    aces.setCategory(editorial),
+    aces.setJob(mag),
+    aces.setSkill(proofing),
+    aces.setSkill(copyediting),
 
-    trip1.setOrder(first),
-    trip2.setOrder(second),
-    trip3.setOrder(third),
-    trip4.setOrder(fourth),
-    trip5.setOrder(fifth),
-    trip6.setOrder(first),
-    trip7.setOrder(second),
+    errors.setCategory(code),
+    errors.setSkill(js),
+    masks.setCategory(code),
+    masks.setProject(masksRescue),
+    masks.setSkill(js),
+    masks.setSkill(node),
+    masks.setSkill(puppeteer),
+    masks.setSkill(vscode),
+    masks.setSkill(json),
 
-    trip1.setDestination(germany),
-    trip2.setDestination(prehistoric),
-    trip3.setDestination(paris),
-    trip4.setDestination(olympics),
-    trip5.setDestination(china),
-    trip6.setDestination(india),
-    trip7.setDestination(amazon)
+    freelance.setCategory(theology),
+    freelance.setCategory(editorial),
+    freelance.setPresentation(tertiumQuid),
+    freelance.setPresentation(bxvi),
+    freelance.setProject(girm),
+    freelance.setPublication(bookOfBlessings),
+    freelance.setSkill(proofing),
+    freelance.setSkill(copyediting),
+    mag.setCategory(editorial),
+    mag.setCategory(theology),
+    mag.setProject(blessedN),
+    mag.setProject(website),
+    mag.setPublication(spiritualCommunion),
+    mag.setSkill(french),
+    mag.setSkill(latin),
+    mag.setSkill(proofing),
+    mag.setSkill(copyediting),
+    mag.setSchool(html),
+    mag.setSkill(excel),
+    ttf.setCategory(hobbies),
+    frassati.setCategory(theology),
+    frassati.setPresentation(parables),
+    atl.setCategory(theology),
+    atl.setPresentation(chant),
+
+    arsCelebrandi.setCategory(theology),
+    arsCelebrandi.setPublication(antiphon),
+    arsCelebrandi.setSkill(latin),
+    parables.setCategory(theology),
+    parables.setJob(frassati),
+    parables.setSkill(excel),
+    tertiumQuid.setCategory(theology),
+    bxvi.setCategory(theology),
+    chant.setCategory(theology),
+    chant.setJob(atl),
+    chant.setSkill(latin),
+
+    masksRescue.setCategory(code),
+    masksRescue.setBlog(masks),
+    masksRescue.setSkill(js),
+    masksRescue.setSkill(node),
+    masksRescue.setSkill(puppeteer),
+    masksRescue.setSkill(vscode),
+    masksRescue.setSkill(json),
+    moodify.setCategory(code),
+    moodify.setSchool(gh),
+    moodify.setSkill(js),
+    moodify.setSkill(node),
+    moodify.setSkill(express),
+    moodify.setSkill(react),
+    moodify.setSkill(css),
+    moodify.setSkill(git),
+    moodify.setSkill(agile),
+    moodify.setSkill(vscode),
+    moodify.setSkill(heroku),
+
+    kfbc.setCategory(code),
+    kfbc.setSchool(gh),
+    kfbc.setSkill(js),
+    kfbc.setSkill(node),
+    kfbc.setSkill(express),
+    kfbc.setSkill(sequelize),
+    kfbc.setSkill(react),
+    kfbc.setSkill(redux),
+    kfbc.setSkill(css),
+    kfbc.setSkill(flexbox),
+    kfbc.setSkill(git),
+    kfbc.setSkill(pg),
+    kfbc.setSkill(vscode),
+    kfbc.setSkill(heroku),
+    kfbc.setSkill(puppeteer),
+    timelink.setCategory(code),
+    timelink.setSchool(gh),
+    timelink.setSkill(js),
+    timelink.setSkill(node),
+    timelink.setSkill(express),
+    timelink.setSkill(sequelize),
+    timelink.setSkill(react),
+    timelink.setSkill(redux),
+    timelink.setSkill(css),
+    timelink.setSkill(flexbox),
+    timelink.setSkill(git),
+    timelink.setSkill(pg),
+    timelink.setSkill(vscode),
+    timelink.setSkill(heroku),
+    timelink.setSkill(agile),
+    blessedN.setCategory(theology),
+    blessedN.setJob(mag),
+    blessedN.setSkill(proofing),
+    blessedN.setSkill(excel),
+    website.setCategory(editorial),
+    website.setJob(mag),
+    website.setSkill(proofing),
+    website.setSkill(copyediting),
+    website.setSkill(html),
+    girm.setCategory(editorial),
+    girm.setJob(freelance),
+    girm.setSkill(proofing),
+    girm.setSkill(excel),
+
+    antiphon.setCategory(theology),
+    antiphon.setPresentation(arsCelebrandi),
+    antiphon.setSkill(latin),
+    spiritualCommunion.setCategory(theology),
+    spiritualCommunion.setJob(mag),
+    bookOfBlessings.setCategory(theology),
+    bookOfBlessings.setJob(freelance),
+
+    fus.setCategory(theology),
+    li.setCategory(theology),
+    gh.setCategory(code),
+    gh.setBlog(errors),
+    gh.setProject(timelink),
+    gh.setProject(kfbc),
+    gh.setProject(moodify),
+
+    french.setCategory(theology),
+    french.setJob(mag),
+    latin.setCategory(theology),
+    latin.setAffiliation(scl),
+    latin.setAffiliation(cmaa),
+    latin.setPresentation(arsCelebrandi),
+    latin.setPublication(antiphon),
+    proofing.setCategory(editorial),
+    proofing.setAffiliation(aces),
+    proofing.setJob(freelance),
+    proofing.setJob(mag),
+    proofing.setProject(blessedN),
+    proofing.setProject(website),
+    proofing.setProject(girm),
+    copyediting.setCategory(editorial),
+    copyediting.setAffiliation(aces),
+    copyediting.setJob(freelance),
+    copyediting.setJob(mag),
+    copyediting.setProject(website),
+    js.setCategory(code),
+    js.setBlog(errors),
+    js.setBlog(masks),
+    js.setProject(timelink),
+    js.setProject(kfbc),
+    js.setProject(moodify),
+    js.setProject(masksRescue),
+    node.setCategory(code),
+    node.setBlog(errors),
+    node.setBlog(masks),
+    node.setProject(timelink),
+    node.setProject(kfbc),
+    node.setProject(moodify),
+    node.setProject(masksRescue),
+    express.setCategory(code),
+    express.setProject(timelink),
+    express.setProject(kfbc),
+    express.setProject(moodify),
+    sequelize.setCategory(code),
+    sequelize.setProject(timelink),
+    sequelize.setProject(kfbc),
+    react.setCategory(code),
+    react.setProject(timelink),
+    react.setProject(kfbc),
+    react.setProject(moodify),
+    redux.setCategory(code),
+    redux.setProject(timelink),
+    redux.setProject(kfbc),
+    html.setCategory(code),
+    html.setJob(mag),
+    html.setProject(website),
+    css.setCategory(code),
+    css.setProject(timelink),
+    css.setProject(kfbc),
+    css.setProject(moodify),
+    flexbox.setCategory(code),
+    flexbox.setProject(timelink),
+    flexbox.setProject(kfbc),
+    git.setCategory(code),
+    git.setBlog(errors),
+    git.setProject(timelink),
+    git.setProject(kfbc),
+    git.setProject(moodify),
+    git.setProject(masksRescue),
+    pg.setCategory(code),
+    pg.setProject(timelink),
+    pg.setProject(kfbc),
+    excel.setCategory(code),
+    excel.setJob(mag),
+    excel.setPresentation(parables),
+    excel.setProject(blessedN),
+    excel.setProject(girm),
+    vscode.setCategory(code),
+    vscode.setProject(timelink),
+    vscode.setProject(kfbc),
+    vscode.setProject(moodify),
+    vscode.setProject(masksRescue),
+    heroku.setCategory(code),
+    heroku.setProject(timelink),
+    heroku.setProject(kfbc),
+    heroku.setProject(moodify),
+    puppeteer.setCategory(code),
+    puppeteer.setBlog(masks),
+    puppeteer.setProject(masksRescue),
+    puppeteer.setProject(kfbc),
+    python.setCategory(code),
+    json.setCategory(code),
+    json.setBlog(masks),
+    json.setProject(masksRescue),
+    chalk.setCategory(code),
+    chalk.setProject(kfbc),
+    agile.setCategory(code),
+    agile.setProject(timelink),
+    agile.setProject(moodify)
   ])
   console.log(`seeded successfully`)
 }

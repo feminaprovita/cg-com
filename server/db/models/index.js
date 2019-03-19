@@ -10,12 +10,13 @@ const Skill = require('./Skill')
 
 Affiliation.belongsTo(Category)
 Affiliation.belongsTo(Job)
+Affiliation.hasMany(Skill)
 
 Blog.belongsTo(Category)
 Blog.belongsToMany(Project)
 Blog.hasMany(Skill)
 
-Job.belongsTo(Category)
+Job.hasMany(Category)
 Job.hasMany(Presentation)
 Job.hasMany(Project)
 Job.hasMany(Publication)
@@ -42,6 +43,7 @@ School.hasMany(Blog)
 School.hasMany(Project)
 
 Skill.belongsTo(Category)
+Skill.hasMany(Affiliation)
 Skill.hasMany(Blog)
 Skill.hasMany(Job)
 Skill.hasMany(Presentation)
