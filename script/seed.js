@@ -600,6 +600,7 @@ async function seed() {
     mag.setSkill(excel),
     ttf.setCategory(hobbies),
     frassati.setCategory(theology),
+    frassati.setCategory(hobbies),
     frassati.setPresentation(parables),
     atl.setCategory(theology),
     atl.setPresentation(chant),
@@ -617,6 +618,7 @@ async function seed() {
     chant.setSkill(latin),
 
     masksRescue.setCategory(code),
+    masksRescue.setCategory(hobbies),
     masksRescue.setBlog(masks),
     masksRescue.setSkill(js),
     masksRescue.setSkill(node),
