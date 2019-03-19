@@ -1,25 +1,33 @@
 const router = require('express').Router()
-const Campuses = require('../db/models/campuses.models')
-const Students = require('../db/models/students.models')
+const {
+  Affiliation,
+  Blog,
+  Category,
+  Job,
+  Presentation,
+  Project,
+  Publication,
+  School,
+  Skill
+} = require('../db/models')
 
-router.get('/:category', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const allPosts = await Campuses.findAll({
-      where: req.query,
-      include: [Students]
+    const allPosts = await Post.findAll({
+      include: [{model: Category}, {model: Skill}]
     })
-    res.json(allCampuses)
+    res.json(allPosts)
   } catch (err) {
     next(err)
   }
 })
 
-router.get('/:campusId', async (req, res, next) => {
+router.get('/:postId', async (req, res, next) => {
   try {
-    const chosenCampus = await Campuses.findById(req.params.campusId, {
-      include: [Students]
+    const onePost = await Post.findById(req.params.postId, {
+      include: [{model: Category}, {model: Skill}]
     })
-    if (chosenCampus) res.json(chosenCampus)
+    if (onePost) res.json(onePost)
     else res.sendStatus(404)
   } catch (error) {
     next(error)
