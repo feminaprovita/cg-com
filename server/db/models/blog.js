@@ -27,10 +27,10 @@ const Blog = db.define('blog', {
     type: Sequelize.DATEONLY
   },
   summary: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT
   },
   teaser: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
     validate: {
       notEmpty: true

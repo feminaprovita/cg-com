@@ -8,29 +8,37 @@ const Publication = require('./Publication')
 const School = require('./School')
 const Skill = require('./Skill')
 
+Category.hasMany(Affiliation)
+Category.hasMany(Blog)
+Category.hasMany(Job)
+Category.hasMany(Presentation)
+Category.hasMany(Project)
+Category.hasMany(Publication)
+Category.hasMany(School)
+Category.hasMany(Skill)
+
 Affiliation.belongsTo(Category)
-Affiliation.belongsTo(Job)
-Affiliation.hasMany(Skill)
 
 Blog.belongsTo(Category)
-Blog.belongsToMany(Project)
+Blog.hasMany(Project)
 Blog.hasMany(Skill)
 
-Job.hasMany(Category)
+Job.belongsToMany(Category, {through: 'JobCategories'})
+Job.hasMany(Affiliation)
 Job.hasMany(Presentation)
-Job.hasMany(Project)
-Job.hasMany(Publication)
+Job.hasMany(Project) // maybe flip
+// Job.hasMany(Publication)
 Job.hasMany(Skill)
 
 Presentation.belongsTo(Category)
 Presentation.belongsTo(Job)
-Presentation.belongsTo(Publication)
+Presentation.hasOne(Publication)
 Presentation.hasMany(Skill)
 
 Project.belongsTo(Category)
-Project.belongsTo(Job)
+Project.belongsTo(Job) // maybe flip
 Project.belongsTo(School)
-Project.hasMany(Blog) //one-to-many
+// Project.belongsToMany(Blog)
 Project.hasMany(Skill)
 
 Publication.belongsTo(Category)
@@ -39,16 +47,14 @@ Publication.belongsTo(Presentation)
 Publication.hasMany(Skill)
 
 School.belongsTo(Category)
-School.hasMany(Blog)
 School.hasMany(Project)
 
 Skill.belongsTo(Category)
-Skill.hasMany(Affiliation)
-Skill.hasMany(Blog)
-Skill.hasMany(Job)
-Skill.hasMany(Presentation)
-Skill.hasMany(Project)
-Skill.hasMany(Publication)
+// Skill.belongsToMany(Blog)
+// Skill.belongsToMany(Job)
+// Skill.belongsToMany(Presentation)
+// Skill.belongsToMany(Project)
+// Skill.belongsToMany(Publication)
 
 module.exports = {
   Affiliation,

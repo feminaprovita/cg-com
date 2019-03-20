@@ -13,7 +13,7 @@ class Skill extends Component {
   }
 
   render() {
-    return <div id="skill-component" />
+    return <div id="skill-component">Skill component test</div>
   }
 }
 

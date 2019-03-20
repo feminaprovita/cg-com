@@ -13,7 +13,7 @@ class Affiliation extends Component {
   }
 
   render() {
-    return <div id="affiliation-component" />
+    return <div id="affiliation-component">Affiliation component test</div>
   }
 }
 

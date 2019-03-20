@@ -20,11 +20,7 @@ const Project = db.define('project', {
     type: Sequelize.TEXT
   },
   bullets: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    type: Sequelize.ARRAY(Sequelize.STRING)
   },
   url: {
     type: Sequelize.STRING,

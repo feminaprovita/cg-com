@@ -12,8 +12,7 @@ const Job = db.define('job', {
     }
   },
   location: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
   },
   jobTitle: {
     type: Sequelize.STRING,
@@ -32,10 +31,7 @@ const Job = db.define('job', {
   monthEnd: {
     type: Sequelize.STRING,
     allowNull: false,
-    defaultValue: 'Present',
-    validate: {
-      notEmpty: true
-    }
+    defaultValue: 'Present'
   },
   bullets: {
     type: Sequelize.ARRAY(Sequelize.STRING),

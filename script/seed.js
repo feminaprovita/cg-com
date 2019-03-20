@@ -2,6 +2,15 @@
 
 const db = require('../server/db')
 const {
+  redBright,
+  greenBright,
+  yellowBright,
+  blueBright,
+  magentaBright,
+  cyanBright,
+  whiteBright
+} = require('chalk')
+const {
   Affiliation,
   Blog,
   Category,
@@ -106,7 +115,6 @@ const jobData = [
       'Attend quarterly board meetings, advising from the perspective of an audience member (focus: how to better serve our non-industry audience, how to draw in new audiences)'
     ],
     paragraph: `Turn to Flesh is an innovative theatre company in New York, building a community of actors, directors, playwrights, and theatre lovers to develop new works with heightened texts with a lot of roles for women (so, think Shakespeare, but with more gals). It's been a delight to serve as the audience member on its board!`,
-    always: true,
     volunteer: true
   },
   {
@@ -121,7 +129,8 @@ const jobData = [
       'Served in additional service, leadership, and liturgical roles as needed.'
     ],
     paragraph:
-      'Coordinated, designed, and led bible studies for young adults in NYC, in three sessions of ten weeks each throughout the year. Also served in additional service, leadership, and liturgical roles as needed.'
+      'Coordinated, designed, and led bible studies for young adults in NYC, in three sessions of ten weeks each throughout the year. Also served in additional service, leadership, and liturgical roles as needed.',
+    volunteer: true
   },
   {
     company: 'Archdiocese of Atlanta',
@@ -439,7 +448,7 @@ const skillData = [
 // eslint-disable-next-line max-statements
 async function seed() {
   await db.sync({force: true})
-  console.log('db synced!')
+  console.log(redBright('db synced!'))
 
   const affiliations = await Promise.all(
     affiliationData.map(async affiliation => {
@@ -447,7 +456,7 @@ async function seed() {
       return allAffiliations
     })
   )
-  console.log(`seeded ${affiliations.length} affiliations`)
+  console.log(cyanBright(`seeded ${affiliations.length} affiliations`))
 
   const blogs = await Promise.all(
     blogData.map(async blog => {
@@ -455,7 +464,7 @@ async function seed() {
       return allBlogs
     })
   )
-  console.log(`seeded ${blogs.length} blogs`)
+  console.log(magentaBright(`seeded ${blogs.length} blogs`))
 
   const categories = await Promise.all(
     categoryData.map(async category => {
@@ -463,7 +472,7 @@ async function seed() {
       return allCategories
     })
   )
-  console.log(`seeded ${categorys.length} categorys`)
+  console.log(yellowBright(`seeded ${categories.length} categories`))
 
   const jobs = await Promise.all(
     jobData.map(async job => {
@@ -471,7 +480,7 @@ async function seed() {
       return allJobs
     })
   )
-  console.log(`seeded ${jobs.length} jobs`)
+  console.log(greenBright(`seeded ${jobs.length} jobs`))
 
   const presentations = await Promise.all(
     presentationData.map(async presentation => {
@@ -479,7 +488,7 @@ async function seed() {
       return allPresentations
     })
   )
-  console.log(`seeded ${presentations.length} presentations`)
+  console.log(blueBright(`seeded ${presentations.length} presentations`))
 
   const projects = await Promise.all(
     projectData.map(async project => {
@@ -487,7 +496,7 @@ async function seed() {
       return allProjects
     })
   )
-  console.log(`seeded ${projects.length} projects`)
+  console.log(redBright(`seeded ${projects.length} projects`))
 
   const publications = await Promise.all(
     publicationData.map(async publication => {
@@ -495,7 +504,7 @@ async function seed() {
       return allPublications
     })
   )
-  console.log(`seeded ${publications.length} publications`)
+  console.log(cyanBright(`seeded ${publications.length} publications`))
 
   const schools = await Promise.all(
     schoolData.map(async school => {
@@ -503,7 +512,7 @@ async function seed() {
       return allSchools
     })
   )
-  console.log(`seeded ${schools.length} schools`)
+  console.log(magentaBright(`seeded ${schools.length} schools`))
 
   const skills = await Promise.all(
     skillData.map(async skill => {
@@ -511,7 +520,7 @@ async function seed() {
       return allSkill
     })
   )
-  console.log(`seeded ${skills.length} skills`)
+  console.log(yellowBright(`seeded ${skills.length} skills`))
 
   // associations here
   const [scl, cmaa, aces] = affiliations
@@ -557,257 +566,254 @@ async function seed() {
   ] = skills
 
   await Promise.all([
+    // categories
+    code.setBlog(errors),
+    code.setBlog(masks),
+    code.setProject(masksRescue),
+    code.setProject(moodify),
+    code.setProject(kfbc),
+    code.setProject(timelink),
+    code.setSchool(gh),
+    code.setSkill(js),
+    code.setSkill(node),
+    code.setSkill(express),
+    code.setSkill(sequelize),
+    code.setSkill(react),
+    code.setSkill(redux),
+    code.setSkill(html),
+    code.setSkill(css),
+    code.setSkill(flexbox),
+    code.setSkill(git),
+    code.setSkill(pg),
+    code.setSkill(excel),
+    code.setSkill(vscode),
+    code.setSkill(heroku),
+    code.setSkill(puppeteer),
+    code.setSkill(python),
+    code.setSkill(json),
+    code.setSkill(chalk),
+    code.setSkill(agile),
+    editorial.setAffiliation(aces),
+    editorial.setJob(freelance),
+    editorial.setJob(mag),
+    editorial.setProject(website),
+    editorial.setProject(girm),
+    editorial.setSkill(proofing),
+    editorial.setSkill(copyediting),
+    theology.setAffiliation(scl),
+    theology.setAffiliation(cmaa),
+    theology.setJob(freelance),
+    theology.setJob(mag),
+    theology.setJob(frassati),
+    theology.setJob(atl),
+    theology.setPresentation(arsCelebrandi),
+    theology.setPresentation(parables),
+    theology.setPresentation(tertiumQuid),
+    theology.setPresentation(bxvi),
+    theology.setPresentation(chant),
+    // theology.setProject(blessedN),
+    theology.setPublication(antiphon),
+    theology.setPublication(spiritualCommunion),
+    theology.setPublication(bookOfBlessings),
+    theology.setSchool(fus),
+    theology.setSchool(li),
+    theology.setSkill(french),
+    theology.setSkill(latin),
+    hobbies.setJob(ttf),
+    hobbies.setJob(frassati),
+    hobbies.setProject(masksRescue),
+    hobbies.setProject(kfbc),
+
+    // affiliations
     scl.setCategory(theology),
-    scl.setJob(atl),
-    scl.setJob(mag),
-    scl.setSkill(latin),
+    latin.setAffiliation(scl),
     cmaa.setCategory(theology),
-    cmaa.setJob(atl),
-    cmaa.setSkill(latin),
+    latin.setAffiliation(cmaa),
     aces.setCategory(editorial),
-    aces.setJob(mag),
-    aces.setSkill(proofing),
-    aces.setSkill(copyediting),
+    proofing.setAffiliation(aces),
+    copyediting.setAffiliation(aces),
 
+    // blogs
     errors.setCategory(code),
-    errors.setSkill(js),
+    js.setBlog(errors),
+    node.setBlog(errors),
+    git.setBlog(errors),
     masks.setCategory(code),
+    masks.setCategory(hobbies),
     masks.setProject(masksRescue),
-    masks.setSkill(js),
-    masks.setSkill(node),
-    masks.setSkill(puppeteer),
-    masks.setSkill(vscode),
-    masks.setSkill(json),
+    js.setBlog(masks),
+    node.setBlog(masks),
+    puppeteer.setBlog(masks),
+    vscode.setBlog(masks),
+    json.setBlog(masks),
 
-    freelance.setCategory(theology),
+    // jobs
     freelance.setCategory(editorial),
-    freelance.setPresentation(tertiumQuid),
-    freelance.setPresentation(bxvi),
-    freelance.setProject(girm),
-    freelance.setPublication(bookOfBlessings),
-    freelance.setSkill(proofing),
-    freelance.setSkill(copyediting),
+    freelance.setCategory(theology),
+    tertiumQuid.setJob(freelance),
+    bxvi.setJob(freelance),
+    girm.setJob(freelance),
+    // bookOfBlessings,setJob(freelance),
+    proofing.setJob(freelance),
+    copyediting.setJob(freelance),
+
     mag.setCategory(editorial),
     mag.setCategory(theology),
-    mag.setProject(blessedN),
-    mag.setProject(website),
-    mag.setPublication(spiritualCommunion),
-    mag.setSkill(french),
-    mag.setSkill(latin),
-    mag.setSkill(proofing),
-    mag.setSkill(copyediting),
-    mag.setSchool(html),
-    mag.setSkill(excel),
+    scl.setJob(mag),
+    aces.setJob(mag),
+    blessedN.setJob(mag),
+    website.setJob(mag),
+    // spiritualCommunion.setJob(mag),
+    proofing.setJob(mag),
+    copyediting.setJob(mag),
+    excel.setJob(mag),
+    html.setJob(mag),
+    french.setJob(mag),
+    latin.setJob(mag),
+
     ttf.setCategory(hobbies),
     frassati.setCategory(theology),
     frassati.setCategory(hobbies),
-    frassati.setPresentation(parables),
-    atl.setCategory(theology),
-    atl.setPresentation(chant),
-
-    arsCelebrandi.setCategory(theology),
-    arsCelebrandi.setPublication(antiphon),
-    arsCelebrandi.setSkill(latin),
-    parables.setCategory(theology),
     parables.setJob(frassati),
-    parables.setSkill(excel),
+    frassati.setSkill(excel),
+
+    atl.setCategory(theology),
+    scl.setJob(atl),
+    cmaa.setJob(atl),
+    // antiphon.setJob(atl),
+    chant.setJob(atl),
+    latin.setJob(atl),
+
+    // presentations
+    arsCelebrandi.setCategory(theology),
+    antiphon.setPresentation(arsCelebrandi),
+    latin.setPresentation(arsCelebrandi),
+
+    parables.setCategory(theology),
+    excel.setPresentation(parables),
+
     tertiumQuid.setCategory(theology),
     bxvi.setCategory(theology),
+
     chant.setCategory(theology),
     chant.setJob(atl),
-    chant.setSkill(latin),
+    latin.setPresentation(chant),
 
+    // projects
     masksRescue.setCategory(code),
     masksRescue.setCategory(hobbies),
-    masksRescue.setBlog(masks),
-    masksRescue.setSkill(js),
-    masksRescue.setSkill(node),
-    masksRescue.setSkill(puppeteer),
-    masksRescue.setSkill(vscode),
-    masksRescue.setSkill(json),
+    // masks.setProject(masksRescue),
+    js.setProject(masksRescue),
+    node.setProject(masksRescue),
+    git.setProject(masksRescue),
+    puppeteer.setProject(masksRescue),
+    vscode.setProject(masksRescue),
+    json.setProject(masksRescue),
+
     moodify.setCategory(code),
     moodify.setSchool(gh),
-    moodify.setSkill(js),
-    moodify.setSkill(node),
-    moodify.setSkill(express),
-    moodify.setSkill(react),
-    moodify.setSkill(css),
-    moodify.setSkill(git),
-    moodify.setSkill(agile),
-    moodify.setSkill(vscode),
-    moodify.setSkill(heroku),
+    js.setProject(moodify),
+    node.setProject(moodify),
+    express.setProject(moodify),
+    react.setProject(moodify),
+    css.setProject(moodify),
+    git.setProject(moodify),
+    agile.setProject(moodify),
+    vscode.setProject(moodify),
+    heroku.setProject(moodify),
 
     kfbc.setCategory(code),
+    kfbc.setCategory(hobbies),
     kfbc.setSchool(gh),
-    kfbc.setSkill(js),
-    kfbc.setSkill(node),
-    kfbc.setSkill(express),
-    kfbc.setSkill(sequelize),
-    kfbc.setSkill(react),
-    kfbc.setSkill(redux),
-    kfbc.setSkill(css),
-    kfbc.setSkill(flexbox),
-    kfbc.setSkill(git),
-    kfbc.setSkill(pg),
-    kfbc.setSkill(vscode),
-    kfbc.setSkill(heroku),
-    kfbc.setSkill(puppeteer),
+    js.setProject(kfbc),
+    node.setProject(kfbc),
+    express.setProject(kfbc),
+    sequelize.setProject(kfbc),
+    react.setProject(kfbc),
+    redux.setProject(kfbc),
+    css.setProject(kfbc),
+    flexbox.setProject(kfbc),
+    git.setProject(kfbc),
+    pg.setProject(kfbc),
+    vscode.setProject(kfbc),
+    heroku.setProject(kfbc),
+    puppeteer.setProject(kfbc),
+    chalk.setProject(kfbc),
+
     timelink.setCategory(code),
     timelink.setSchool(gh),
-    timelink.setSkill(js),
-    timelink.setSkill(node),
-    timelink.setSkill(express),
-    timelink.setSkill(sequelize),
-    timelink.setSkill(react),
-    timelink.setSkill(redux),
-    timelink.setSkill(css),
-    timelink.setSkill(flexbox),
-    timelink.setSkill(git),
-    timelink.setSkill(pg),
-    timelink.setSkill(vscode),
-    timelink.setSkill(heroku),
-    timelink.setSkill(agile),
+    js.setProject(timelink),
+    node.setProject(timelink),
+    express.setProject(timelink),
+    sequelize.setProject(timelink),
+    react.setProject(timelink),
+    redux.setProject(timelink),
+    css.setProject(timelink),
+    flexbox.setProject(timelink),
+    git.setProject(timelink),
+    pg.setProject(timelink),
+    vscode.setProject(timelink),
+    heroku.setProject(timelink),
+    agile.setProject(timelink),
+
     blessedN.setCategory(theology),
     blessedN.setJob(mag),
-    blessedN.setSkill(proofing),
-    blessedN.setSkill(excel),
+    proofing.setProject(blessedN),
+    excel.setProject(blessedN),
+
     website.setCategory(editorial),
     website.setJob(mag),
-    website.setSkill(proofing),
-    website.setSkill(copyediting),
-    website.setSkill(html),
+    proofing.setProject(website),
+    copyediting.setProject(website),
+    html.setProject(website),
+
     girm.setCategory(editorial),
     girm.setJob(freelance),
-    girm.setSkill(proofing),
-    girm.setSkill(excel),
+    proofing.setProject(girm),
+    excel.setProject(girm),
 
+    // publications
     antiphon.setCategory(theology),
     antiphon.setPresentation(arsCelebrandi),
-    antiphon.setSkill(latin),
+    latin.setPublication(antiphon),
+
     spiritualCommunion.setCategory(theology),
     spiritualCommunion.setJob(mag),
+
     bookOfBlessings.setCategory(theology),
     bookOfBlessings.setJob(freelance),
 
+    // schools
     fus.setCategory(theology),
-    li.setCategory(theology),
-    gh.setCategory(code),
-    gh.setBlog(errors),
-    gh.setProject(timelink),
-    gh.setProject(kfbc),
-    gh.setProject(moodify),
 
-    french.setCategory(theology),
-    french.setJob(mag),
-    latin.setCategory(theology),
-    latin.setAffiliation(scl),
-    latin.setAffiliation(cmaa),
-    latin.setPresentation(arsCelebrandi),
-    latin.setPublication(antiphon),
-    proofing.setCategory(editorial),
-    proofing.setAffiliation(aces),
-    proofing.setJob(freelance),
-    proofing.setJob(mag),
-    proofing.setProject(blessedN),
-    proofing.setProject(website),
-    proofing.setProject(girm),
-    copyediting.setCategory(editorial),
-    copyediting.setAffiliation(aces),
-    copyediting.setJob(freelance),
-    copyediting.setJob(mag),
-    copyediting.setProject(website),
-    js.setCategory(code),
-    js.setBlog(errors),
-    js.setBlog(masks),
-    js.setProject(timelink),
-    js.setProject(kfbc),
-    js.setProject(moodify),
-    js.setProject(masksRescue),
-    node.setCategory(code),
-    node.setBlog(errors),
-    node.setBlog(masks),
-    node.setProject(timelink),
-    node.setProject(kfbc),
-    node.setProject(moodify),
-    node.setProject(masksRescue),
-    express.setCategory(code),
-    express.setProject(timelink),
-    express.setProject(kfbc),
-    express.setProject(moodify),
-    sequelize.setCategory(code),
-    sequelize.setProject(timelink),
-    sequelize.setProject(kfbc),
-    react.setCategory(code),
-    react.setProject(timelink),
-    react.setProject(kfbc),
-    react.setProject(moodify),
-    redux.setCategory(code),
-    redux.setProject(timelink),
-    redux.setProject(kfbc),
-    html.setCategory(code),
-    html.setJob(mag),
-    html.setProject(website),
-    css.setCategory(code),
-    css.setProject(timelink),
-    css.setProject(kfbc),
-    css.setProject(moodify),
-    flexbox.setCategory(code),
-    flexbox.setProject(timelink),
-    flexbox.setProject(kfbc),
-    git.setCategory(code),
-    git.setBlog(errors),
-    git.setProject(timelink),
-    git.setProject(kfbc),
-    git.setProject(moodify),
-    git.setProject(masksRescue),
-    pg.setCategory(code),
-    pg.setProject(timelink),
-    pg.setProject(kfbc),
-    excel.setCategory(code),
-    excel.setJob(mag),
-    excel.setPresentation(parables),
-    excel.setProject(blessedN),
-    excel.setProject(girm),
-    vscode.setCategory(code),
-    vscode.setProject(timelink),
-    vscode.setProject(kfbc),
-    vscode.setProject(moodify),
-    vscode.setProject(masksRescue),
-    heroku.setCategory(code),
-    heroku.setProject(timelink),
-    heroku.setProject(kfbc),
-    heroku.setProject(moodify),
-    puppeteer.setCategory(code),
-    puppeteer.setBlog(masks),
-    puppeteer.setProject(masksRescue),
-    puppeteer.setProject(kfbc),
-    python.setCategory(code),
-    json.setCategory(code),
-    json.setBlog(masks),
-    json.setProject(masksRescue),
-    chalk.setCategory(code),
-    chalk.setProject(kfbc),
-    agile.setCategory(code),
-    agile.setProject(timelink),
-    agile.setProject(moodify)
+    li.setCategory(theology),
+
+    gh.setCategory(code),
+    timelink.setSchool(gh),
+    kfbc.setSchool(gh),
+    moodify.setSchool(gh)
+
+    // skills
+    // managed above
   ])
-  console.log(`seeded successfully`)
+  console.log(greenBright.bold(`seeded successfully`))
 }
 
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
 // The `seed` function is concerned only with modifying the database.
 async function runSeed() {
-  console.log('seeding...')
+  console.log(greenBright('seeding...'))
   try {
     await seed()
   } catch (err) {
-    console.error(err)
+    // console.error(err)
+    console.error(whiteBright.bold(err))
     process.exitCode = 1
   } finally {
-    console.log('closing db connection')
+    console.log(redBright('closing db connection'))
     await db.close()
-    console.log('db connection closed')
+    console.log(blueBright('db connection closed'))
   }
 }
 

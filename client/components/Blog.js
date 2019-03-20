@@ -13,7 +13,11 @@ class Blog extends Component {
   }
 
   render() {
-    return <div id="blog-component" />
+    return (
+      <div id="blog-component">
+        <p>Blog component test</p>
+      </div>
+    )
   }
 }
 

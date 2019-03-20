@@ -13,7 +13,7 @@ class Publication extends Component {
   }
 
   render() {
-    return <div id="publication-component" />
+    return <div id="publication-component">Publication component test</div>
   }
 }
 

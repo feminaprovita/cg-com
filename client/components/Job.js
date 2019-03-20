@@ -13,7 +13,7 @@ class Job extends Component {
   }
 
   render() {
-    return <div id="job-component" />
+    return <div id="job-component">Job component test</div>
   }
 }
 

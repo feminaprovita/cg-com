@@ -24,7 +24,7 @@ const Publication = db.define('publication', {
     }
   },
   summary: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT
     // allowNull: false,
     // validate: {
     //   notEmpty: true
@@ -38,7 +38,7 @@ const Publication = db.define('publication', {
     }
   },
   details: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT
   }
 })
 

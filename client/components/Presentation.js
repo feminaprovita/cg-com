@@ -13,7 +13,7 @@ class Presentation extends Component {
   }
 
   render() {
-    return <div id="presentation-component" />
+    return <div id="presentation-component">Blog component test</div>
   }
 }
 

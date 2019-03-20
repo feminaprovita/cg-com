@@ -13,7 +13,7 @@ class Project extends Component {
   }
 
   render() {
-    return <div id="project-component" />
+    return <div id="project-component">Project component test</div>
   }
 }
 

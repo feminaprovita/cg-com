@@ -27,7 +27,7 @@ class Category extends Component {
     return (
       <div id="category-component">
         <Button variant="contained" color="primary">
-          Test button
+          Category button test
         </Button>
       </div>
     )

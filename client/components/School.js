@@ -13,7 +13,7 @@ class School extends Component {
   }
 
   render() {
-    return <div id="school-component" />
+    return <div id="school-component">School component test</div>
   }
 }
 

@@ -1,4 +1,15 @@
 import React from 'react'
+import {
+  Affiliation,
+  Blog,
+  Category,
+  Job,
+  Presentation,
+  Project,
+  Publication,
+  School,
+  Skill
+} from '../store/'
 
 const Profile = () => (
   <div id="profile-container">
@@ -43,6 +54,17 @@ const Profile = () => (
         Check back soon, because I will definitely be adding more stuff here as
         I go!
       </p>
+    </div>
+    <div id="component-tests">
+      <Category />
+      <Affiliation />
+      <Blog />
+      <Job />
+      <Presentation />
+      <Project />
+      <Publication />
+      <School />
+      <Skill />
     </div>
   </div>
 )
