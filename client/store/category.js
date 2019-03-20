@@ -30,7 +30,7 @@ export const fetchOneCategory = categoryId => {
 
 const initialState = {
   categories: [],
-  currentCategory: {}
+  currentCategory: ''
 }
 
 export function reducer(state = initialState, action) {
