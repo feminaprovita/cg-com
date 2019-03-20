@@ -20,7 +20,7 @@ Category.hasMany(Skill)
 Affiliation.belongsTo(Category)
 
 Blog.belongsTo(Category)
-Blog.hasMany(Project)
+Blog.hasMany(Project) // might become many-many later (might need more fixing now)
 Blog.hasMany(Skill)
 
 Job.belongsToMany(Category, {through: 'JobCategories'})
@@ -38,7 +38,7 @@ Presentation.hasMany(Skill)
 Project.belongsTo(Category)
 Project.belongsTo(Job) // maybe flip
 Project.belongsTo(School)
-// Project.belongsToMany(Blog)
+Project.belongsTo(Blog) // might become many-many later
 Project.hasMany(Skill)
 
 Publication.belongsTo(Category)
