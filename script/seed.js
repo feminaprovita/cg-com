@@ -448,7 +448,7 @@ const skillData = [
 // eslint-disable-next-line max-statements
 async function seed() {
   await db.sync({force: true})
-  console.log(redBright('db synced!'))
+  console.log(greenBright('db synced!'))
 
   const affiliations = await Promise.all(
     affiliationData.map(async affiliation => {
@@ -456,7 +456,7 @@ async function seed() {
       return allAffiliations
     })
   )
-  console.log(cyanBright(`seeded ${affiliations.length} affiliations`))
+  console.log(magentaBright(`seeded ${affiliations.length} affiliations`))
 
   const blogs = await Promise.all(
     blogData.map(async blog => {
@@ -472,7 +472,7 @@ async function seed() {
       return allCategories
     })
   )
-  console.log(yellowBright(`seeded ${categories.length} categories`))
+  console.log(magentaBright(`seeded ${categories.length} categories`))
 
   const jobs = await Promise.all(
     jobData.map(async job => {
@@ -480,7 +480,7 @@ async function seed() {
       return allJobs
     })
   )
-  console.log(greenBright(`seeded ${jobs.length} jobs`))
+  console.log(magentaBright(`seeded ${jobs.length} jobs`))
 
   const presentations = await Promise.all(
     presentationData.map(async presentation => {
@@ -488,7 +488,7 @@ async function seed() {
       return allPresentations
     })
   )
-  console.log(blueBright(`seeded ${presentations.length} presentations`))
+  console.log(magentaBright(`seeded ${presentations.length} presentations`))
 
   const projects = await Promise.all(
     projectData.map(async project => {
@@ -496,7 +496,7 @@ async function seed() {
       return allProjects
     })
   )
-  console.log(redBright(`seeded ${projects.length} projects`))
+  console.log(magentaBright(`seeded ${projects.length} projects`))
 
   const publications = await Promise.all(
     publicationData.map(async publication => {
@@ -504,7 +504,7 @@ async function seed() {
       return allPublications
     })
   )
-  console.log(cyanBright(`seeded ${publications.length} publications`))
+  console.log(magentaBright(`seeded ${publications.length} publications`))
 
   const schools = await Promise.all(
     schoolData.map(async school => {
@@ -520,7 +520,7 @@ async function seed() {
       return allSkill
     })
   )
-  console.log(yellowBright(`seeded ${skills.length} skills`))
+  console.log(magentaBright(`seeded ${skills.length} skills`))
 
   // associations here
   const [scl, cmaa, aces] = affiliations
@@ -567,25 +567,35 @@ async function seed() {
 
   await Promise.all([
     // categories
-    // theology.setProject(blessedN),
+    scl.setCategory(theology),
+    // theology.setAffiliation(scl),
+    cmaa.setCategory(theology),
+    aces.setCategory(editorial),
+
+    errors.setCategory(code),
+    masks.setCategory(code),
+    masks.setCategory(hobbies),
+
+    freelance.setCategory(editorial),
+    freelance.setCategory(theology),
+    mag.setCategory(editorial),
+    mag.setCategory(theology),
+    ttf.setCategory(hobbies),
+    frassati.setCategory(theology),
+    frassati.setCategory(hobbies),
+    atl.setCategory(theology),
 
     // affiliations
-    scl.setCategory(theology),
-    scl.setSkill(latin),
-    latin.setAffiliation(scl),
-    cmaa.setCategory(theology),
-    latin.setAffiliation(cmaa),
-    aces.setCategory(editorial),
-    proofing.setAffiliation(aces),
-    copyediting.setAffiliation(aces),
+    // scl.setSkill(latin),
+    // latin.setAffiliation(scl),
+    // latin.setAffiliation(cmaa),
+    // proofing.setAffiliation(aces),
+    // copyediting.setAffiliation(aces),
 
     // blogs
-    errors.setCategory(code),
     js.setBlog(errors),
     node.setBlog(errors),
     git.setBlog(errors),
-    masks.setCategory(code),
-    masks.setCategory(hobbies),
     masks.setProject(masksRescue),
     js.setBlog(masks),
     node.setBlog(masks),
@@ -594,8 +604,6 @@ async function seed() {
     json.setBlog(masks),
 
     // jobs
-    freelance.setCategory(editorial),
-    freelance.setCategory(theology),
     tertiumQuid.setJob(freelance),
     bxvi.setJob(freelance),
     girm.setJob(freelance),
@@ -603,8 +611,6 @@ async function seed() {
     proofing.setJob(freelance),
     copyediting.setJob(freelance),
 
-    mag.setCategory(editorial),
-    mag.setCategory(theology),
     scl.setJob(mag),
     aces.setJob(mag),
     blessedN.setJob(mag),
@@ -617,13 +623,9 @@ async function seed() {
     french.setJob(mag),
     latin.setJob(mag),
 
-    ttf.setCategory(hobbies),
-    frassati.setCategory(theology),
-    frassati.setCategory(hobbies),
     parables.setJob(frassati),
     frassati.setSkill(excel),
 
-    atl.setCategory(theology),
     scl.setJob(atl),
     cmaa.setJob(atl),
     // antiphon.setJob(atl),
@@ -779,9 +781,9 @@ async function runSeed() {
     console.error(whiteBright.bold(err))
     process.exitCode = 1
   } finally {
-    console.log(redBright('closing db connection'))
+    console.log(greenBright('closing db connection'))
     await db.close()
-    console.log(blueBright('db connection closed'))
+    console.log(greenBright('db connection closed'))
   }
 }
 
