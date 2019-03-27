@@ -15,14 +15,14 @@ Category.hasMany(Affiliation)
 Blog.belongsTo(Category)
 Category.hasMany(Blog)
 
-Job.belongsToMany(Category, {through: 'job_categories', unique: false})
-Category.belongsToMany(Job, {through: 'job_categories', unique: false})
+Job.belongsToMany(Category, {through: 'job_categories'})
+Category.belongsToMany(Job, {through: 'job_categories'})
 
 Presentation.belongsTo(Category)
 Category.hasMany(Presentation)
 
-Project.belongsToMany(Category, {through: 'project_categories', unique: false})
-Category.belongsToMany(Project, {through: 'project_categories', unique: false})
+Project.belongsToMany(Category, {through: 'project_categories'})
+Category.belongsToMany(Project, {through: 'project_categories'})
 
 Publication.belongsTo(Category)
 Category.hasMany(Publication)
@@ -34,18 +34,18 @@ Skill.belongsTo(Category)
 Category.hasMany(Skill)
 
 // affiliations
-Job.belongsToMany(Affiliation, {through: 'job_affiliations', unique: false})
-Affiliation.belongsToMany(Job, {through: 'job_affiliations', unique: false})
+Job.belongsToMany(Affiliation, {through: 'job_affiliations'})
+Affiliation.belongsToMany(Job, {through: 'job_affiliations'})
 
-Affiliation.belongsToMany(Skill, {through: 'affiliation_skills', unique: false})
-Skill.belongsToMany(Affiliation, {through: 'affiliation_skills', unique: false})
+Affiliation.belongsToMany(Skill, {through: 'affiliation_skills'})
+Skill.belongsToMany(Affiliation, {through: 'affiliation_skills'})
 
 // blogs
 Blog.belongsTo(Project)
 Project.hasMany(Blog)
 
-Blog.belongsToMany(Skill, {through: 'blog_skills', unique: false})
-Skill.belongsToMany(Blog, {through: 'blog_skills', unique: false})
+Blog.belongsToMany(Skill, {through: 'blog_skills'})
+Skill.belongsToMany(Blog, {through: 'blog_skills'})
 
 // jobs
 Presentation.belongsTo(Job)
@@ -57,8 +57,8 @@ Job.hasMany(Project)
 Publication.belongsTo(Job)
 Job.hasMany(Publication)
 
-Job.belongsToMany(Skill, {through: 'job_skills', unique: false})
-Skill.belongsToMany(Job, {through: 'job_skills', unique: false})
+Job.belongsToMany(Skill, {through: 'job_skills'})
+Skill.belongsToMany(Job, {through: 'job_skills'})
 
 // presentations
 Publication.belongsTo(Presentation)
@@ -77,13 +77,13 @@ Skill.belongsToMany(Presentation, {
 Project.belongsTo(School)
 School.hasMany(Project)
 
-Project.belongsToMany(Skill, {through: 'project_skills', unique: false})
-Skill.belongsToMany(Project, {through: 'project_skills', unique: false})
+Project.belongsToMany(Skill, {through: 'project_skills'})
+Skill.belongsToMany(Project, {through: 'project_skills'})
 
 // publications
 
-Publication.belongsToMany(Skill, {through: 'publication_skills', unique: false})
-Skill.belongsToMany(Publication, {through: 'publication_skills', unique: false})
+Publication.belongsToMany(Skill, {through: 'publication_skills'})
+Skill.belongsToMany(Publication, {through: 'publication_skills'})
 
 module.exports = {
   Affiliation,

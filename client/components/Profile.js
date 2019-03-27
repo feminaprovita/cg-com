@@ -1,15 +1,5 @@
 import React from 'react'
-import {
-  Affiliation,
-  Blog,
-  Category,
-  Job,
-  Presentation,
-  Project,
-  Publication,
-  School,
-  Skill
-} from '../store/'
+import {withRouter} from 'react-router-dom'
 
 const Profile = () => (
   <div id="profile-container">
@@ -55,18 +45,7 @@ const Profile = () => (
         I go!
       </p>
     </div>
-    <div id="component-tests">
-      <Category />
-      <Affiliation />
-      <Blog />
-      <Job />
-      <Presentation />
-      <Project />
-      <Publication />
-      <School />
-      <Skill />
-    </div>
   </div>
 )
 
-export default Profile
+export default withRouter(Profile)

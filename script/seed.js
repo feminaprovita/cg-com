@@ -69,10 +69,22 @@ const blogData = [
 ]
 
 const categoryData = [
-  {name: 'Code'},
-  {name: 'Editorial'},
-  {name: 'Theology'},
-  {name: 'Hobbies'}
+  {
+    name: 'Code',
+    id: 1
+  },
+  {
+    name: 'Editorial',
+    id: 2
+  },
+  {
+    name: 'Theology',
+    id: 3
+  },
+  {
+    name: 'Hobbies',
+    id: 4
+  }
 ]
 
 const jobData = [
@@ -594,6 +606,8 @@ async function seed() {
     js.setBlogs(errors),
     node.setBlogs(errors),
     git.setBlogs(errors),
+
+    masks.setProject(masksRescue),
     js.setBlogs(masks),
     node.setBlogs(masks),
     puppeteer.setBlogs(masks),

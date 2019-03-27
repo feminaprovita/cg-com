@@ -20,12 +20,16 @@ a:hover {
   font-size: 3em;
 }
 
-#profile-container {
-  padding: 2vw;
+#landing-container {
+  padding: 0.1vw;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+#profile-container {
+  border: 1px dashed black;
 }
 
 #profile-pic {
@@ -33,11 +37,16 @@ a:hover {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 95%;
+  max-width: 222px;
 }
 
 #profile-text {
   padding: 4vw;
   color: darkblue;
   text-align: center;
+}
+
+#component-tests {
+  padding: 4vw;
+  border: 1px dashed black;
 }

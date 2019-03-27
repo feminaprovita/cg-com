@@ -33,7 +33,7 @@ const initialState = {
   currentProject: {}
 }
 
-export function reducer(state = initialState, action) {
+const project = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ALL_PROJECTS:
       return {...state, projects: action.projects}

@@ -9,11 +9,12 @@ class Category extends Component {
     super(props)
     this.state = {
       categories: this.props.categories,
-      currentCategory: ''
+      currentCategories: this.props.currentCategories || ['code']
     }
   }
   handleClick(evt) {
     evt.preventDefault()
+    console.log(evt.target)
     this.setState(prevState => {
       let copyCat = [prevState.categories]
       if (prevState.categories.includes(evt.target.value)) {
@@ -24,10 +25,41 @@ class Category extends Component {
     })
   }
   render() {
+    console.log('props', this.props)
+    console.log('state', this.state)
     return (
       <div id="category-component">
-        <Button variant="contained" color="primary">
-          Category button test
+        <Button
+          id="code"
+          onClick={this.handleClick}
+          variant="contained"
+          color="primary"
+        >
+          Code
+        </Button>
+        <Button
+          id="editorial"
+          onClick={this.handleClick}
+          variant="contained"
+          color="primary"
+        >
+          Editorial
+        </Button>
+        <Button
+          id="theology"
+          onClick={this.handleClick}
+          variant="contained"
+          color="primary"
+        >
+          Theology
+        </Button>
+        <Button
+          id="hobbies"
+          onClick={this.handleClick}
+          variant="contained"
+          color="primary"
+        >
+          Hobbies
         </Button>
       </div>
     )

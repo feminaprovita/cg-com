@@ -33,7 +33,7 @@ const initialState = {
   currentAffiliation: {}
 }
 
-export function reducer(state = initialState, action) {
+const affiliation = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ALL_AFFILIATIONS:
       return {...state, affiliations: action.affiliations}

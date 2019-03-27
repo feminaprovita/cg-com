@@ -27,7 +27,7 @@ const initialState = {
   currentJob: {}
 }
 
-export function reducer(state = initialState, action) {
+const job = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ALL_JOBS:
       return {...state, jobs: action.jobs}

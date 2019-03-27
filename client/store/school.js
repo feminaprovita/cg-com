@@ -33,7 +33,7 @@ const initialState = {
   currentSchools: {}
 }
 
-export function reducer(state = initialState, action) {
+const school = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ALL_SCHOOLS:
       return {...state, schools: action.schools}

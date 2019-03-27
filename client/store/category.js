@@ -30,10 +30,10 @@ export const fetchOneCategory = categoryId => {
 
 const initialState = {
   categories: [],
-  currentCategory: ''
+  currentCategories: []
 }
 
-export function reducer(state = initialState, action) {
+const category = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ALL_CATEGORIES:
       return {...state, categories: action.categories}

@@ -27,7 +27,7 @@ const initialState = {
   currentSkill: {}
 }
 
-export function reducer(state = initialState, action) {
+const skill = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ALL_SKILLS:
       return {...state, skills: action.skills}

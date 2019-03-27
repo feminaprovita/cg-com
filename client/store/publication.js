@@ -33,7 +33,7 @@ const initialState = {
   currentPublication: {}
 }
 
-export function reducer(state = initialState, action) {
+const publication = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ALL_PUBLICATIONS:
       return {...state, publications: action.publications}

@@ -27,7 +27,7 @@ const initialState = {
   currentPost: {}
 }
 
-export function reducer(state = initialState, action) {
+const post = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ALL_POSTS:
       return {...state, posts: action.posts}

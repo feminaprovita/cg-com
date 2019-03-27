@@ -6,6 +6,7 @@ const {
   Publication,
   Skill
 } = require('../db/models')
+module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
