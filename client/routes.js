@@ -10,8 +10,6 @@ class Routes extends Component {
     return (
       <Switch>
         <Route path="/" component={Landing} />
-        {/* <Route path="/login" component={} /> */}
-        {/* <Route path="/signup" component={} /> */}
       </Switch>
     )
   }
