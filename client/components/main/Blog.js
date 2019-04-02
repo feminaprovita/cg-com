@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {receiveAllBlogs, receiveOneBlog} from '../store'
 
 class Blog extends Component {
   constructor(props) {

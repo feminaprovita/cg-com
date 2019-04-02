@@ -21,8 +21,8 @@ Category.belongsToMany(Job, {through: 'job_categories'})
 Presentation.belongsTo(Category)
 Category.hasMany(Presentation)
 
-Project.belongsToMany(Category, {through: 'project_categories'})
-Category.belongsToMany(Project, {through: 'project_categories'})
+Project.belongsTo(Category)
+Category.hasMany(Project)
 
 Publication.belongsTo(Category)
 Category.hasMany(Publication)

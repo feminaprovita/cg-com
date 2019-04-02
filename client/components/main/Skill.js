@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {receiveAllSkills, receiveOneSkill} from '../store'
 
 class Skill extends Component {
   constructor(props) {

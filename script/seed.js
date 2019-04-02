@@ -2,13 +2,13 @@
 
 const db = require('../server/db')
 const {
-  redBright,
   greenBright,
-  yellowBright,
-  blueBright,
-  magentaBright,
-  cyanBright,
-  whiteBright
+  magentaBright
+  // redBright,
+  // yellowBright,
+  // blueBright,
+  // cyanBright,
+  // whiteBright
 } = require('chalk')
 const {
   Affiliation,
@@ -656,8 +656,7 @@ async function seed() {
     latin.setPresentations(chant),
 
     // projects
-    masksRescue.setCategories(code),
-    masksRescue.setCategories(hobbies),
+    masksRescue.setCategory(code),
     js.setProjects(masksRescue),
     node.setProjects(masksRescue),
     git.setProjects(masksRescue),
@@ -665,7 +664,7 @@ async function seed() {
     vscode.setProjects(masksRescue),
     json.setProjects(masksRescue),
 
-    moodify.setCategories(code),
+    moodify.setCategory(code),
     moodify.setSchool(gh),
     js.setProjects(moodify),
     node.setProjects(moodify),
@@ -677,8 +676,7 @@ async function seed() {
     heroku.setProjects(moodify),
     agile.setProjects(moodify),
 
-    kfbc.setCategories(code),
-    kfbc.setCategories(hobbies),
+    kfbc.setCategory(code),
     kfbc.setSchool(gh),
     js.setProjects(kfbc),
     node.setProjects(kfbc),
@@ -695,7 +693,7 @@ async function seed() {
     puppeteer.setProjects(kfbc),
     chalk.setProjects(kfbc),
 
-    timelink.setCategories(code),
+    timelink.setCategory(code),
     timelink.setSchool(gh),
     js.setProjects(timelink),
     node.setProjects(timelink),
@@ -711,18 +709,18 @@ async function seed() {
     heroku.setProjects(timelink),
     agile.setProjects(timelink),
 
-    blessedN.setCategories(theology),
+    blessedN.setCategory(theology),
     blessedN.setJob(mag),
     proofing.setProjects(blessedN),
     excel.setProjects(blessedN),
 
-    website.setCategories(editorial),
+    website.setCategory(editorial),
     website.setJob(mag),
     proofing.setProjects(website),
     copyediting.setProjects(website),
     html.setProjects(website),
 
-    girm.setCategories(editorial),
+    girm.setCategory(editorial),
     girm.setJob(freelance),
     proofing.setProjects(girm),
     excel.setProjects(girm),

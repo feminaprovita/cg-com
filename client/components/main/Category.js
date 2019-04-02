@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {receiveAllCategories, receiveOneCategory} from '../store'
 import Button from '@material-ui/core/Button'
 
 class Category extends Component {

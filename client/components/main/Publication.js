@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {receiveAllPublications, receiveOnePublication} from '../store'
 
 class Publication extends Component {
   constructor(props) {
