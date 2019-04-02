@@ -1,39 +1,51 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
+import axios from 'axios'
 
 class Affiliation extends Component {
-  // constructor(props) {
-  //   super(props)
-  // this.state = {
-  //   categories: this.props.categories.length > 0 ? this.props.categories : [1],
-  //   affiliations: this.props.affiliations
-  // }
-  // }
+  constructor() {
+    super()
+    this.state = {
+      affiliations: []
+    }
+  }
+
+  async componentDidMount() {
+    console.log('Affiliation component mounting')
+    const {data} = await axios.get('/api/affiliations')
+    this.setState({
+      affiliations: data
+    })
+  }
 
   render() {
-    console.log('prop affiliations', this.props.affiliations)
+    // console.log('props', this.props)
+    // console.log('state', this.state)
+    // console.log('prop affiliations', this.props.affiliations)
     let affiliations = []
-    this.props.affiliations.forEach(a => {
+    this.state.affiliations.forEach(a => {
       if (this.props.categories.includes(a.categoryId)) {
         affiliations.push(a)
       }
     })
 
-    console.log('affiliations', affiliations)
+    // console.log('affiliations', affiliations)
 
     return (
       <div id="affiliation-component">
-        <p>inside affiliation component</p>
+        {/* <p>inside affiliation component</p> */}
         {affiliations.length > 0
           ? affiliations.map(a => {
               let keyName = `${a.name}-component`
               return (
-                <div key={keyName}>
+                <div className="one-affiliation" key={keyName}>
                   <p>
-                    <a href={a.url}>{a.name}</a>
+                    <b>
+                      <a href={a.url}>{a.name}</a>
+                    </b>
                   </p>
                   <p>
-                    {a.monthStart}-{a.monthEnd}
+                    {a.monthStart}&ndash;{a.monthEnd}
                   </p>
                 </div>
               )

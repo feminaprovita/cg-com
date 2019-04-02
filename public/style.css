@@ -30,6 +30,7 @@ a:hover {
 
 #profile-container {
   border: 1px dashed black;
+  border-radius: 15px;
 }
 
 #profile-pic {
@@ -46,7 +47,25 @@ a:hover {
   text-align: center;
 }
 
-#component-tests {
-  padding: 4vw;
+#components-dummy {
+  padding: 1vw;
   border: 1px dashed black;
+  border-radius: 15px;
+  margin-left: 1vw;
+}
+
+#affiliation-component,
+#project-component {
+  padding: 1vw;
+  margin: 0.5vw;
+  border: 0.5px dashed gray;
+  border-radius: 15px;
+}
+
+.one-affiliation,
+.one-project {
+  padding: 1vw;
+  margin: 0.5vw;
+  border: 0.5px dashed white;
+  border-radius: 15px;
 }

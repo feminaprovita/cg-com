@@ -6,7 +6,7 @@ class Project extends Component {
     const p = this.props.project
     const subKey = p.keyName + '-2'
     return (
-      <div id={subKey}>
+      <div className="one-project" id={subKey}>
         <h3>{p.name}</h3>
         <p>
           <i>{p.role}</i>
@@ -39,7 +39,7 @@ class Project extends Component {
         )}
         {/* {p.jobId ?}
         {p.schoolId ?} */}
-        <p>❦❦❦</p>
+        {/* <p>❦❦❦</p> */}
       </div>
     )
   }

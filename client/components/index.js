@@ -6,6 +6,7 @@
 export {default as Landing} from './Landing'
 export {default as Navbar} from './Navbar'
 export {default as Profile} from './Profile'
+export {default as ResumeBox} from './ResumeBox'
 export {default as Category} from './main/Category'
 export {default as Affiliation} from './main/Affiliation'
 export {default as Blog} from './main/Blog'
