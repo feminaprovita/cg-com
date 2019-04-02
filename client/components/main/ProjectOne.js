@@ -4,19 +4,15 @@ import {withRouter} from 'react-router-dom'
 class Project extends Component {
   render() {
     const p = this.props.project
-    let slug
-    slug = p.name.replace(/[^a-zA-Z0-9\s]/g, '').toLowerCase()
-    console.log(slug)
-    slug = slug.replace((/\s*|[^a-z0-9]/g, '-'))
-    let keyName = slug + '-component'
+    const subKey = p.keyName + '-2'
     return (
-      <div key={keyName}>
+      <div id={subKey}>
         <h3>{p.name}</h3>
         <p>
           <i>{p.role}</i>
         </p>
         {p.bullets && p.bullets.length > 0 ? (
-          <ul>{p.bullets.map(b => <li>{b}</li>)}</ul>
+          <ul>{p.bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>
         ) : (
           <p>{p.paragraph}</p>
         )}
@@ -43,7 +39,7 @@ class Project extends Component {
         )}
         {/* {p.jobId ?}
         {p.schoolId ?} */}
-        <p>❦</p>
+        <p>❦❦❦</p>
       </div>
     )
   }
