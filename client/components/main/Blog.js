@@ -1,30 +1,69 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import axios from 'axios'
 
 class Blog extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
-      categories: this.props.categories || [0],
       blogs: []
     }
   }
 
+  async componentDidMount() {
+    const {data} = await axios.get('/api/blogs')
+    this.setState({
+      blogs: data
+    })
+  }
+
   render() {
+    console.log('blog props', this.props)
+    console.log('blog state', this.state)
+    let blogs = []
+    this.state.blogs.forEach(b => {
+      b.slug = b.title
+        .match(/^.*(?=[\.,:!?(\-–—])/g)
+        .toString()
+        .replace(/[^\d\w\s]/g, '')
+        .toLowerCase()
+        .replace(/[^\d\w]/g, '-')
+      b.keyName = b.slug + '-component'
+      b.imgAlt = b.slug + '-thumbnail-' + b.date
+      if (this.props.categories.includes(b.categoryId)) {
+        blogs.push(b)
+      }
+    })
+    console.log('blogs', blogs)
+
     return (
       <div id="blog-component">
-        <p>Blog component test</p>
+        {blogs.length > 0
+          ? blogs.map(b => {
+              return (
+                <div className="one-blog" key={b.keyName}>
+                  <img
+                    className="blog-thumbnail"
+                    src={b.imageUrl}
+                    alt={b.imgAlt}
+                  />
+                  <div className="blog-info">
+                    <h4>{b.title}</h4>
+                    {b.summary ? <p>{b.summary}</p> : <p>{b.teaser}</p>}
+                    <p>
+                      <a href={b.postUrl} target="blank">
+                        Read more...
+                      </a>
+                    </p>
+                    {/* <p>{b.date}</p> */}
+                  </div>
+                </div>
+              )
+            })
+          : ' '}
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({blogs: state.blogs})
-
-const mapDispatchToProps = dispatch => ({
-  receiveAllBlogs: blog => dispatch(receiveAllBlogs(blog)),
-  receiveOneBlog: blogId => dispatch(receiveOneBlog(blogId))
-})
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Blog))
+export default withRouter(Blog)

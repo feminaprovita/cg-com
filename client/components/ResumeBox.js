@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import {
   Affiliation,
-  // Blog,
+  Blog,
   // Category,
   // Job,
   // Presentation,
@@ -13,11 +13,6 @@ import {
   // School,
   // Skill
 } from './index'
-import {
-  dummyProjects,
-  dummyAffiliations,
-  dummyCategories
-} from '../../scrap/hold'
 
 class ResumeBox extends Component {
   constructor() {
@@ -34,8 +29,8 @@ class ResumeBox extends Component {
       <div id="components-dummy">
         {/* <Category /> */}
         <Affiliation categories={this.state.categories} />
-        {/* <Blog />
-      <Job />
+        <Blog categories={this.state.categories} />
+        {/* <Job />
       <Presentation /> */}
         <Project categories={this.state.categories} />
         {/* <Publication />
