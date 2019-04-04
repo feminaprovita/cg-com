@@ -1,30 +1,67 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import axios from 'axios'
 
 class Publication extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
-      categories: this.props.categories || [0],
       publications: []
     }
   }
 
+  async componentDidMount() {
+    const {data} = await axios.get('/api/publications')
+    this.setState({
+      publications: data
+    })
+  }
+
   render() {
-    return <div id="publication-component">Publication component test</div>
+    // console.log('pub props', this.props)
+    // console.log('pub state', this.state)
+    let publications = []
+    this.state.publications.forEach(p => {
+      p.slug = (p.title.match(/^.*(?=[\.,:;!?(–—])/g) || p.title)
+        .toString()
+        .replace(/[^\d\w\s]/g, '')
+        .toLowerCase()
+        .replace(/[^\d\w]/g, '-')
+      p.keyName = p.slug + '-component'
+      if (this.props.categories.includes(p.categoryId)) {
+        publications.push(p)
+      }
+    })
+    // console.log('publications', publications)
+
+    return (
+      <div id="publication-component">
+        {publications.length > 0 ? (
+          <h2>Publications</h2>
+        ) : (
+          <div id="no-publications" />
+        )}
+        {publications.length > 0 ? (
+          publications.map(p => {
+            return (
+              <div className="one-publication" key={p.keyName}>
+                <h4>{p.title}</h4>
+                <p>
+                  in{' '}
+                  <a href={p.url} target="blank">
+                    <i>{p.book}</i>
+                  </a>, {p.footnote}.
+                </p>
+                <p>{p.summary}</p>
+              </div>
+            )
+          })
+        ) : (
+          <div />
+        )}
+      </div>
+    )
   }
 }
 
-const mapStateToProps = state => ({publications: state.publications})
-
-const mapDispatchToProps = dispatch => ({
-  receiveAllPublications: publication =>
-    dispatch(receiveAllPublications(publication)),
-  receiveOnePublication: publicationId =>
-    dispatch(receiveOnePublication(publicationId))
-})
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Publication)
-)
+export default withRouter(Publication)

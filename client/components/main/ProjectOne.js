@@ -37,8 +37,7 @@ class Project extends Component {
         ) : (
           <div />
         )}
-        {/* {p.jobId ?}
-        {p.schoolId ?} */}
+        {/* {p.jobId ?} */}
         {/* <p>❦❦❦</p> */}
       </div>
     )

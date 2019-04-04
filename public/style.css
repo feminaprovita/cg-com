@@ -23,7 +23,7 @@ a:hover {
 #landing-container {
   padding: 0.1vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
   justify-content: space-around;
   align-items: center;
 }
@@ -47,7 +47,7 @@ a:hover {
   text-align: center;
 }
 
-#components-dummy {
+#components-holder {
   padding: 1vw;
   border: 1px dashed black;
   border-radius: 15px;
@@ -56,7 +56,11 @@ a:hover {
 
 #affiliation-component,
 #project-component,
-#blog-component {
+#blog-component,
+#presentation-component,
+#job-component,
+#publication-component,
+#school-component {
   padding: 1vw;
   margin: 0.5vw;
   border: 0.5px dashed gray;
@@ -64,8 +68,12 @@ a:hover {
 }
 
 .one-affiliation,
-.one-project {
-  padding: 1vw;
+.one-project,
+.one-presentation,
+.one-job,
+.one-publication,
+.one-school {
+  padding: 1vw 2vw;
   margin: 0.5vw;
   border: 0.5px dashed white;
   border-radius: 15px;

@@ -51,9 +51,6 @@ Skill.belongsToMany(Blog, {through: 'blog_skills'})
 Presentation.belongsTo(Job)
 Job.hasMany(Presentation)
 
-Project.belongsTo(Job)
-Job.hasMany(Project)
-
 Publication.belongsTo(Job)
 Job.hasMany(Publication)
 
@@ -74,16 +71,19 @@ Skill.belongsToMany(Presentation, {
 })
 
 // projects
-Project.belongsTo(School)
-School.hasMany(Project)
+Job.belongsTo(Project)
+Project.hasMany(Job)
 
 Project.belongsToMany(Skill, {through: 'project_skills'})
 Skill.belongsToMany(Project, {through: 'project_skills'})
 
 // publications
-
 Publication.belongsToMany(Skill, {through: 'publication_skills'})
 Skill.belongsToMany(Publication, {through: 'publication_skills'})
+
+// schools
+Project.belongsTo(School)
+School.hasMany(Project)
 
 module.exports = {
   Affiliation,

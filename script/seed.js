@@ -617,14 +617,11 @@ async function seed() {
     // jobs
     tertiumQuid.setJob(freelance),
     bxvi.setJob(freelance),
-    girm.setJob(freelance),
     proofing.setJobs(freelance),
     copyediting.setJobs(freelance),
 
     scl.setJobs(mag),
     aces.setJobs(mag),
-    blessedN.setJob(mag),
-    website.setJob(mag),
     proofing.setJobs(mag),
     copyediting.setJobs(mag),
     excel.setJobs(mag),
@@ -656,6 +653,10 @@ async function seed() {
     latin.setPresentations(chant),
 
     // projects
+    freelance.setProject(girm),
+    mag.setProject(blessedN),
+    mag.setProject(website),
+
     masksRescue.setCategory(code),
     js.setProjects(masksRescue),
     node.setProjects(masksRescue),
@@ -665,7 +666,6 @@ async function seed() {
     json.setProjects(masksRescue),
 
     moodify.setCategory(code),
-    moodify.setSchool(gh),
     js.setProjects(moodify),
     node.setProjects(moodify),
     express.setProjects(moodify),
@@ -677,7 +677,6 @@ async function seed() {
     agile.setProjects(moodify),
 
     kfbc.setCategory(code),
-    kfbc.setSchool(gh),
     js.setProjects(kfbc),
     node.setProjects(kfbc),
     express.setProjects(kfbc),
@@ -694,7 +693,6 @@ async function seed() {
     chalk.setProjects(kfbc),
 
     timelink.setCategory(code),
-    timelink.setSchool(gh),
     js.setProjects(timelink),
     node.setProjects(timelink),
     express.setProjects(timelink),
@@ -710,18 +708,15 @@ async function seed() {
     agile.setProjects(timelink),
 
     blessedN.setCategory(theology),
-    blessedN.setJob(mag),
     proofing.setProjects(blessedN),
     excel.setProjects(blessedN),
 
     website.setCategory(editorial),
-    website.setJob(mag),
     proofing.setProjects(website),
     copyediting.setProjects(website),
     html.setProjects(website),
 
     girm.setCategory(editorial),
-    girm.setJob(freelance),
     proofing.setProjects(girm),
     excel.setProjects(girm),
 

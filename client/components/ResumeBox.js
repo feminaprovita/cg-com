@@ -1,16 +1,15 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
-import axios from 'axios'
 
 import {
   Affiliation,
   Blog,
   // Category,
-  // Job,
-  // Presentation,
-  Project
-  // Publication,
-  // School,
+  Job,
+  Presentation,
+  Project,
+  Publication,
+  School
   // Skill
 } from './index'
 
@@ -26,16 +25,16 @@ class ResumeBox extends Component {
     console.log('ResumeBox state', this.state)
 
     return (
-      <div id="components-dummy">
-        {/* <Category /> */}
+      <div id="components-holder">
+        {/* <Category categories={this.state.categories} /> */}
         <Affiliation categories={this.state.categories} />
         <Blog categories={this.state.categories} />
-        {/* <Job />
-      <Presentation /> */}
+        <Job categories={this.state.categories} />
+        <Presentation categories={this.state.categories} />
         <Project categories={this.state.categories} />
-        {/* <Publication />
-      <School />
-      <Skill /> */}
+        <Publication categories={this.state.categories} />
+        <School categories={this.state.categories} />
+        {/* <Skill categories={this.state.categories} /> */}
       </div>
     )
   }

@@ -34,6 +34,7 @@ class Project extends Component {
     // console.log('projects', projects)
     return (
       <div id="project-component">
+        {projects.length > 0 ? <h2>Projects</h2> : <div id="no-projects" />}
         {projects.map(p => <ProjectOne key={p.keyName} project={p} />)}
       </div>
     )

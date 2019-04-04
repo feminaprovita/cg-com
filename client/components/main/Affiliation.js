@@ -22,6 +22,11 @@ class Affiliation extends Component {
     // console.log('aff state', this.state)
     let affiliations = []
     this.state.affiliations.forEach(a => {
+      a.slug = a.name
+        .replace(/[^\d\w\s]/g, '')
+        .toLowerCase()
+        .replace(/[^\d\w]/g, '-')
+      a.keyName = a.slug + '-component'
       if (this.props.categories.includes(a.categoryId)) {
         affiliations.push(a)
       }
@@ -30,24 +35,29 @@ class Affiliation extends Component {
 
     return (
       <div id="affiliation-component">
-        {/* <p>inside affiliation component</p> */}
-        {affiliations.length > 0
-          ? affiliations.map(a => {
-              let keyName = `${a.name}-component`
-              return (
-                <div className="one-affiliation" key={keyName}>
-                  <p>
-                    <b>
-                      <a href={a.url}>{a.name}</a>
-                    </b>
-                  </p>
-                  <p>
-                    {a.monthStart}&ndash;{a.monthEnd}
-                  </p>
-                </div>
-              )
-            })
-          : ' '}
+        {affiliations.length > 0 ? (
+          <h2>Affiliations</h2>
+        ) : (
+          <div id="no-affiliations" />
+        )}
+        {affiliations.length > 0 ? (
+          affiliations.map(a => {
+            return (
+              <div className="one-affiliation" key={a.keyName}>
+                <p>
+                  <b>
+                    <a href={a.url}>{a.name}</a>
+                  </b>
+                </p>
+                <p>
+                  {a.monthStart}&ndash;{a.monthEnd}
+                </p>
+              </div>
+            )
+          })
+        ) : (
+          <div />
+        )}
       </div>
     )
   }

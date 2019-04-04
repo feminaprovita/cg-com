@@ -1,11 +1,11 @@
 const router = require('express').Router()
-const {Blog, Category, School} = require('../db/models')
+const {Category, Project, School} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
     const allSchools = await School.findAll({
-      include: [{model: Category}, {model: Blog}]
+      include: [{model: Category}, {model: Project}]
     })
     res.json(allSchools)
   } catch (err) {
@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:schoolId', async (req, res, next) => {
   try {
     const oneSchool = await School.findById(req.params.schoolId, {
-      include: [{model: Category}, {model: Blog}]
+      include: [{model: Category}, {model: Project}]
     })
     if (oneSchool) res.json(oneSchool)
     else res.sendStatus(404)
