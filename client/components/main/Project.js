@@ -11,18 +11,16 @@ class Project extends Component {
     }
   }
 
-  // async componentDidMount() {
-  //   const {data} = await axios.get('/api/projects')
-  //   this.setState({
-  //     projects: data
-  //   })
-  // }
+  async componentDidMount() {
+    const {data} = await axios.get('/api/projects')
+    this.setState({projects: data})
+  }
 
   render() {
-    console.log('props', this.props)
-    console.log('state', this.state)
+    // console.log('Project props', this.props)
+    // console.log('Project state', this.state)
     let projects = []
-    this.props.projects.forEach(p => {
+    this.state.projects.forEach(p => {
       p.slug = p.name
         .replace(/[^\d\w\s]/g, '')
         .toLowerCase()

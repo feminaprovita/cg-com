@@ -23,33 +23,21 @@ class ResumeBox extends Component {
   constructor() {
     super()
     this.state = {
-      categories: []
+      categories: [1, 2, 3, 4]
     }
   }
 
-  async componentDidMount() {
-    console.log('ResumeBox component mounting')
-    const {data} = await axios.get('/api/categories')
-    this.setState({
-      categories: data || 0
-    })
-  }
   render() {
     console.log('ResumeBox state', this.state)
-    let activeCatIds = []
-    this.state.categories.forEach(c => activeCatIds.push(c.id))
-    // console.log('activeCatIds', activeCatIds)
+
     return (
       <div id="components-dummy">
         {/* <Category /> */}
-        <Affiliation
-          categories={activeCatIds}
-          affiliations={dummyAffiliations}
-        />
+        <Affiliation categories={this.state.categories} />
         {/* <Blog />
       <Job />
       <Presentation /> */}
-        <Project categories={activeCatIds} projects={dummyProjects} />
+        <Project categories={this.state.categories} />
         {/* <Publication />
       <School />
       <Skill /> */}

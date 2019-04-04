@@ -18,9 +18,9 @@ router.get('/', async (req, res, next) => {
       include: [
         {model: Affiliation},
         {model: Blog},
-        {model: Job},
+        {model: Job}, // M:M
         {model: Presentation},
-        {model: Project},
+        {model: Project}, // M:M
         {model: Publication},
         {model: School},
         {model: Skill}
@@ -38,9 +38,9 @@ router.get('/:categoryId', async (req, res, next) => {
       include: [
         {model: Affiliation},
         {model: Blog},
-        {model: Job},
+        {model: Job}, // M:M
         {model: Presentation},
-        {model: Project},
+        {model: Project}, // M:M
         {model: Publication},
         {model: School},
         {model: Skill}

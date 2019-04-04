@@ -252,7 +252,7 @@ const projectData = [
   },
   {
     name: 'Timelink Travel Services',
-    role: 'Fullstack Softwear Engineer',
+    role: 'Fullstack Software Engineer',
     paragraph:
       'Premise: our client had recently outgrown their etsy shop, and needed a functional e-commerce site that could display their wares.',
     bullets: [

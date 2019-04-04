@@ -11,7 +11,6 @@ class Affiliation extends Component {
   }
 
   async componentDidMount() {
-    console.log('Affiliation component mounting')
     const {data} = await axios.get('/api/affiliations')
     this.setState({
       affiliations: data
@@ -19,16 +18,14 @@ class Affiliation extends Component {
   }
 
   render() {
-    // console.log('props', this.props)
-    // console.log('state', this.state)
-    // console.log('prop affiliations', this.props.affiliations)
+    // console.log('aff props', this.props)
+    // console.log('aff state', this.state)
     let affiliations = []
     this.state.affiliations.forEach(a => {
       if (this.props.categories.includes(a.categoryId)) {
         affiliations.push(a)
       }
     })
-
     // console.log('affiliations', affiliations)
 
     return (
