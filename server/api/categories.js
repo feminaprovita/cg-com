@@ -20,7 +20,7 @@ router.get('/', async (req, res, next) => {
         {model: Blog},
         {model: Job}, // M:M
         {model: Presentation},
-        {model: Project}, // M:M
+        {model: Project},
         {model: Publication},
         {model: School},
         {model: Skill}
@@ -40,7 +40,7 @@ router.get('/:categoryId', async (req, res, next) => {
         {model: Blog},
         {model: Job}, // M:M
         {model: Presentation},
-        {model: Project}, // M:M
+        {model: Project},
         {model: Publication},
         {model: School},
         {model: Skill}

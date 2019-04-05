@@ -4,20 +4,20 @@ import {withRouter} from 'react-router-dom'
 import {
   Affiliation,
   Blog,
-  // Category,
+  Category,
   Job,
   Presentation,
   Project,
   Publication,
-  School
-  // Skill
+  School,
+  Skill
 } from './index'
 
 class ResumeBox extends Component {
   constructor() {
     super()
     this.state = {
-      categories: [1, 2, 3, 4]
+      categories: [1, 2]
     }
   }
 
@@ -26,15 +26,15 @@ class ResumeBox extends Component {
 
     return (
       <div id="components-holder">
-        {/* <Category categories={this.state.categories} /> */}
-        <Affiliation categories={this.state.categories} />
-        <Blog categories={this.state.categories} />
-        <Job categories={this.state.categories} />
-        <Presentation categories={this.state.categories} />
+        <Category activeCategories={this.state.categories} />
         <Project categories={this.state.categories} />
+        <Blog categories={this.state.categories} />
+        <Presentation categories={this.state.categories} />
         <Publication categories={this.state.categories} />
         <School categories={this.state.categories} />
-        {/* <Skill categories={this.state.categories} /> */}
+        <Job categories={this.state.categories} />
+        <Affiliation categories={this.state.categories} />
+        <Skill categories={this.state.categories} />
       </div>
     )
   }

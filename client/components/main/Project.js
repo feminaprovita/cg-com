@@ -18,7 +18,7 @@ class Project extends Component {
 
   render() {
     // console.log('Project props', this.props)
-    // console.log('Project state', this.state)
+    console.log('Project state', this.state)
     let projects = []
     this.state.projects.forEach(p => {
       p.slug = p.name

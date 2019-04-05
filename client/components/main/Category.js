@@ -1,35 +1,70 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
+import axios from 'axios'
 
 class Category extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
-      categories: this.props.categories,
-      currentCategories: this.props.currentCategories || ['code']
+      categories: [],
+      allCategories: []
     }
   }
-  handleClick(evt) {
-    evt.preventDefault()
-    console.log(evt.target)
-    this.setState(prevState => {
-      let copyCat = [prevState.categories]
-      if (prevState.categories.includes(evt.target.value)) {
-        const idxToDelete = prevState.categories.indexOf(evt.target.value)
-        copyCat.splice(idxToDelete, 1)
-        return {categories: copyCat}
-      } else return {categories: [...copyCat, evt.target.value]}
+
+  async componentDidMount() {
+    const {data} = await axios.get('/api/categories')
+    let activeCat = []
+    this.props.activeCategories.forEach(c => {
+      data.forEach(ca => {
+        if (c === ca.id) activeCat.push(ca)
+      })
+    })
+    this.setState({
+      categories: activeCat,
+      allCategories: data
     })
   }
+
+  handleClick = evt => {
+    evt.preventDefault()
+    evt.persist()
+    let thisCat = {}
+    this.state.allCategories.forEach(c => {
+      if (c.name === evt.target.innerHTML) {
+        thisCat = {...c}
+      }
+    })
+    let tester
+    this.setState(prevState => {
+      prevState.categories.forEach(oldCat => {
+        if (oldCat.id === thisCat.id) {
+          tester = true
+        }
+      })
+      let updatedCats = [...prevState.categories]
+      if (tester) {
+        updatedCats = updatedCats.filter(c => c.id !== thisCat.id)
+        this.setState({
+          categories: updatedCats
+        })
+      } else {
+        updatedCats = [...prevState.categories, thisCat]
+        this.setState({
+          categories: updatedCats
+        })
+      }
+    })
+  }
+
   render() {
-    console.log('props', this.props)
-    console.log('state', this.state)
+    // let activeCategories = this.props.activeCategories
+    // console.log('cat props', this.props)
+    console.log('cat state', this.state)
     return (
       <div id="category-component">
         <Button
-          id="code"
+          id="code-button"
           onClick={this.handleClick}
           variant="contained"
           color="primary"
@@ -37,7 +72,7 @@ class Category extends Component {
           Code
         </Button>
         <Button
-          id="editorial"
+          id="editorial-button"
           onClick={this.handleClick}
           variant="contained"
           color="primary"
@@ -45,7 +80,7 @@ class Category extends Component {
           Editorial
         </Button>
         <Button
-          id="theology"
+          id="theology-button"
           onClick={this.handleClick}
           variant="contained"
           color="primary"
@@ -53,7 +88,7 @@ class Category extends Component {
           Theology
         </Button>
         <Button
-          id="hobbies"
+          id="hobbies-button"
           onClick={this.handleClick}
           variant="contained"
           color="primary"
@@ -65,13 +100,4 @@ class Category extends Component {
   }
 }
 
-const mapStateToProps = state => ({categories: state.categories})
-
-const mapDispatchToProps = dispatch => ({
-  receiveAllCategories: category => dispatch(receiveAllCategories(category)),
-  receiveOneCategory: categoryId => dispatch(receiveOneCategory(categoryId))
-})
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Category)
-)
+export default withRouter(Category)

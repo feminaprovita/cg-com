@@ -19,7 +19,7 @@ class Publication extends Component {
 
   render() {
     // console.log('pub props', this.props)
-    // console.log('pub state', this.state)
+    console.log('pub state', this.state)
     let publications = []
     this.state.publications.forEach(p => {
       p.slug = (p.title.match(/^.*(?=[\.,:;!?(–—])/g) || p.title)

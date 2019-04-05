@@ -19,7 +19,7 @@ class Blog extends Component {
 
   render() {
     // console.log('blog props', this.props)
-    // console.log('blog state', this.state)
+    console.log('blog state', this.state)
     let blogs = []
     this.state.blogs.forEach(b => {
       b.slug = (b.title.match(/^.*(?=[\.,:;!?(–—])/g) || b.title)
@@ -37,7 +37,7 @@ class Blog extends Component {
 
     return (
       <div id="blog-component">
-        {blogs.length > 0 ? <h2>Blogs</h2> : <div id="no-blogs" />}
+        {blogs.length > 0 ? <h2>Blog Posts</h2> : <div id="no-blogs" />}
         {blogs.length > 0 ? (
           blogs.map(b => {
             return (

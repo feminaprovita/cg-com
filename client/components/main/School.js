@@ -17,7 +17,7 @@ class School extends Component {
   }
 
   render() {
-    console.log('school props', this.props)
+    // console.log('school props', this.props)
     console.log('school state', this.state)
     const schools = this.state.schools
     let focusSchools = []
@@ -31,7 +31,7 @@ class School extends Component {
         focusSchools.push(s.shortName)
       }
     })
-    console.log('schools', schools)
+    // console.log('schools', schools)
 
     return (
       <div id="school-component">

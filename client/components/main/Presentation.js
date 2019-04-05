@@ -17,7 +17,7 @@ class Presentation extends Component {
 
   render() {
     // console.log('pres props', this.props)
-    // console.log('pres state', this.state)
+    console.log('pres state', this.state)
     let presentations = []
     this.state.presentations.forEach(p => {
       p.slug = (p.name.match(/^.*(?=[\.,:;!?(–—])/g) || p.name)
