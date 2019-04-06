@@ -3,11 +3,22 @@ import {withRouter} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
 
+import {
+  Affiliation,
+  Blog,
+  Job,
+  Presentation,
+  Project,
+  Publication,
+  School,
+  Skill
+} from '../index'
+
 class Category extends Component {
   constructor() {
     super()
     this.state = {
-      categories: [],
+      categories: [1, 2],
       allCategories: []
     }
   }
@@ -36,65 +47,75 @@ class Category extends Component {
       }
     })
     let tester
-    this.setState(prevState => {
-      prevState.categories.forEach(oldCat => {
-        if (oldCat.id === thisCat.id) {
-          tester = true
-        }
-      })
-      let updatedCats = [...prevState.categories]
-      if (tester) {
-        updatedCats = updatedCats.filter(c => c.id !== thisCat.id)
-        this.setState({
-          categories: updatedCats
-        })
-      } else {
-        updatedCats = [...prevState.categories, thisCat]
-        this.setState({
-          categories: updatedCats
-        })
+    this.state.categories.forEach(oldCat => {
+      if (oldCat.id === thisCat.id) {
+        tester = true
       }
     })
+    let updatedCats = [...this.state.categories]
+    if (tester) {
+      updatedCats = updatedCats.filter(c => c.id !== thisCat.id)
+      this.setState({
+        categories: updatedCats
+      })
+    } else {
+      updatedCats = [...this.state.categories, thisCat]
+      this.setState({
+        categories: updatedCats
+      })
+    }
   }
 
   render() {
     // let activeCategories = this.props.activeCategories
-    // console.log('cat props', this.props)
+    console.log('cat props', this.props)
     console.log('cat state', this.state)
     return (
-      <div id="category-component">
-        <Button
-          id="code-button"
-          onClick={this.handleClick}
-          variant="contained"
-          color="primary"
-        >
-          Code
-        </Button>
-        <Button
-          id="editorial-button"
-          onClick={this.handleClick}
-          variant="contained"
-          color="primary"
-        >
-          Editorial
-        </Button>
-        <Button
-          id="theology-button"
-          onClick={this.handleClick}
-          variant="contained"
-          color="primary"
-        >
-          Theology
-        </Button>
-        <Button
-          id="hobbies-button"
-          onClick={this.handleClick}
-          variant="contained"
-          color="primary"
-        >
-          Hobbies
-        </Button>
+      <div id="testing">
+        <div id="category-buttons">
+          <Button
+            id="code-button"
+            onClick={this.handleClick}
+            variant="contained"
+            color="primary"
+          >
+            Code
+          </Button>
+          <Button
+            id="editorial-button"
+            onClick={this.handleClick}
+            variant="contained"
+            color="primary"
+          >
+            Editorial
+          </Button>
+          <Button
+            id="theology-button"
+            onClick={this.handleClick}
+            variant="contained"
+            color="primary"
+          >
+            Theology
+          </Button>
+          <Button
+            id="hobbies-button"
+            onClick={this.handleClick}
+            variant="contained"
+            color="primary"
+          >
+            Hobbies
+          </Button>
+        </div>
+        <div id="moved-components">
+          {/* <Project categories={this.props.activeCategories} /> */}
+          {/* <Blog categories={this.props.activeCategories} /> */}
+          {/* <Presentation categories={this.props.activeCategories} /> */}
+          {/* <Publication categories={this.props.activeCategories} /> */}
+          {/* <School categories={this.props.activeCategories} /> */}
+          <Job categories={this.props.activeCategories} />
+          {/* <Affiliation categories={this.props.activeCategories} /> */}
+          <Skill categories={this.props.activeCategories} />
+        </div>
       </div>
     )
   }

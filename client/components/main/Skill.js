@@ -6,43 +6,57 @@ class Skill extends Component {
   constructor() {
     super()
     this.state = {
-      skills: []
+      skills: [],
+      allSkills: []
     }
   }
 
   async componentDidMount() {
     const {data} = await axios.get('/api/skills')
-    this.setState({skills: data})
+    let activeSkills = []
+    this.props.categories.forEach(c => {
+      data.forEach(sk => {
+        if (c.id === sk.category.id) {
+          activeSkills.push(sk)
+        }
+      })
+    })
+    this.setState({
+      skills: activeSkills,
+      allSkills: data
+    })
   }
 
   render() {
     // console.log('skill props', this.props)
-    console.log('skill state', this.state)
+    console.log('skill state', this.state.skills)
     let skills = []
     let familiarSkills = []
     let proficientSkills = []
     let expertSkills = []
     this.state.skills.forEach(s => {
       s.slug = s.name
-        .replace(/[^\d\w\s]/g, '')
+        .replace(/[^\d\w\s/]/g, '')
         .toLowerCase()
         .replace(/[^\d\w]/g, '-')
       s.keyName = s.slug + '-component'
-      if (this.props.categories.includes(s.categoryId)) {
-        skills.push(s.name)
-        if (s.level === 'familiar') familiarSkills.push(s.name)
-        if (s.level === 'proficient') proficientSkills.push(s.name)
-        if (s.level === 'expert') expertSkills.push(s.name)
-      }
+      this.props.categories.forEach(c => {
+        if (c.id === s.categoryId) {
+          skills.push(s.name)
+          if (s.level === 'familiar') familiarSkills.push(s.name)
+          if (s.level === 'proficient') proficientSkills.push(s.name)
+          if (s.level === 'expert') expertSkills.push(s.name)
+        }
+      })
+      // console.log('skills', skills)
+      // console.log('familiarSkills', familiarSkills)
+      // console.log('proficientSkills', proficientSkills)
+      // console.log('expertSkills', expertSkills)
     })
-    // console.log('skills', skills)
-    // console.log('familiarSkills', familiarSkills)
-    // console.log('proficientSkills', proficientSkills)
-    // console.log('expertSkills', expertSkills)
 
     return (
       <div id="skill-component">
-        <h2>Skills</h2>
+        {skills.length > 1 ? <h2>Skills</h2> : <div id="no-skills" />}
         {expertSkills.length > 1 ? (
           <div id="expert-skill-list">
             <h4>Expert:</h4>
@@ -73,3 +87,5 @@ class Skill extends Component {
 }
 
 export default withRouter(Skill)
+
+// misbehaving skills: excel, latin, french

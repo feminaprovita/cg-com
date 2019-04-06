@@ -138,7 +138,7 @@ const jobData = [
     monthEnd: 'April 2018',
     bullets: [
       'Coordinated, designed, and led bible studies for young adults in NYC, in 3 sessions of 10 weeks each throughout the year',
-      'Served in additional service, leadership, and liturgical roles as needed.'
+      'Served in additional service, leadership, and liturgical roles as needed'
     ],
     paragraph:
       'Coordinated, designed, and led bible studies for young adults in NYC, in three sessions of ten weeks each throughout the year. Also served in additional service, leadership, and liturgical roles as needed.',
@@ -157,6 +157,20 @@ const jobData = [
     ],
     paragraph:
       'Duties included preparing and executing workshops and training sessions, mostly for parish liturgical leaders; answering questions from pastors, parish staffs, and parishioners; planning major archdiocesan liturgies; designing website updates; organizing and working with various committees and groups in promoting the liturgical life of the archdiocese. Major events included the annual Southeastern Liturgical Music Symposium, wake and funeral services for an archbishop emeritus, and hosting a USCCB Plenary Assembly.'
+  },
+  {
+    company: 'Various choirs',
+    jobTitle: 'Vocalist / Alto',
+    monthStart: 'September 1996',
+    bullets: [
+      'Have sung in over a dozen choirs (breaks: July 2014–Aug 2017; June 2018–Feb 2019)',
+      'Usually alto, but roles have included cantor, soprano, tenor, and “make up a new harmony now, please”',
+      'Mostly church choirs, at varying skill levels (inc. professional), across a wide range of styles and languages',
+      'Currently: Metropolitan Catholic Chorale (based in Bronx, NY)'
+    ],
+    paragraph:
+      'Have sung in over a dozen choirs with breaks rarely longer than a few months (exceptions: July 2014–Aug 2017; June 2018–Feb 2019). Usually an alto, but roles have also included cantor, soprano, tenor, and “make up a new harmony now, please.” Mostly church choirs, at varying skill levels (up to professional), across a wide range of styles and languages. Currently in NYC’s Metropolitan Catholic Chorale.',
+    volunteer: true
   }
 ]
 
@@ -539,7 +553,7 @@ async function seed() {
   const [scl, cmaa, aces] = affiliations
   const [errors, masks] = blogs
   const [code, editorial, theology, hobbies] = categories
-  const [freelance, mag, ttf, frassati, atl] = jobs
+  const [freelance, mag, ttf, frassati, atl, choir] = jobs
   const [arsCelebrandi, parables, tertiumQuid, bxvi, chant] = presentations
   const [
     masksRescue,
@@ -595,6 +609,8 @@ async function seed() {
     frassati.setCategories(theology),
     frassati.setCategories(hobbies),
     atl.setCategories(theology),
+    choir.setCategories(theology),
+    choir.setCategories(hobbies),
 
     // affiliations
     latin.setAffiliations(scl),
@@ -636,6 +652,9 @@ async function seed() {
     cmaa.setJobs(atl),
     chant.setJob(atl),
     latin.setJobs(atl),
+
+    cmaa.setJobs(choir),
+    latin.setJobs(choir),
 
     // presentations
     arsCelebrandi.setCategory(theology),

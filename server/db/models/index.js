@@ -61,14 +61,8 @@ Skill.belongsToMany(Job, {through: 'job_skills'})
 Publication.belongsTo(Presentation)
 Presentation.hasOne(Publication)
 
-Presentation.belongsToMany(Skill, {
-  through: 'presentation_skills',
-  unique: false
-})
-Skill.belongsToMany(Presentation, {
-  through: 'presentation_skills',
-  unique: false
-})
+Presentation.belongsToMany(Skill, {through: 'presentation_skills'})
+Skill.belongsToMany(Presentation, {through: 'presentation_skills'})
 
 // projects
 Job.belongsTo(Project)

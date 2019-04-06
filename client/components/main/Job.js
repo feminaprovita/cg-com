@@ -6,17 +6,61 @@ class Job extends Component {
   constructor() {
     super()
     this.state = {
-      jobs: []
+      jobs: [],
+      allJobs: []
     }
   }
 
   async componentDidMount() {
     const {data} = await axios.get('/api/jobs')
-    this.setState({jobs: data})
+    let activeJobs = []
+    this.props.categories.forEach(c => {
+      data.forEach(j => {
+        j.categories.forEach(jobCat => {
+          if (c === jobCat.id) {
+            activeJobs.push(j)
+          }
+          // else console.log(j.jobTitle, c, '!==', jobCat.id)
+        })
+      })
+    })
+    // console.log('activeJobs', activeJobs)
+    this.setState({
+      jobs: activeJobs,
+      allJobs: data
+    })
+  }
+
+  async componentDidMount(nextProps) {
+    try {
+      // need to fix, but componentDidUpdate yields an infinite loop
+      // this doesn't actually update either, SO
+      if (nextProps.categories !== this.props.categories) {
+        const {data} = await axios.get('/api/jobs')
+        let activeJobs = []
+        nextProps.categories.forEach(c => {
+          data.forEach(j => {
+            j.categories.forEach(jobCat => {
+              if (c === jobCat.id) {
+                activeJobs.push(j)
+              }
+              // else console.log(j.jobTitle, c, '!==', jobCat.id)
+            })
+          })
+        })
+        // console.log('activeJobs', activeJobs)
+        this.setState({
+          jobs: activeJobs,
+          allJobs: data
+        })
+      }
+    } catch (err) {
+      console.trace(err)
+    }
   }
 
   render() {
-    // console.log('job props', this.props)
+    console.log('job props', this.props)
     console.log('job state', this.state)
     let jobs = []
     this.state.jobs.forEach(j => {
@@ -46,12 +90,18 @@ class Job extends Component {
                 <h4>{j.jobTitle}</h4>
                 {j.company ? (
                   j.volunteer ? (
-                    <p>
-                      at{' '}
-                      <a href={j.url} target="blank">
-                        {j.company}
-                      </a>, {j.location} <i>(volunteer)</i>
-                    </p>
+                    j.url && j.location ? (
+                      <p>
+                        at{' '}
+                        <a href={j.url} target="blank">
+                          {j.company}
+                        </a>, {j.location} <i>(volunteer)</i>
+                      </p>
+                    ) : (
+                      <p>
+                        at {j.company} <i>(volunteer)</i>
+                      </p>
+                    )
                   ) : (
                     <p>
                       at{' '}
