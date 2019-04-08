@@ -31,7 +31,7 @@ class Job extends Component {
     })
   }
 
-  async componentDidMount(nextProps) {
+  async componentDidUpdate(nextProps) {
     try {
       // need to fix, but componentDidUpdate yields an infinite loop
       // this doesn't actually update either, SO
