@@ -18,7 +18,7 @@ class Category extends Component {
   constructor() {
     super()
     this.state = {
-      categories: [1, 2],
+      categories: [],
       allCategories: []
     }
   }
@@ -28,12 +28,12 @@ class Category extends Component {
     let activeCat = []
     this.props.activeCategories.forEach(c => {
       data.forEach(ca => {
-        if (c === ca.id) activeCat.push(ca)
+        if (c.id === ca.id) activeCat.push(ca)
       })
     })
     this.setState({
-      categories: activeCat
-      // allCategories: data
+      categories: activeCat,
+      allCategories: data
     })
   }
 
@@ -60,7 +60,7 @@ class Category extends Component {
         categories: updatedCats
       })
     } else {
-      updatedCats = [...this.state.categories, thisCat.id]
+      updatedCats = [...this.state.categories, thisCat]
       this.setState({
         categories: updatedCats
       })
@@ -124,12 +124,12 @@ class Category extends Component {
           </Button>
         </div>
         <div id="moved-components">
-          {/* <Project categories={this.props.activeCategories} /> */}
+          <Project categories={this.props.activeCategories} />
           {/* <Blog categories={this.props.activeCategories} /> */}
           {/* <Presentation categories={this.props.activeCategories} /> */}
           {/* <Publication categories={this.props.activeCategories} /> */}
           {/* <School categories={this.props.activeCategories} /> */}
-          <Job categories={this.props.activeCategories} />
+          {/* <Job categories={this.props.activeCategories} /> */}
           {/* <Affiliation categories={this.props.activeCategories} /> */}
           {/* <Skill categories={this.props.activeCategories} /> */}
         </div>

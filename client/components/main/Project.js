@@ -17,7 +17,7 @@ class Project extends Component {
   }
 
   render() {
-    // console.log('Project props', this.props)
+    console.log('Project props', this.props)
     console.log('Project state', this.state)
     let projects = []
     this.state.projects.forEach(p => {
@@ -26,15 +26,18 @@ class Project extends Component {
         .toLowerCase()
         .replace(/[^\d\w]/g, '-')
       p.keyName = p.slug + '-component'
-      if (this.props.categories.includes(p.categoryId)) {
-        projects.push(p)
-      }
+      this.props.categories.forEach(cat => {
+        if (cat.id === p.categoryId) {
+          projects.push(p)
+        } else console.log('SKIP!', p.name, p.categoryId)
+      })
     })
 
-    // console.log('projects', projects)
+    console.log('projects', projects)
     return (
       <div id="project-component">
-        {projects.length > 0 ? <h2>Projects</h2> : <div id="no-projects" />}
+        {/* {projects.length > 0 ? <h2>Projects</h2> : <div id="no-projects" />} */}
+        {projects.length > 0 ? <h2>Projects</h2> : <p>no projects detected</p>}
         {projects.map(p => <ProjectOne key={p.keyName} project={p} />)}
       </div>
     )

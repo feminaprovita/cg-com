@@ -6,8 +6,7 @@ class Job extends Component {
   constructor() {
     super()
     this.state = {
-      jobs: [],
-      allJobs: []
+      jobs: []
     }
   }
 
@@ -17,18 +16,14 @@ class Job extends Component {
     this.props.categories.forEach(c => {
       data.forEach(j => {
         j.categories.forEach(jobCat => {
-          if (c === jobCat.id) {
+          if (c.id === jobCat.id) {
             activeJobs.push(j)
-          }
-          // else console.log(j.jobTitle, c, '!==', jobCat.id)
+          } else console.log(j.jobTitle, c, '!==', jobCat.id)
         })
       })
     })
-    // console.log('activeJobs', activeJobs)
-    this.setState({
-      jobs: activeJobs
-      // allJobs: data
-    })
+    console.log('activeJobs', activeJobs)
+    this.setState({jobs: activeJobs})
   }
 
   async componentDidUpdate(nextProps) {
@@ -36,22 +31,25 @@ class Job extends Component {
       // need to fix, but componentDidUpdate yields an infinite loop
       // this doesn't actually update either, SO
       if (nextProps.categories !== this.props.categories) {
+        // console.log(nextProps)
         const {data} = await axios.get('/api/jobs')
         let activeJobs = []
         nextProps.categories.forEach(c => {
+          // console.log('nextProps', nextProps)
           data.forEach(j => {
+            // console.log('j.categories', j.categories)
             j.categories.forEach(jobCat => {
+              // console.log('jobCat', jobCat)
               if (c === jobCat.id) {
                 activeJobs.push(j)
-              }
-              // else console.log(j.jobTitle, c, '!==', jobCat.id)
+                // console.log('activeJobs in loop', activeJobs)
+              } else console.log(j.jobTitle, c.id, '!==', jobCat.id)
             })
           })
         })
         // console.log('activeJobs', activeJobs)
         this.setState({
           jobs: activeJobs
-          // allJobs: data
         })
       }
     } catch (err) {
@@ -60,7 +58,7 @@ class Job extends Component {
   }
 
   render() {
-    console.log('job props', this.props)
+    // console.log('job props', this.props)
     // console.log('job state', this.state)
     let jobs = []
     this.state.jobs.forEach(j => {
