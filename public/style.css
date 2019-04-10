@@ -105,3 +105,8 @@ a:hover {
   border: 0.5px dashed white;
   border-radius: 15px;
 }
+
+#category-buttons {
+  display: flex;
+  justify-content: space-around;
+}

@@ -32,8 +32,8 @@ class Category extends Component {
       })
     })
     this.setState({
-      categories: activeCat,
-      allCategories: data
+      categories: activeCat
+      // allCategories: data
     })
   }
 
@@ -48,18 +48,19 @@ class Category extends Component {
     })
     let tester
     this.state.categories.forEach(oldCat => {
+      console.log('oldCat', oldCat)
       if (oldCat.id === thisCat.id) {
         tester = true
       }
     })
     let updatedCats = [...this.state.categories]
     if (tester) {
-      updatedCats = updatedCats.filter(c => c.id !== thisCat.id)
+      updatedCats = updatedCats.filter(c => c !== thisCat.id)
       this.setState({
         categories: updatedCats
       })
     } else {
-      updatedCats = [...this.state.categories, thisCat]
+      updatedCats = [...this.state.categories, thisCat.id]
       this.setState({
         categories: updatedCats
       })
@@ -70,38 +71,54 @@ class Category extends Component {
     // let activeCategories = this.props.activeCategories
     console.log('cat props', this.props)
     console.log('cat state', this.state)
+    let codeButtonColor = this.state.categories.includes(1)
+      ? 'primary'
+      : 'secondary'
+    let editorialButtonColor = this.state.categories.includes(2)
+      ? 'primary'
+      : 'secondary'
+    let theologyButtonColor = this.state.categories.includes(3)
+      ? 'primary'
+      : 'secondary'
+    let hobbiesButtonColor = this.state.categories.includes(4)
+      ? 'primary'
+      : 'secondary'
     return (
       <div id="testing">
         <div id="category-buttons">
           <Button
             id="code-button"
+            className="cat-button"
             onClick={this.handleClick}
             variant="contained"
-            color="primary"
+            color={codeButtonColor}
           >
             Code
           </Button>
           <Button
             id="editorial-button"
+            className="cat-button"
             onClick={this.handleClick}
             variant="contained"
-            color="primary"
+            color={editorialButtonColor}
           >
             Editorial
           </Button>
           <Button
             id="theology-button"
+            className="cat-button"
             onClick={this.handleClick}
             variant="contained"
-            color="primary"
+            color={theologyButtonColor}
           >
             Theology
           </Button>
           <Button
             id="hobbies-button"
+            className="cat-button"
             onClick={this.handleClick}
             variant="contained"
-            color="primary"
+            color={hobbiesButtonColor}
           >
             Hobbies
           </Button>
@@ -114,7 +131,7 @@ class Category extends Component {
           {/* <School categories={this.props.activeCategories} /> */}
           <Job categories={this.props.activeCategories} />
           {/* <Affiliation categories={this.props.activeCategories} /> */}
-          <Skill categories={this.props.activeCategories} />
+          {/* <Skill categories={this.props.activeCategories} /> */}
         </div>
       </div>
     )

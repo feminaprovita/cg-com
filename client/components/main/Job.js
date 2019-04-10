@@ -26,8 +26,8 @@ class Job extends Component {
     })
     // console.log('activeJobs', activeJobs)
     this.setState({
-      jobs: activeJobs,
-      allJobs: data
+      jobs: activeJobs
+      // allJobs: data
     })
   }
 
@@ -50,8 +50,8 @@ class Job extends Component {
         })
         // console.log('activeJobs', activeJobs)
         this.setState({
-          jobs: activeJobs,
-          allJobs: data
+          jobs: activeJobs
+          // allJobs: data
         })
       }
     } catch (err) {
@@ -61,7 +61,7 @@ class Job extends Component {
 
   render() {
     console.log('job props', this.props)
-    console.log('job state', this.state)
+    // console.log('job state', this.state)
     let jobs = []
     this.state.jobs.forEach(j => {
       const hold = j.company ? j.company : j.jobTitle
