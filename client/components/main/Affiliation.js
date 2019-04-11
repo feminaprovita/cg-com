@@ -19,7 +19,7 @@ class Affiliation extends Component {
 
   render() {
     // console.log('aff props', this.props)
-    console.log('aff state', this.state)
+    // console.log('aff state', this.state)
     let affiliations = []
     this.state.affiliations.forEach(a => {
       a.slug = a.name

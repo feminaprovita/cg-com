@@ -29,7 +29,7 @@ class Skill extends Component {
 
   render() {
     // console.log('skill props', this.props)
-    console.log('skill state', this.state.skills)
+    // console.log('skill state', this.state.skills)
     let skills = []
     let familiarSkills = []
     let proficientSkills = []

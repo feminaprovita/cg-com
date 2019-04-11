@@ -17,7 +17,7 @@ class ResumeBox extends Component {
   }
 
   render() {
-    console.log('ResumeBox state', this.state)
+    // console.log('ResumeBox state', this.state)
 
     return (
       <div id="components-holder">

@@ -17,8 +17,8 @@ class Project extends Component {
   }
 
   render() {
-    console.log('Project props', this.props)
-    console.log('Project state', this.state)
+    // console.log('Project props', this.props)
+    // console.log('Project state', this.state)
     let projects = []
     this.state.projects.forEach(p => {
       p.slug = p.name
@@ -29,11 +29,12 @@ class Project extends Component {
       this.props.categories.forEach(cat => {
         if (cat.id === p.categoryId) {
           projects.push(p)
-        } else console.log('SKIP!', p.name, p.categoryId)
+        }
+        // else console.log('SKIP!', p.name, p.categoryId)
       })
     })
 
-    console.log('projects', projects)
+    // console.log('projects', projects)
     return (
       <div id="project-component">
         {/* {projects.length > 0 ? <h2>Projects</h2> : <div id="no-projects" />} */}

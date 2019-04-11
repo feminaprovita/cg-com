@@ -19,7 +19,7 @@ class Blog extends Component {
 
   render() {
     // console.log('blog props', this.props)
-    console.log('blog state', this.state)
+    // console.log('blog state', this.state)
     let blogs = []
     this.state.blogs.forEach(b => {
       b.slug = (b.title.match(/^.*(?=[\.,:;!?(–—])/g) || b.title)

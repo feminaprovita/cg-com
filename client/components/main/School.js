@@ -18,7 +18,7 @@ class School extends Component {
 
   render() {
     // console.log('school props', this.props)
-    console.log('school state', this.state)
+    // console.log('school state', this.state)
     const schools = this.state.schools
     let focusSchools = []
     this.state.schools.forEach(s => {

@@ -40,6 +40,9 @@ class Category extends Component {
   handleClick = evt => {
     evt.preventDefault()
     evt.persist()
+    const errorHandling = arr => {
+      return arr.filter(el => Object.keys(el).length !== 0)
+    }
     let thisCat = {}
     this.state.allCategories.forEach(c => {
       if (c.name === evt.target.innerHTML) {
@@ -48,41 +51,56 @@ class Category extends Component {
     })
     let tester
     this.state.categories.forEach(oldCat => {
-      console.log('oldCat', oldCat)
+      // console.log('oldCat', oldCat)
       if (oldCat.id === thisCat.id) {
         tester = true
       }
+      // else console.log(thisCat.id, thisCat.name, oldCat.id)
     })
     let updatedCats = [...this.state.categories]
     if (tester) {
-      updatedCats = updatedCats.filter(c => c !== thisCat.id)
+      // console.log('should delete cat')
+      console.log(thisCat.id, updatedCats)
+      let outputCats = updatedCats.filter(c => c.id !== thisCat.id)
+      // console.log('outputCats', outputCats)
       this.setState({
-        categories: updatedCats
+        categories: errorHandling(outputCats)
       })
     } else {
       updatedCats = [...this.state.categories, thisCat]
       this.setState({
-        categories: updatedCats
+        categories: errorHandling(updatedCats)
       })
     }
   }
 
   render() {
     // let activeCategories = this.props.activeCategories
-    console.log('cat props', this.props)
-    console.log('cat state', this.state)
-    let codeButtonColor = this.state.categories.includes(1)
-      ? 'primary'
-      : 'secondary'
-    let editorialButtonColor = this.state.categories.includes(2)
-      ? 'primary'
-      : 'secondary'
-    let theologyButtonColor = this.state.categories.includes(3)
-      ? 'primary'
-      : 'secondary'
-    let hobbiesButtonColor = this.state.categories.includes(4)
-      ? 'primary'
-      : 'secondary'
+    // console.log('cat props', this.props)
+    console.log('cat state categories', this.state.categories)
+    let codeButtonColor = 'primary'
+    let editorialButtonColor = 'primary'
+    let theologyButtonColor = 'primary'
+    let hobbiesButtonColor = 'primary'
+    this.state.categories.forEach(c => {
+      if (c.id === 1) {
+        codeButtonColor =
+          codeButtonColor === 'primary' ? 'secondary' : 'primary'
+      }
+      if (c.id === 2) {
+        editorialButtonColor =
+          editorialButtonColor === 'primary' ? 'secondary' : 'primary'
+      }
+      if (c.id === 3) {
+        theologyButtonColor =
+          theologyButtonColor === 'primary' ? 'secondary' : 'primary'
+      }
+      if (c.id === 4) {
+        hobbiesButtonColor =
+          hobbiesButtonColor === 'primary' ? 'secondary' : 'primary'
+      }
+    })
+
     return (
       <div id="testing">
         <div id="category-buttons">

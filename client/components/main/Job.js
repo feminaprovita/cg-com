@@ -18,11 +18,12 @@ class Job extends Component {
         j.categories.forEach(jobCat => {
           if (c.id === jobCat.id) {
             activeJobs.push(j)
-          } else console.log(j.jobTitle, c, '!==', jobCat.id)
+          }
+          // else console.log(j.jobTitle, c, '!==', jobCat.id)
         })
       })
     })
-    console.log('activeJobs', activeJobs)
+    // console.log('activeJobs', activeJobs)
     this.setState({jobs: activeJobs})
   }
 
@@ -43,7 +44,8 @@ class Job extends Component {
               if (c === jobCat.id) {
                 activeJobs.push(j)
                 // console.log('activeJobs in loop', activeJobs)
-              } else console.log(j.jobTitle, c.id, '!==', jobCat.id)
+              }
+              // else console.log(j.jobTitle, c.id, '!==', jobCat.id)
             })
           })
         })
