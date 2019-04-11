@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
@@ -51,18 +52,13 @@ class Category extends Component {
     })
     let tester
     this.state.categories.forEach(oldCat => {
-      // console.log('oldCat', oldCat)
       if (oldCat.id === thisCat.id) {
         tester = true
       }
-      // else console.log(thisCat.id, thisCat.name, oldCat.id)
     })
     let updatedCats = [...this.state.categories]
     if (tester) {
-      // console.log('should delete cat')
-      console.log(thisCat.id, updatedCats)
       let outputCats = updatedCats.filter(c => c.id !== thisCat.id)
-      // console.log('outputCats', outputCats)
       this.setState({
         categories: errorHandling(outputCats)
       })
