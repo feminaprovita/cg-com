@@ -1,8 +1,14 @@
 /* eslint-disable complexity */
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
-import axios from 'axios'
+import {
+  receiveAllCategories,
+  receiveCurrentCategories,
+  receiveOneCategory,
+  toggleCategory
+} from '../../store'
 
 import {
   Affiliation,
@@ -16,58 +22,24 @@ import {
 } from '../index'
 
 class Category extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       categories: [],
-      allCategories: []
+      allCategories: [],
+      currentCategories: [],
+      thisCategory: {}
     }
   }
 
-  async componentDidMount() {
-    const {data} = await axios.get('/api/categories')
-    let activeCat = []
-    this.props.activeCategories.forEach(c => {
-      data.forEach(ca => {
-        if (c.id === ca.id) activeCat.push(ca)
-      })
-    })
-    this.setState({
-      categories: activeCat,
-      allCategories: data
-    })
+  componentDidMount() {
+    this.props.receiveOneCategory(1)
   }
 
-  handleClick = evt => {
+  handleClick = async evt => {
     evt.preventDefault()
     evt.persist()
-    const errorHandling = arr => {
-      return arr.filter(el => Object.keys(el).length !== 0)
-    }
-    let thisCat = {}
-    this.state.allCategories.forEach(c => {
-      if (c.name === evt.target.innerHTML) {
-        thisCat = {...c}
-      }
-    })
-    let tester
-    this.state.categories.forEach(oldCat => {
-      if (oldCat.id === thisCat.id) {
-        tester = true
-      }
-    })
-    let updatedCats = [...this.state.categories]
-    if (tester) {
-      let outputCats = updatedCats.filter(c => c.id !== thisCat.id)
-      this.setState({
-        categories: errorHandling(outputCats)
-      })
-    } else {
-      updatedCats = [...this.state.categories, thisCat]
-      this.setState({
-        categories: errorHandling(updatedCats)
-      })
-    }
+    await this.props.toggleCategory(this.props.match.params.id)
   }
 
   render() {
@@ -138,7 +110,7 @@ class Category extends Component {
           </Button>
         </div>
         <div id="moved-components">
-          <Project categories={this.props.activeCategories} />
+          {/* <Project categories={this.props.activeCategories} /> */}
           {/* <Blog categories={this.props.activeCategories} /> */}
           {/* <Presentation categories={this.props.activeCategories} /> */}
           {/* <Publication categories={this.props.activeCategories} /> */}
@@ -152,4 +124,16 @@ class Category extends Component {
   }
 }
 
-export default withRouter(Category)
+const mapStateToProps = state => ({categories: state.categories})
+
+const mapDispatchToProps = dispatch => ({
+  receiveAllCategories: () => dispatch(receiveAllCategories()),
+  receiveCurrentCategories: categories =>
+    dispatch(receiveCurrentCategories(categories)),
+  receiveOneCategory: categoryId => dispatch(receiveOneCategory(categoryId)),
+  toggleCategory: categoryId => dispatch(toggleCategory(categoryId))
+})
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Category)
+)
