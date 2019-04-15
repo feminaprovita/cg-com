@@ -47,6 +47,7 @@ export const fetchCurrentCategories = categories => {
 export const fetchOneCategory = categoryId => {
   return async dispatch => {
     const {data} = await axios.get(`/api/categories/${categoryId}`, categoryId)
+    console.log('****************** fetchOne data', data)
     dispatch(receiveOneCategory(data))
   }
 }
@@ -61,25 +62,26 @@ export const flipCategory = categoryId => {
 const initialState = {
   categories: [],
   allCategories: [],
-  currentCategories: [],
+  // currentCategories: [],
   thisCategory: {}
 }
 
 const category = (state = initialState, action) => {
+  console.log('action type', action)
   switch (action.type) {
     case RECEIVE_ALL_CATEGORIES:
-      return {...state, categories: action.categories}
+      return {...state, allCategories: action.allCategories}
     case RECEIVE_CURRENT_CATEGORIES:
-      return {...state, currentCategories: action.currentCategories}
+      return {...state, categories: action.categories}
     case RECEIVE_ONE_CATEGORY:
-      console.log(action)
-      if (state.currentCategories.length < 1)
+      console.log('receiving one category', action)
+      if (state.categories.length < 1) {
         return {
           ...state,
-          currentCategories: [action.thisCategory],
+          categories: [action.thisCategory],
           thisCategory: action.thisCategory
         }
-      else return {...state, thisCategory: action.thisCategory}
+      } else return {...state, thisCategory: action.thisCategory}
     // eslint-disable-next-line no-case-declarations
     case TOGGLE_CATEGORY:
       let testVariable
@@ -87,18 +89,12 @@ const category = (state = initialState, action) => {
         if (cat === action.thisCategory.id) testVariable = true
       })
       if (testVariable) {
-        return {
-          ...state,
-          currentCategories: [
-            ...state.currentCategories,
-            action.currentCategories
-          ]
-        }
+        return {...state, categories: [...state.categories, action.categories]}
       } else {
-        let outputCats = state.currentCategories.filter(
+        let outputCats = state.categories.filter(
           c => c.id !== action.thisCategory.id
         )
-        return {...state, currentCategories: outputCats}
+        return {...state, categories: outputCats}
       }
     default:
       return state

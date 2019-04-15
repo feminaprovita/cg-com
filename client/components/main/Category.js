@@ -36,6 +36,16 @@ class Category extends Component {
     this.props.receiveOneCategory(1)
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const latest = this.props.match.params.id
+    const prev = prevProps.match.params.id
+
+    if (latest !== prev) {
+      console.log('in didupdate')
+      this.props.fetchSingleDestination(latest)
+    }
+  }
+
   handleClick = async evt => {
     evt.preventDefault()
     evt.persist()
@@ -124,7 +134,10 @@ class Category extends Component {
   }
 }
 
-const mapStateToProps = state => ({categories: state.categories})
+const mapStateToProps = state => ({
+  categories: state.categories,
+  thisCategory: state.thisCategory
+})
 
 const mapDispatchToProps = dispatch => ({
   receiveAllCategories: () => dispatch(receiveAllCategories()),
