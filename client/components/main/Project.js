@@ -39,16 +39,17 @@ class Project extends Component {
     console.log('Project state', this.state.projects)
 
     return (
-      <div id="project-component">
+      <div className="resume-component">
         {this.state.projects.length > 0 ? (
-          <h2>Projects</h2>
+          <div id="project-component">
+            <h2>Projects</h2>
+            {this.state.projects.map(p => (
+              <ProjectOne key={p.keyName} project={p} />
+            ))}
+          </div>
         ) : (
-          <div id="no-projects" />
+          <span id="no-projects" />
         )}
-        {/* {this.state.projects.length > 0 ? (<h2>Projects</h2>) : (<p>no projects detected (debugging version)</p>)} */}
-        {this.state.projects.map(p => (
-          <ProjectOne key={p.keyName} project={p} />
-        ))}
       </div>
     )
   }

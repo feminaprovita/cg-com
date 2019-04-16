@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 
 class Publication extends Component {
@@ -12,15 +11,25 @@ class Publication extends Component {
 
   async componentDidMount() {
     const {data} = await axios.get('/api/publications')
-    this.setState({
-      publications: data
-    })
+    let currentPublications = data.filter(
+      p => this.props.categories[p.categoryId]
+    )
+    this.setState({publications: currentPublications})
+  }
+
+  async componentDidUpdate(prevProps) {
+    const latest = this.props.categories
+    const prev = prevProps.categories
+    if (latest !== prev) {
+      const {data} = await axios.get('/api/publications')
+      let currentPublications = data.filter(
+        p => this.props.categories[p.categoryId]
+      )
+      this.setState({publications: currentPublications})
+    }
   }
 
   render() {
-    // console.log('pub props', this.props)
-    // console.log('pub state', this.state)
-    let publications = []
     this.state.publications.forEach(p => {
       p.slug = (p.title.match(/^.*(?=[\.,:;!?(–—])/g) || p.title)
         .toString()
@@ -28,40 +37,35 @@ class Publication extends Component {
         .toLowerCase()
         .replace(/[^\d\w]/g, '-')
       p.keyName = p.slug + '-component'
-      if (this.props.categories.includes(p.categoryId)) {
-        publications.push(p)
-      }
     })
-    // console.log('publications', publications)
+    console.log('pub state', this.state)
 
     return (
-      <div id="publication-component">
-        {publications.length > 0 ? (
-          <h2>Publications</h2>
+      <div className="resume-component">
+        {this.state.publications.length > 0 ? (
+          <div id="publication-component">
+            <h2>Publications</h2>
+            {this.state.publications.map(p => {
+              return (
+                <div className="one-publication" key={p.keyName}>
+                  <h4>{p.title}</h4>
+                  <p>
+                    in{' '}
+                    <a href={p.url} target="blank">
+                      <i>{p.book}</i>
+                    </a>, {p.footnote}.
+                  </p>
+                  <p>{p.summary}</p>
+                </div>
+              )
+            })}
+          </div>
         ) : (
-          <div id="no-publications" />
-        )}
-        {publications.length > 0 ? (
-          publications.map(p => {
-            return (
-              <div className="one-publication" key={p.keyName}>
-                <h4>{p.title}</h4>
-                <p>
-                  in{' '}
-                  <a href={p.url} target="blank">
-                    <i>{p.book}</i>
-                  </a>, {p.footnote}.
-                </p>
-                <p>{p.summary}</p>
-              </div>
-            )
-          })
-        ) : (
-          <div />
+          <span id="no-publications" />
         )}
       </div>
     )
   }
 }
 
-export default withRouter(Publication)
+export default Publication

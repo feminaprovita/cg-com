@@ -109,4 +109,5 @@ a:hover {
 #category-buttons {
   display: flex;
   justify-content: space-around;
+  padding: 1vw;
 }
