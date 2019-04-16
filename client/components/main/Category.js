@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
+import axios from 'axios'
 import {receiveCategories, toggleCategory} from '../../store'
 
 import {
@@ -25,24 +26,39 @@ class Category extends Component {
     }
   }
 
-  componentDidMount() {
-    receiveCategories([1])
+  async componentDidMount() {
+    // receiveCategories([1])
+    const {data} = await axios.get('/api/categories')
+    let activeCat = []
+    let catIds = []
+    this.props.activeCategories.forEach(c => {
+      data.forEach(ca => {
+        if (c.id === ca.id) {
+          activeCat.push(ca)
+          catIds.push(ca.id)
+        }
+      })
+    })
+    this.setState({
+      categories: activeCat,
+      categoryIds: catIds
+    })
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const latest = this.props.match.params.id
-    const prev = prevProps.match.params.id
+  // componentDidUpdate(prevProps, prevState) {
+  //   const latest = this.props.match.params.id
+  //   const prev = prevProps.match.params.id
 
-    if (latest !== prev) {
-      // console.log('in didupdate')
-      // this.props.fetchSingleDestination(latest)
-    }
-  }
+  //   if (latest !== prev) {
+  //     // console.log('in didupdate')
+  //     // this.props.fetchSingleDestination(latest)
+  //   }
+  // }
 
   handleClick = async evt => {
     evt.preventDefault()
     evt.persist()
-    console.log('match', this.props.match)
+    console.log('evt', evt)
     await this.props.toggleCategory(this.props.match.params.id)
   }
 

@@ -36,6 +36,7 @@ export const flipCategory = categoryId => {
 
 const initialState = {
   categories: [],
+  categoryIds: [],
   thisCategory: {}
 }
 
@@ -54,7 +55,7 @@ const category = (state = initialState, action) => {
         return {...state, categories: [...state.categories, action.categories]}
       } else {
         let outputCats = state.categories.filter(
-          c => c !== action.thisCategory.id
+          c => c.id !== action.thisCategory.id
         )
         return {...state, categories: outputCats}
       }
