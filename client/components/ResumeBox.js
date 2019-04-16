@@ -7,13 +7,13 @@ class ResumeBox extends Component {
   constructor() {
     super()
     this.state = {
-      categories: []
+      categoriesR: []
     }
   }
 
   async componentDidMount() {
     const {data} = await axios.get('/api/categories/1')
-    this.setState({categories: [data]})
+    this.setState({categoriesR: [data]})
   }
 
   render() {
@@ -21,7 +21,7 @@ class ResumeBox extends Component {
 
     return (
       <div id="components-holder">
-        <Category activeCategories={this.state.categories} />
+        <Category activeCategories={this.state.categoriesR} />
       </div>
     )
   }

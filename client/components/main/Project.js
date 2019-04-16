@@ -16,11 +16,9 @@ class Project extends Component {
     let activeProj = []
     this.props.categories.forEach(c => {
       data.forEach(proj => {
-        console.log(
-          "why don't the components render without this console log????"
-        )
+        // console.log(" ")
         if (c.id === proj.categoryId) activeProj.push(proj)
-        else console.log(proj.categoryId, proj.name)
+        // else console.log(proj.categoryId, proj.name)
       })
     })
     // console.log(activeProj) // deleting this, rather than commenting it out, also gets rid of my content wth

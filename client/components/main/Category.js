@@ -1,10 +1,8 @@
 /* eslint-disable complexity */
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
-import axios from 'axios'
-import {receiveCategories, toggleCategory} from '../../store'
+import {toggleCategory} from '../../store'
 
 import {
   Affiliation,
@@ -18,76 +16,21 @@ import {
 } from '../index'
 
 class Category extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      categories: [],
-      thisCategory: {}
-    }
-  }
-
-  async componentDidMount() {
-    // receiveCategories([1])
-    const {data} = await axios.get('/api/categories')
-    let activeCat = []
-    let catIds = []
-    this.props.activeCategories.forEach(c => {
-      data.forEach(ca => {
-        if (c.id === ca.id) {
-          activeCat.push(ca)
-          catIds.push(ca.id)
-        }
-      })
-    })
-    this.setState({
-      categories: activeCat,
-      categoryIds: catIds
-    })
-  }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   const latest = this.props.match.params.id
-  //   const prev = prevProps.match.params.id
-
-  //   if (latest !== prev) {
-  //     // console.log('in didupdate')
-  //     // this.props.fetchSingleDestination(latest)
-  //   }
-  // }
-
-  handleClick = async evt => {
+  handleClick = async (catId, evt) => {
     evt.preventDefault()
     evt.persist()
-    console.log('evt', evt)
-    await this.props.toggleCategory(this.props.match.params.id)
+    await this.props.toggleCategory(catId)
   }
 
   render() {
-    // let activeCategories = this.props.activeCategories
-    // console.log('cat props', this.props)
-    console.log('cat state categories', this.state.categories)
-    let codeButtonColor = 'primary'
-    let editorialButtonColor = 'primary'
-    let theologyButtonColor = 'primary'
-    let hobbiesButtonColor = 'primary'
-    this.state.categories.forEach(c => {
-      if (c.id === 1) {
-        codeButtonColor =
-          codeButtonColor === 'primary' ? 'secondary' : 'primary'
-      }
-      if (c.id === 2) {
-        editorialButtonColor =
-          editorialButtonColor === 'primary' ? 'secondary' : 'primary'
-      }
-      if (c.id === 3) {
-        theologyButtonColor =
-          theologyButtonColor === 'primary' ? 'secondary' : 'primary'
-      }
-      if (c.id === 4) {
-        hobbiesButtonColor =
-          hobbiesButtonColor === 'primary' ? 'secondary' : 'primary'
-      }
-    })
+    console.log('rendering')
+    console.log('cat props', this.props)
+    let codeButtonColor = this.props.categories[1] ? 'secondary' : 'primary'
+    let editorialButtonColor = this.props.categories[2]
+      ? 'secondary'
+      : 'primary'
+    let theologyButtonColor = this.props.categories[3] ? 'secondary' : 'primary'
+    let hobbiesButtonColor = this.props.categories[4] ? 'secondary' : 'primary'
 
     return (
       <div id="testing">
@@ -95,7 +38,7 @@ class Category extends Component {
           <Button
             id="code-button"
             className="cat-button"
-            onClick={this.handleClick}
+            onClick={this.handleClick.bind(this, 1)}
             variant="contained"
             color={codeButtonColor}
           >
@@ -104,7 +47,7 @@ class Category extends Component {
           <Button
             id="editorial-button"
             className="cat-button"
-            onClick={this.handleClick}
+            onClick={this.handleClick.bind(this, 2)}
             variant="contained"
             color={editorialButtonColor}
           >
@@ -113,7 +56,7 @@ class Category extends Component {
           <Button
             id="theology-button"
             className="cat-button"
-            onClick={this.handleClick}
+            onClick={this.handleClick.bind(this, 3)}
             variant="contained"
             color={theologyButtonColor}
           >
@@ -122,7 +65,7 @@ class Category extends Component {
           <Button
             id="hobbies-button"
             className="cat-button"
-            onClick={this.handleClick}
+            onClick={this.handleClick.bind(this, 4)}
             variant="contained"
             color={hobbiesButtonColor}
           >
@@ -130,7 +73,7 @@ class Category extends Component {
           </Button>
         </div>
         <div id="moved-components">
-          {/* <Project categories={this.props.activeCategories} /> */}
+          <Project categories={this.props.activeCategories} />
           {/* <Blog categories={this.props.activeCategories} /> */}
           {/* <Presentation categories={this.props.activeCategories} /> */}
           {/* <Publication categories={this.props.activeCategories} /> */}
@@ -144,17 +87,16 @@ class Category extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  categories: state.categories,
-  thisCategory: state.thisCategory
-})
+const mapStateToProps = (state, ownProps) => {
+  console.log('mapping?', state)
+  console.log('ownProps', ownProps)
+  return {
+    categories: state.category.categories
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
-  receiveCurrentCategories: categories =>
-    dispatch(receiveCurrentCategories(categories)),
   toggleCategory: categoryId => dispatch(toggleCategory(categoryId))
 })
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Category)
-)
+export default connect(mapStateToProps, mapDispatchToProps)(Category)
