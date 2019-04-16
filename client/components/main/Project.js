@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 import axios from 'axios'
 import ProjectOne from './ProjectOne'
-// import {filterProjects} from '../../store'
 
 class Project extends Component {
   constructor() {
@@ -13,17 +11,15 @@ class Project extends Component {
   }
 
   async componentDidMount() {
-    console.log('project mounting')
     const {data} = await axios.get('/api/projects')
     let currentProjects = data.filter(p => this.props.categories[p.categoryId])
     this.setState({projects: currentProjects})
   }
 
-  async componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps) {
     const latest = this.props.categories
     const prev = prevProps.categories
     if (latest !== prev) {
-      console.log('project updating')
       const {data} = await axios.get('/api/projects')
       let currentProjects = data.filter(
         p => this.props.categories[p.categoryId]
@@ -33,9 +29,6 @@ class Project extends Component {
   }
 
   render() {
-    console.log('projects rendering')
-    // console.log('Project props', this.props)
-    console.log('Project state', this.state.projects)
     this.state.projects.forEach(p => {
       p.slug = p.name
         .replace(/[^\d\w\s]/g, '')
@@ -43,15 +36,16 @@ class Project extends Component {
         .replace(/[^\d\w]/g, '-')
       p.keyName = p.slug + '-component'
     })
+    console.log('Project state', this.state.projects)
 
     return (
       <div id="project-component">
-        {/* {this.state.projects.length > 0 ? <h2>Projects</h2> : <div id="no-projects" />} */}
         {this.state.projects.length > 0 ? (
           <h2>Projects</h2>
         ) : (
-          <p>no projects detected</p>
+          <div id="no-projects" />
         )}
+        {/* {this.state.projects.length > 0 ? (<h2>Projects</h2>) : (<p>no projects detected (debugging version)</p>)} */}
         {this.state.projects.map(p => (
           <ProjectOne key={p.keyName} project={p} />
         ))}
@@ -59,13 +53,5 @@ class Project extends Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  projects: state.project.projects
-})
-
-const mapDispatchToProps = dispatch => ({
-  filterProjects: (projArr, catObj) => dispatch(filterProjects(projArr, catObj))
-})
 
 export default Project
