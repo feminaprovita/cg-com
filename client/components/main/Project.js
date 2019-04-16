@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
 import axios from 'axios'
 import ProjectOne from './ProjectOne'
+// import {filterProjects} from '../../store'
 
 class Project extends Component {
   constructor() {
@@ -12,48 +13,59 @@ class Project extends Component {
   }
 
   async componentDidMount() {
+    console.log('project mounting')
     const {data} = await axios.get('/api/projects')
-    let activeProj = []
-    this.props.categories.forEach(c => {
-      data.forEach(proj => {
-        // console.log(" ")
-        if (c.id === proj.categoryId) activeProj.push(proj)
-        // else console.log(proj.categoryId, proj.name)
-      })
-    })
-    // console.log(activeProj) // deleting this, rather than commenting it out, also gets rid of my content wth
-    this.setState({
-      projects: activeProj,
-      allProjects: data
-    })
+    let currentProjects = data.filter(p => this.props.categories[p.categoryId])
+    this.setState({projects: currentProjects})
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    const latest = this.props.categories
+    const prev = prevProps.categories
+    if (latest !== prev) {
+      console.log('project updating')
+      const {data} = await axios.get('/api/projects')
+      let currentProjects = data.filter(
+        p => this.props.categories[p.categoryId]
+      )
+      this.setState({projects: currentProjects})
+    }
   }
 
   render() {
-    console.log('Project props', this.props.categories)
+    console.log('projects rendering')
+    // console.log('Project props', this.props)
     console.log('Project state', this.state.projects)
-    let projects = []
     this.state.projects.forEach(p => {
       p.slug = p.name
         .replace(/[^\d\w\s]/g, '')
         .toLowerCase()
         .replace(/[^\d\w]/g, '-')
       p.keyName = p.slug + '-component'
-      this.props.categories.forEach(cat => {
-        if (cat.id === p.categoryId) {
-          projects.push(p)
-        } else console.log('SKIP!', p.name, p.categoryId)
-      })
     })
 
-    // console.log('projects', projects)
     return (
       <div id="project-component">
-        {/* {projects.length > 0 ? <h2>Projects</h2> : <div id="no-projects" />} */}
-        {projects.length > 0 ? <h2>Projects</h2> : <p>no projects detected</p>}
-        {projects.map(p => <ProjectOne key={p.keyName} project={p} />)}
+        {/* {this.state.projects.length > 0 ? <h2>Projects</h2> : <div id="no-projects" />} */}
+        {this.state.projects.length > 0 ? (
+          <h2>Projects</h2>
+        ) : (
+          <p>no projects detected</p>
+        )}
+        {this.state.projects.map(p => (
+          <ProjectOne key={p.keyName} project={p} />
+        ))}
       </div>
     )
   }
 }
 
-export default withRouter(Project)
+const mapStateToProps = state => ({
+  projects: state.project.projects
+})
+
+const mapDispatchToProps = dispatch => ({
+  filterProjects: (projArr, catObj) => dispatch(filterProjects(projArr, catObj))
+})
+
+export default Project

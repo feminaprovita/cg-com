@@ -23,7 +23,7 @@ class Category extends Component {
   }
 
   render() {
-    console.log('rendering')
+    console.log('category rendering')
     console.log('cat props', this.props)
     let codeButtonColor = this.props.categories[1] ? 'secondary' : 'primary'
     let editorialButtonColor = this.props.categories[2]
@@ -73,27 +73,23 @@ class Category extends Component {
           </Button>
         </div>
         <div id="moved-components">
-          <Project categories={this.props.activeCategories} />
-          {/* <Blog categories={this.props.activeCategories} /> */}
-          {/* <Presentation categories={this.props.activeCategories} /> */}
-          {/* <Publication categories={this.props.activeCategories} /> */}
-          {/* <School categories={this.props.activeCategories} /> */}
-          {/* <Job categories={this.props.activeCategories} /> */}
-          {/* <Affiliation categories={this.props.activeCategories} /> */}
-          {/* <Skill categories={this.props.activeCategories} /> */}
+          <Project categories={this.props.categories} />
+          {/* <Blog categories={this.props.categories} /> */}
+          {/* <Presentation categories={this.props.categories} /> */}
+          {/* <Publication categories={this.props.categories} /> */}
+          {/* <School categories={this.props.categories} /> */}
+          {/* <Job categories={this.props.categories} /> */}
+          {/* <Affiliation categories={this.props.categories} /> */}
+          {/* <Skill categories={this.props.categories} /> */}
         </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  console.log('mapping?', state)
-  console.log('ownProps', ownProps)
-  return {
-    categories: state.category.categories
-  }
-}
+const mapStateToProps = state => ({
+  categories: state.category.categories
+})
 
 const mapDispatchToProps = dispatch => ({
   toggleCategory: categoryId => dispatch(toggleCategory(categoryId))
