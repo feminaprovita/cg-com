@@ -1,22 +1,11 @@
 import axios from 'axios'
 
-export const RECEIVE_ALL_CATEGORIES = 'RECEIVE_ALL_CATEGORIES'
-export const RECEIVE_CURRENT_CATEGORIES = 'RECEIVE_CURRENT_CATEGORIES'
-export const RECEIVE_ONE_CATEGORY = 'RECEIVE_ONE_CATEGORY'
+export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const TOGGLE_CATEGORY = 'TOGGLE_CATEGORY'
 
-export const receiveAllCategories = () => ({
-  type: RECEIVE_ALL_CATEGORIES
-})
-
-export const receiveCurrentCategories = categories => ({
-  type: RECEIVE_CURRENT_CATEGORIES,
-  categories
-})
-
-export const receiveOneCategory = categoryId => ({
-  type: RECEIVE_ONE_CATEGORY,
-  categoryId
+export const receiveCategories = categoryIdsArr => ({
+  type: RECEIVE_CATEGORIES,
+  categoryIdsArr
 })
 
 export const toggleCategory = categoryId => ({
@@ -24,31 +13,17 @@ export const toggleCategory = categoryId => ({
   categoryId
 })
 
-export const fetchAllCategories = () => {
+export const fetchCategories = categoryIdsArr => {
   return async dispatch => {
-    const {data} = await axios.get(`/api/categories/`)
-    dispatch(receiveAllCategories(data))
-  }
-}
-
-export const fetchCurrentCategories = categories => {
-  return async dispatch => {
-    const {data} = await axios.get(`/api/categories/`, categories)
-    let activeCat = []
-    categories.forEach(c => {
+    const {data} = await axios.get(`/api/categories/`, categoryIdsArr)
+    console.log('fetchCat data', data)
+    let activeCatIds = []
+    categoryIdsArr.forEach(c => {
       data.forEach(ca => {
-        if (c.id === ca.id) activeCat.push(ca)
+        if (c === ca.id) activeCatIds.push(ca)
       })
     })
-    dispatch(receiveCurrentCategories(activeCat))
-  }
-}
-
-export const fetchOneCategory = categoryId => {
-  return async dispatch => {
-    const {data} = await axios.get(`/api/categories/${categoryId}`, categoryId)
-    console.log('****************** fetchOne data', data)
-    dispatch(receiveOneCategory(data))
+    dispatch(receiveCategories(activeCatIds))
   }
 }
 
@@ -61,38 +36,25 @@ export const flipCategory = categoryId => {
 
 const initialState = {
   categories: [],
-  allCategories: [],
-  // currentCategories: [],
   thisCategory: {}
 }
 
 const category = (state = initialState, action) => {
-  console.log('action type', action)
+  // console.log('action type', action)
   switch (action.type) {
-    case RECEIVE_ALL_CATEGORIES:
-      return {...state, allCategories: action.allCategories}
-    case RECEIVE_CURRENT_CATEGORIES:
+    case RECEIVE_CATEGORIES:
       return {...state, categories: action.categories}
-    case RECEIVE_ONE_CATEGORY:
-      console.log('receiving one category', action)
-      if (state.categories.length < 1) {
-        return {
-          ...state,
-          categories: [action.thisCategory],
-          thisCategory: action.thisCategory
-        }
-      } else return {...state, thisCategory: action.thisCategory}
     // eslint-disable-next-line no-case-declarations
     case TOGGLE_CATEGORY:
       let testVariable
-      state.currentCategories.forEach(cat => {
+      state.categories.forEach(cat => {
         if (cat === action.thisCategory.id) testVariable = true
       })
       if (testVariable) {
         return {...state, categories: [...state.categories, action.categories]}
       } else {
         let outputCats = state.categories.filter(
-          c => c.id !== action.thisCategory.id
+          c => c !== action.thisCategory.id
         )
         return {...state, categories: outputCats}
       }

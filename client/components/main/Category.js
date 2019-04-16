@@ -3,12 +3,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
-import {
-  receiveAllCategories,
-  receiveCurrentCategories,
-  receiveOneCategory,
-  toggleCategory
-} from '../../store'
+import {receiveCategories, toggleCategory} from '../../store'
 
 import {
   Affiliation,
@@ -26,14 +21,12 @@ class Category extends Component {
     super(props)
     this.state = {
       categories: [],
-      allCategories: [],
-      currentCategories: [],
       thisCategory: {}
     }
   }
 
   componentDidMount() {
-    this.props.receiveOneCategory(1)
+    receiveCategories([1])
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -41,14 +34,15 @@ class Category extends Component {
     const prev = prevProps.match.params.id
 
     if (latest !== prev) {
-      console.log('in didupdate')
-      this.props.fetchSingleDestination(latest)
+      // console.log('in didupdate')
+      // this.props.fetchSingleDestination(latest)
     }
   }
 
   handleClick = async evt => {
     evt.preventDefault()
     evt.persist()
+    console.log('match', this.props.match)
     await this.props.toggleCategory(this.props.match.params.id)
   }
 
@@ -140,10 +134,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  receiveAllCategories: () => dispatch(receiveAllCategories()),
   receiveCurrentCategories: categories =>
     dispatch(receiveCurrentCategories(categories)),
-  receiveOneCategory: categoryId => dispatch(receiveOneCategory(categoryId)),
   toggleCategory: categoryId => dispatch(toggleCategory(categoryId))
 })
 
