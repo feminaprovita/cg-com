@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 
 class Skill extends Component {
@@ -7,85 +6,102 @@ class Skill extends Component {
     super()
     this.state = {
       skills: [],
-      allSkills: []
+      familiarSkills: [],
+      proficientSkills: [],
+      expertSkills: []
     }
   }
 
   async componentDidMount() {
     const {data} = await axios.get('/api/skills')
-    let activeSkills = []
-    this.props.categories.forEach(c => {
-      data.forEach(sk => {
-        if (c.id === sk.category.id) {
-          activeSkills.push(sk)
-        }
-      })
-    })
+    let currentSkills = data.filter(s => this.props.categories[s.categoryId])
+    let fam = currentSkills.filter(s => s.level === 'familiar')
+    let prof = currentSkills.filter(s => s.level === 'proficient')
+    let exp = currentSkills.filter(s => s.level === 'expert')
     this.setState({
-      skills: activeSkills,
-      allSkills: data
+      skills: currentSkills,
+      familiarSkills: fam,
+      proficientSkills: prof,
+      expertSkills: exp
     })
   }
 
+  async componentDidUpdate(prevProps) {
+    const latest = this.props.categories
+    const prev = prevProps.categories
+    if (latest !== prev) {
+      const {data} = await axios.get('/api/skills')
+      let currentSkills = data.filter(s => this.props.categories[s.categoryId])
+      let fam = currentSkills.filter(s => s.level === 'familiar')
+      let prof = currentSkills.filter(s => s.level === 'proficient')
+      let exp = currentSkills.filter(s => s.level === 'expert')
+      this.setState({
+        skills: currentSkills,
+        familiarSkills: fam,
+        proficientSkills: prof,
+        expertSkills: exp
+      })
+    }
+  }
+
   render() {
-    // console.log('skill props', this.props)
-    // console.log('skill state', this.state.skills)
-    let skills = []
-    let familiarSkills = []
-    let proficientSkills = []
-    let expertSkills = []
     this.state.skills.forEach(s => {
       s.slug = s.name
         .replace(/[^\d\w\s/]/g, '')
         .toLowerCase()
         .replace(/[^\d\w]/g, '-')
       s.keyName = s.slug + '-component'
-      this.props.categories.forEach(c => {
-        if (c.id === s.categoryId) {
-          skills.push(s.name)
-          if (s.level === 'familiar') familiarSkills.push(s.name)
-          if (s.level === 'proficient') proficientSkills.push(s.name)
-          if (s.level === 'expert') expertSkills.push(s.name)
-        }
-      })
-      // console.log('skills', skills)
-      // console.log('familiarSkills', familiarSkills)
-      // console.log('proficientSkills', proficientSkills)
-      // console.log('expertSkills', expertSkills)
     })
+    console.log('skill state', this.state)
 
     return (
-      <div id="skill-component">
-        {skills.length > 1 ? <h2>Skills</h2> : <div id="no-skills" />}
-        {expertSkills.length > 1 ? (
-          <div id="expert-skill-list">
-            <h4>Expert:</h4>
-            <ul>{expertSkills.map((s, i) => <li key={i}>{s}</li>)}</ul>
+      <div className="resume-component">
+        {this.state.skills.length > 0 ? (
+          <div id="skill-component">
+            <h2>Skills</h2>
+            {this.state.expertSkills.length > 0 ? (
+              <div id="expert-skill-list">
+                <h4>Expert:</h4>
+                <ul>
+                  {this.state.expertSkills.map((s, i) => (
+                    <li key={i}>{s.name}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <span />
+            )}
+            {this.state.proficientSkills.length > 0 ? (
+              <div id="proficient-skill-list">
+                <h4>Proficient:</h4>
+                <ul>
+                  {this.state.proficientSkills.map((s, i) => (
+                    <li key={i}>{s.name}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <span />
+            )}
+            {this.state.familiarSkills.length > 0 ? (
+              <div id="familiar-skill-list">
+                <h4>Familiar:</h4>
+                <ul>
+                  {this.state.familiarSkills.map((s, i) => (
+                    <li key={i}>{s.name}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <span />
+            )}
           </div>
         ) : (
-          <div />
-        )}
-        {proficientSkills.length > 1 ? (
-          <div id="proficient-skill-list">
-            <h4>Proficient:</h4>
-            <ul>{proficientSkills.map((s, i) => <li key={i}>{s}</li>)}</ul>
-          </div>
-        ) : (
-          <div />
-        )}
-        {familiarSkills.length > 1 ? (
-          <div id="familiar-skill-list">
-            <h4>Familiar:</h4>
-            <ul>{familiarSkills.map((s, i) => <li key={i}>{s}</li>)}</ul>
-          </div>
-        ) : (
-          <div />
+          <span id="no-skills" />
         )}
       </div>
     )
   }
 }
 
-export default withRouter(Skill)
-
-// misbehaving skills: excel, latin, french
+export default Skill

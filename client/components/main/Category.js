@@ -74,13 +74,13 @@ class Category extends Component {
         </div>
         <div id="moved-components">
           <Project categories={this.props.categories} />
-          {/* <Blog categories={this.props.categories} /> */}
-          {/* <Presentation categories={this.props.categories} /> */}
-          {/* <Publication categories={this.props.categories} /> */}
-          {/* <School categories={this.props.categories} /> */}
-          {/* <Job categories={this.props.categories} /> */}
-          {/* <Affiliation categories={this.props.categories} /> */}
-          {/* <Skill categories={this.props.categories} /> */}
+          <Blog categories={this.props.categories} />
+          <Presentation categories={this.props.categories} />
+          <Publication categories={this.props.categories} />
+          <School categories={this.props.categories} />
+          <Job categories={this.props.categories} />
+          <Affiliation categories={this.props.categories} />
+          <Skill categories={this.props.categories} />
         </div>
       </div>
     )

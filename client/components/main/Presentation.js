@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 
 class Presentation extends Component {
@@ -12,13 +11,25 @@ class Presentation extends Component {
 
   async componentDidMount() {
     const {data} = await axios.get('/api/presentations')
-    this.setState({presentations: data})
+    let currentPresentations = data.filter(
+      p => this.props.categories[p.categoryId]
+    )
+    this.setState({presentations: currentPresentations})
+  }
+
+  async componentDidUpdate(prevProps) {
+    const latest = this.props.categories
+    const prev = prevProps.categories
+    if (latest !== prev) {
+      const {data} = await axios.get('/api/presentations')
+      let currentPresentations = data.filter(
+        p => this.props.categories[p.categoryId]
+      )
+      this.setState({presentations: currentPresentations})
+    }
   }
 
   render() {
-    // console.log('pres props', this.props)
-    // console.log('pres state', this.state)
-    let presentations = []
     this.state.presentations.forEach(p => {
       p.slug = (p.name.match(/^.*(?=[\.,:;!?(–—])/g) || p.name)
         .toString()
@@ -26,61 +37,60 @@ class Presentation extends Component {
         .toLowerCase()
         .replace(/[^\d\w]/g, '-')
       p.keyName = p.slug + '-component'
-      if (this.props.categories.includes(p.categoryId)) {
-        presentations.push(p)
-      }
     })
-    // console.log('presentations', presentations)
+    console.log('pres state', this.state)
 
     return (
-      <div id="presentation-component">
-        {presentations.length > 0 ? (
-          <h2>Presentations</h2>
+      <div className="resume-component">
+        {this.state.presentations.length > 0 ? (
+          <div id="presentation-component">
+            <h2>Presentations</h2>
+            {this.state.presentations.length > 0 ? (
+              this.state.presentations.map(p => {
+                return (
+                  <div className="one-presentation" key={p.keyName}>
+                    <h4>{p.name}</h4>
+                    {p.url ? (
+                      <p>
+                        Presented to the{' '}
+                        <a href={p.url} target="blank">
+                          {p.org}
+                        </a>
+                      </p>
+                    ) : (
+                      <p>
+                        Presented to the{' '}
+                        <a href={p.job.url} target="blank">
+                          {p.job.company}
+                        </a>
+                      </p>
+                    )}
+                    {p.dateEnd ? (
+                      <p>
+                        {p.dateStart} through {p.dateEnd}
+                      </p>
+                    ) : (
+                      <p>{p.dateStart}</p>
+                    )}
+                    {p.location ? (
+                      <p>Delivered in {p.location}</p>
+                    ) : (
+                      <p>Delivered in {p.job.location}</p>
+                    )}
+                    {p.details ? <p>{p.details}</p> : <div />}
+                  </div>
+                )
+              })
+            ) : (
+              <div />
+            )}
+          </div>
         ) : (
-          <div id="no-presentations" />
-        )}
-        {presentations.length > 0 ? (
-          presentations.map(p => {
-            return (
-              <div className="one-presentation" key={p.keyName}>
-                <h4>{p.name}</h4>
-                {p.url ? (
-                  <p>
-                    Presented to the{' '}
-                    <a href={p.url} target="blank">
-                      {p.org}
-                    </a>
-                  </p>
-                ) : (
-                  <p>
-                    Presented to the{' '}
-                    <a href={p.job.url} target="blank">
-                      {p.job.company}
-                    </a>
-                  </p>
-                )}
-                {p.dateEnd ? (
-                  <p>
-                    {p.dateStart} through {p.dateEnd}
-                  </p>
-                ) : (
-                  <p>{p.dateStart}</p>
-                )}
-                {p.location ? (
-                  <p>Delivered in {p.location}</p>
-                ) : (
-                  <p>Delivered in {p.job.location}</p>
-                )}
-                {p.details ? <p>{p.details}</p> : <div />}
-              </div>
-            )
-          })
-        ) : (
-          <div />
+          <span id="no-presentations" />
         )}
       </div>
     )
   }
 }
 
-export default withRouter(Presentation)
+export default Presentation

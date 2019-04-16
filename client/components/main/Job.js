@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 
 class Job extends Component {
@@ -12,57 +11,37 @@ class Job extends Component {
 
   async componentDidMount() {
     const {data} = await axios.get('/api/jobs')
-    let activeJobs = []
-    this.props.categories.forEach(c => {
-      data.forEach(j => {
-        j.categories.forEach(jobCat => {
-          if (c.id === jobCat.id) {
-            activeJobs.push(j)
-          }
-          // else console.log(j.jobTitle, c, '!==', jobCat.id)
-        })
-      })
+    let currentJobs = data.filter(j => {
+      if (j.always) return true
+      else {
+        let categoryTest = j.categories.filter(
+          jobCat => this.props.categories[jobCat.id] || j.always
+        )
+        return categoryTest.length > 0
+      }
     })
-    // console.log('activeJobs', activeJobs)
-    this.setState({jobs: activeJobs})
+    this.setState({jobs: currentJobs})
   }
 
-  async componentDidUpdate(nextProps) {
-    try {
-      // need to fix, but componentDidUpdate yields an infinite loop
-      // this doesn't actually update either, SO
-      if (nextProps.categories !== this.props.categories) {
-        // console.log(nextProps)
-        const {data} = await axios.get('/api/jobs')
-        let activeJobs = []
-        nextProps.categories.forEach(c => {
-          // console.log('nextProps', nextProps)
-          data.forEach(j => {
-            // console.log('j.categories', j.categories)
-            j.categories.forEach(jobCat => {
-              // console.log('jobCat', jobCat)
-              if (c === jobCat.id) {
-                activeJobs.push(j)
-                // console.log('activeJobs in loop', activeJobs)
-              }
-              // else console.log(j.jobTitle, c.id, '!==', jobCat.id)
-            })
-          })
-        })
-        // console.log('activeJobs', activeJobs)
-        this.setState({
-          jobs: activeJobs
-        })
-      }
-    } catch (err) {
-      console.trace(err)
+  async componentDidUpdate(prevProps) {
+    const latest = this.props.categories
+    const prev = prevProps.categories
+    if (latest !== prev) {
+      const {data} = await axios.get('/api/jobs')
+      let currentJobs = data.filter(j => {
+        if (j.always) return true
+        else {
+          let categoryTest = j.categories.filter(
+            jobCat => this.props.categories[jobCat.id] || j.always
+          )
+          return categoryTest.length > 0
+        }
+      })
+      this.setState({jobs: currentJobs})
     }
   }
 
   render() {
-    // console.log('job props', this.props)
-    // console.log('job state', this.state)
-    let jobs = []
     this.state.jobs.forEach(j => {
       const hold = j.company ? j.company : j.jobTitle
       j.slug = hold
@@ -70,66 +49,65 @@ class Job extends Component {
         .toLowerCase()
         .replace(/[^\d\w]/g, '-')
       j.keyName = j.slug + '-component'
-      if (j.always) jobs.push(j)
-      j.categoryIds = []
-      j.categories.forEach(c => j.categoryIds.push(c.id))
-      j.categoryIds.forEach(id => {
-        if (this.props.categories.includes(id)) jobs.push(j)
-      })
     })
-    jobs = Array.from(new Set(jobs))
-    // console.log('jobs', jobs)
+    console.log('job state', this.state)
 
     return (
-      <div id="job-component">
-        {jobs.length > 0 ? <h2>Jobs</h2> : <div id="no-jobs" />}
-        {jobs.length > 0 ? (
-          jobs.map(j => {
-            return (
-              <div className="one-job" key={j.keyName}>
-                <h4>{j.jobTitle}</h4>
-                {j.company ? (
-                  j.volunteer ? (
-                    j.url && j.location ? (
-                      <p>
-                        at{' '}
-                        <a href={j.url} target="blank">
-                          {j.company}
-                        </a>, {j.location} <i>(volunteer)</i>
-                      </p>
+      <div className="resume-component">
+        {this.state.jobs.length > 0 ? (
+          <div id="job-component">
+            <h2>Jobs</h2>
+            {this.state.jobs.length > 0 ? (
+              this.state.jobs.map(j => {
+                return (
+                  <div className="one-job" key={j.keyName}>
+                    <h4>{j.jobTitle}</h4>
+                    {j.company ? (
+                      j.volunteer ? (
+                        j.url && j.location ? (
+                          <p>
+                            at{' '}
+                            <a href={j.url} target="blank">
+                              {j.company}
+                            </a>, {j.location} <i>(volunteer)</i>
+                          </p>
+                        ) : (
+                          <p>
+                            at {j.company} <i>(volunteer)</i>
+                          </p>
+                        )
+                      ) : (
+                        <p>
+                          at{' '}
+                          <a href={j.url} target="blank">
+                            {j.company}
+                          </a>, {j.location}
+                        </p>
+                      )
                     ) : (
-                      <p>
-                        at {j.company} <i>(volunteer)</i>
-                      </p>
-                    )
-                  ) : (
+                      <span />
+                    )}
                     <p>
-                      at{' '}
-                      <a href={j.url} target="blank">
-                        {j.company}
-                      </a>, {j.location}
+                      {j.monthStart}&nbsp;&ndash;&nbsp;{j.monthEnd}
                     </p>
-                  )
-                ) : (
-                  <div />
-                )}
-                <p>
-                  {j.monthStart}&nbsp;&ndash;&nbsp;{j.monthEnd}
-                </p>
-                {j.bullets ? (
-                  <ul>{j.bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>
-                ) : (
-                  <p>{j.paragraph}</p>
-                )}
-              </div>
-            )
-          })
+                    {j.bullets ? (
+                      <ul>{j.bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>
+                    ) : (
+                      <p>{j.paragraph}</p>
+                    )}
+                  </div>
+                )
+              })
+            ) : (
+              <span />
+            )}
+          </div>
         ) : (
-          <div />
+          <span id="no-jobs" />
         )}
       </div>
     )
   }
 }
 
-export default withRouter(Job)
+export default Job

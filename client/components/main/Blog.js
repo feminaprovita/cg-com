@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 
 class Blog extends Component {
@@ -12,15 +11,21 @@ class Blog extends Component {
 
   async componentDidMount() {
     const {data} = await axios.get('/api/blogs')
-    this.setState({
-      blogs: data
-    })
+    let currentBlogs = data.filter(b => this.props.categories[b.categoryId])
+    this.setState({blogs: currentBlogs})
+  }
+
+  async componentDidUpdate(prevProps) {
+    const latest = this.props.categories
+    const prev = prevProps.categories
+    if (latest !== prev) {
+      const {data} = await axios.get('/api/blogs')
+      let currentBlogs = data.filter(b => this.props.categories[b.categoryId])
+      this.setState({blogs: currentBlogs})
+    }
   }
 
   render() {
-    // console.log('blog props', this.props)
-    // console.log('blog state', this.state)
-    let blogs = []
     this.state.blogs.forEach(b => {
       b.slug = (b.title.match(/^.*(?=[\.,:;!?(–—])/g) || b.title)
         .toString()
@@ -29,43 +34,42 @@ class Blog extends Component {
         .replace(/[^\d\w]/g, '-')
       b.keyName = b.slug + '-component'
       b.imgAlt = b.slug + '-thumbnail-' + b.date
-      if (this.props.categories.includes(b.categoryId)) {
-        blogs.push(b)
-      }
     })
-    // console.log('blogs', blogs)
+    console.log('Blog state', this.state)
 
     return (
-      <div id="blog-component">
-        {blogs.length > 0 ? <h2>Blog Posts</h2> : <div id="no-blogs" />}
-        {blogs.length > 0 ? (
-          blogs.map(b => {
-            return (
-              <div className="one-blog" key={b.keyName}>
-                <img
-                  className="blog-thumbnail"
-                  src={b.imageUrl}
-                  alt={b.imgAlt}
-                />
-                <div className="blog-info">
-                  <h4>{b.title}</h4>
-                  {b.summary ? <p>{b.summary}</p> : <p>{b.teaser}</p>}
-                  <p>
-                    <a href={b.postUrl} target="blank">
-                      Read more...
-                    </a>
-                  </p>
-                  {/* <p>{b.date}</p> */}
+      <div className="resume-component">
+        {this.state.blogs.length > 0 ? (
+          <div id="blog-component">
+            <h2>Blog Posts</h2>
+            {this.state.blogs.map(b => {
+              return (
+                <div className="one-blog" key={b.keyName}>
+                  <img
+                    className="blog-thumbnail"
+                    src={b.imageUrl}
+                    alt={b.imgAlt}
+                  />
+                  <div className="blog-info">
+                    <h4>{b.title}</h4>
+                    {b.summary ? <p>{b.summary}</p> : <p>{b.teaser}</p>}
+                    <p>
+                      <a href={b.postUrl} target="blank">
+                        Read more...
+                      </a>
+                    </p>
+                    {/* <p>{b.date}</p> */}
+                  </div>
                 </div>
-              </div>
-            )
-          })
+              )
+            })}
+          </div>
         ) : (
-          <div />
+          <span id="no-blogs" />
         )}
       </div>
     )
   }
 }
 
-export default withRouter(Blog)
+export default Blog
