@@ -9,4 +9,4 @@ const Landing = () => (
   </div>
 )
 
-export default withRouter(Landing)
+export default Landing
