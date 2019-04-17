@@ -42,7 +42,7 @@ class Project extends Component {
       <div className="resume-component">
         {this.state.projects.length > 0 ? (
           <div id="project-component">
-            <h2>Projects</h2>
+            <h1>Projects</h1>
             {this.state.projects.map(p => (
               <ProjectOne key={p.keyName} project={p} />
             ))}

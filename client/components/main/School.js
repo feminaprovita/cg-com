@@ -30,7 +30,7 @@ class School extends Component {
     return (
       <div className="resume-component">
         <div id="school-component">
-          <h2>Education</h2>
+          <h1>Education</h1>
           {this.state.schools.map(s => {
             return (
               <div className="one-school" key={s.keyName}>

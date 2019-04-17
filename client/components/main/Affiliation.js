@@ -46,7 +46,7 @@ class Affiliation extends Component {
       <div className="resume-component">
         {this.state.affiliations.length > 0 ? (
           <div id="affiliation-component">
-            <h2>Professional Affiliations</h2>
+            <h1>Professional Affiliations</h1>
             {this.state.affiliations.map(a => {
               return (
                 <div className="one-affiliation" key={a.keyName}>

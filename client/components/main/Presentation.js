@@ -50,7 +50,7 @@ class Presentation extends Component {
       <div className="resume-component">
         {this.state.presentations.length > 0 ? (
           <div id="presentation-component">
-            <h2>Presentations</h2>
+            <h1>Presentations</h1>
             {this.state.presentations.length > 0 ? (
               this.state.presentations.map(p => {
                 return (

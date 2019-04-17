@@ -41,7 +41,7 @@ class Blog extends Component {
       <div className="resume-component">
         {this.state.blogs.length > 0 ? (
           <div id="blog-component">
-            <h2>Blog Posts</h2>
+            <h1>Blog Posts</h1>
             {this.state.blogs.map(b => {
               return (
                 <div className="one-blog" key={b.keyName}>

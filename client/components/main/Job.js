@@ -59,7 +59,7 @@ class Job extends Component {
       <div className="resume-component">
         {this.state.jobs.length > 0 ? (
           <div id="job-component">
-            <h2>Jobs</h2>
+            <h1>Jobs</h1>
             {this.state.jobs.length > 0 ? (
               this.state.jobs.map(j => {
                 return (

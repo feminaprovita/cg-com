@@ -58,7 +58,7 @@ class Skill extends Component {
       <div className="resume-component">
         {this.state.skills.length > 0 ? (
           <div id="skill-component">
-            <h2>Skills</h2>
+            <h1>Skills</h1>
             {this.state.expertSkills.length > 0 ? (
               <div id="expert-skill-list">
                 <h4>Expert:</h4>

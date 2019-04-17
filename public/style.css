@@ -90,6 +90,18 @@ a:hover {
   border-radius: 15px;
 }
 
+#skill-component h1 {
+  text-align: center;
+  padding-left: 0em;
+}
+
+.resume-component h1 {
+  color: #73b9fa;
+  text-shadow: 3px 3px 0 #6341a9, -1px -1px 0 #6341a9, 1px -1px 0 #6341a9,
+    -1px 1px 0 #6341a9, 1px 1px 0 #6341a9;
+  padding-left: 1em;
+}
+
 .one-affiliation,
 .one-project,
 .one-presentation,
