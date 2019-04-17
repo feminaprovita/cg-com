@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import componentSort from '../../../script/utils.js'
 
 class Affiliation extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class Affiliation extends Component {
     let currentAffiliations = data.filter(
       a => this.props.categories[a.categoryId]
     )
+    componentSort(currentAffiliations)
     this.setState({affiliations: currentAffiliations})
   }
 
@@ -25,6 +27,7 @@ class Affiliation extends Component {
       let currentAffiliations = data.filter(
         a => this.props.categories[a.categoryId]
       )
+      componentSort(currentAffiliations)
       this.setState({affiliations: currentAffiliations})
     }
   }
@@ -43,7 +46,7 @@ class Affiliation extends Component {
       <div className="resume-component">
         {this.state.affiliations.length > 0 ? (
           <div id="affiliation-component">
-            <h2>Affiliations</h2>
+            <h2>Professional Affiliations</h2>
             {this.state.affiliations.map(a => {
               return (
                 <div className="one-affiliation" key={a.keyName}>

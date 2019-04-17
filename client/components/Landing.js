@@ -1,12 +1,1 @@
-import React from 'react'
-import {withRouter} from 'react-router-dom'
-import {Profile, Category} from './index'
-
-const Landing = () => (
-  <div id="landing-container">
-    <Profile />
-    <Category />
-  </div>
-)
-
-export default Landing
+// I don't understand why my program needs this file to exist in order to load! An empty file is sufficient, ugh.

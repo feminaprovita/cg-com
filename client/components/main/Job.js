@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import componentSort from '../../../script/utils.js'
 
 class Job extends Component {
   constructor() {
@@ -20,6 +21,7 @@ class Job extends Component {
         return categoryTest.length > 0
       }
     })
+    componentSort(currentJobs)
     this.setState({jobs: currentJobs})
   }
 
@@ -37,6 +39,7 @@ class Job extends Component {
           return categoryTest.length > 0
         }
       })
+      componentSort(currentJobs)
       this.setState({jobs: currentJobs})
     }
   }

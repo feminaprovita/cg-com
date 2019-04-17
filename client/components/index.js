@@ -3,7 +3,6 @@
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
-export {default as Landing} from './Landing'
 export {default as Navbar} from './Navbar'
 export {default as Profile} from './Profile'
 export {default as Category} from './main/Category'

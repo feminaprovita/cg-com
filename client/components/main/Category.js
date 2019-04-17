@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button'
 import {toggleCategory} from '../../store'
 
 import {
+  Profile,
   Affiliation,
   Blog,
   Job,
@@ -23,7 +24,7 @@ class Category extends Component {
   }
 
   render() {
-    console.log('category rendering')
+    // console.log('category rendering')
     console.log('cat props', this.props)
     let codeButtonColor = this.props.categories[1] ? 'secondary' : 'primary'
     let editorialButtonColor = this.props.categories[2]
@@ -72,15 +73,20 @@ class Category extends Component {
             Hobbies
           </Button>
         </div>
-        <div id="resume-components">
-          <Project categories={this.props.categories} />
-          <Blog categories={this.props.categories} />
-          <Presentation categories={this.props.categories} />
-          <Publication categories={this.props.categories} />
-          <School categories={this.props.categories} />
-          <Job categories={this.props.categories} />
-          <Affiliation categories={this.props.categories} />
-          <Skill categories={this.props.categories} />
+        <div id="resume-both">
+          <div id="resume-left">
+            <Profile />
+            <Skill categories={this.props.categories} />
+          </div>
+          <div id="resume-right">
+            <Project categories={this.props.categories} />
+            <Blog categories={this.props.categories} />
+            <Presentation categories={this.props.categories} />
+            <Publication categories={this.props.categories} />
+            <School categories={this.props.categories} />
+            <Job categories={this.props.categories} />
+            <Affiliation categories={this.props.categories} />
+          </div>
         </div>
       </div>
     )

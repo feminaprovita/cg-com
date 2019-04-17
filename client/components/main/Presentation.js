@@ -14,6 +14,9 @@ class Presentation extends Component {
     let currentPresentations = data.filter(
       p => this.props.categories[p.categoryId]
     )
+    currentPresentations.sort(
+      (a, b) => new Date(b.dateStart) - new Date(a.dateStart)
+    )
     this.setState({presentations: currentPresentations})
   }
 
@@ -24,6 +27,9 @@ class Presentation extends Component {
       const {data} = await axios.get('/api/presentations')
       let currentPresentations = data.filter(
         p => this.props.categories[p.categoryId]
+      )
+      currentPresentations.sort(
+        (a, b) => new Date(b.dateStart) - new Date(a.dateStart)
       )
       this.setState({presentations: currentPresentations})
     }
