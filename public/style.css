@@ -12,7 +12,7 @@ a:hover {
 }
 
 #navbar {
-  padding: 1vw;
+  padding: 0.5vw;
   text-align: center;
   text-decoration: wavy;
   color: #6341a9;
@@ -21,29 +21,36 @@ a:hover {
 }
 
 #components-holder {
-  padding: 1vw;
+  padding: 0.5vw;
   border: 1px dashed black;
   border-radius: 15px;
   margin-left: 1vw;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
-  /* align-items: flex-start; */
 }
 
 #resume-both {
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   align-items: flex-start;
+}
+
+@media (min-width: 40em) {
+  #resume-both {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 39em) {
+  #resume-both {
+    flex-direction: column;
+  }
 }
 
 #resume-left,
 #resume-right {
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-start;
-  align-items: flex-start; */
 }
 
 #profile-container {
@@ -68,6 +75,10 @@ a:hover {
 }
 
 #category-buttons {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(to right, #87c3fa, #dcccfd);
   display: flex;
   justify-content: space-around;
   padding: 1vw;
@@ -100,6 +111,13 @@ a:hover {
   text-shadow: 3px 3px 0 #6341a9, -1px -1px 0 #6341a9, 1px -1px 0 #6341a9,
     -1px 1px 0 #6341a9, 1px 1px 0 #6341a9;
   padding-left: 1em;
+}
+
+@media (max-width: 39em) {
+  .resume-component h1 {
+    text-align: center;
+    padding-left: 0em;
+  }
 }
 
 .one-affiliation,
