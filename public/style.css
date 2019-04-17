@@ -54,6 +54,12 @@ a:hover {
   margin-left: 1vw;
 }
 
+#category-buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 1vw;
+}
+
 #affiliation-component,
 #project-component,
 #blog-component,
@@ -104,10 +110,4 @@ a:hover {
   margin: 0.5vw;
   border: 0.5px dashed white;
   border-radius: 15px;
-}
-
-#category-buttons {
-  display: flex;
-  justify-content: space-around;
-  padding: 1vw;
 }

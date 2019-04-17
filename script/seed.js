@@ -469,6 +469,10 @@ const skillData = [
   {
     name: 'Agile',
     level: 'proficient'
+  },
+  {
+    name: 'RegEx',
+    level: 'familiar'
   }
 ]
 
@@ -589,7 +593,8 @@ async function seed() {
     python,
     json,
     chalk,
-    agile
+    agile,
+    regex
   ] = skills
 
   await Promise.all([
@@ -683,6 +688,7 @@ async function seed() {
     puppeteer.setProjects(masksRescue),
     vscode.setProjects(masksRescue),
     json.setProjects(masksRescue),
+    regex.setProjects(masksRescue),
 
     moodify.setCategory(code),
     js.setProjects(moodify),
@@ -780,6 +786,7 @@ async function seed() {
     json.setCategory(code),
     chalk.setCategory(code),
     agile.setCategory(code),
+    regex.setCategory(code),
     proofing.setCategory(editorial),
     copyediting.setCategory(editorial),
     french.setCategory(theology),
