@@ -33,7 +33,7 @@ class Category extends Component {
     let hobbiesButtonColor = this.props.categories[4] ? 'secondary' : 'primary'
 
     return (
-      <div id="testing">
+      <div id="components-holder">
         <div id="category-buttons">
           <Button
             id="code-button"
@@ -72,7 +72,7 @@ class Category extends Component {
             Hobbies
           </Button>
         </div>
-        <div id="moved-components">
+        <div id="resume-components">
           <Project categories={this.props.categories} />
           <Blog categories={this.props.categories} />
           <Presentation categories={this.props.categories} />

@@ -54,6 +54,12 @@ a:hover {
   margin-left: 1vw;
 }
 
+#category-buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 1vw;
+}
+
 #affiliation-component,
 #project-component,
 #blog-component,
@@ -78,6 +84,7 @@ a:hover {
   margin: 0.5vw;
   border: 0.5px dashed white;
   border-radius: 15px;
+  /* grid-area: auto; */
 }
 
 .one-blog {
@@ -87,6 +94,7 @@ a:hover {
   border-radius: 15px;
   display: flex;
   align-items: center;
+  /* grid-area: auto; */
 }
 
 .blog-thumbnail {
@@ -104,10 +112,5 @@ a:hover {
   margin: 0.5vw;
   border: 0.5px dashed white;
   border-radius: 15px;
-}
-
-#category-buttons {
-  display: flex;
-  justify-content: space-around;
-  padding: 1vw;
+  /* grid-area: auto; */
 }

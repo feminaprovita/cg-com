@@ -1,12 +1,11 @@
 import React from 'react'
-import {withRouter} from 'react-router-dom'
-import {Profile, ResumeBox} from './index'
+import {Profile, Category} from './index'
 
 const Landing = () => (
   <div id="landing-container">
     <Profile />
-    <ResumeBox />
+    <Category />
   </div>
 )
 
-export default withRouter(Landing)
+export default Landing

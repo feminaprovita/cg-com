@@ -1,6 +1,5 @@
 /* eslint-disable complexity */
 import React, {Component} from 'react'
-import {withRouter} from 'react-router-dom'
 
 class Project extends Component {
   render() {
@@ -101,4 +100,4 @@ class Project extends Component {
   }
 }
 
-export default withRouter(Project)
+export default Project

@@ -1,5 +1,4 @@
 import React from 'react'
-import {withRouter} from 'react-router-dom'
 
 const Profile = () => (
   <div id="profile-container">
@@ -40,12 +39,20 @@ const Profile = () => (
           claire.gilligan.dev@gmail.com
         </a>.
       </p>
+      <p>❧ ❧ ❧</p>
       <p>
-        Check back soon, because I will definitely be adding more stuff here as
-        I go!
+        This website has been fun to tinker with. Built with Node, Express,
+        PostgreSQL, Sequelize, React, and Redux (among other things), spiffed up
+        with RegEx, and hosted on Heroku.
+      </p>
+      <p>
+        <a href="https://github.com/feminaprovita/cg-com/" target="blank">
+          Peruse my code
+        </a>{' '}
+        at your leisure!
       </p>
     </div>
   </div>
 )
 
-export default withRouter(Profile)
+export default Profile
