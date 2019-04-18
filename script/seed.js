@@ -1,15 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {
-  greenBright,
-  magentaBright
-  // redBright,
-  // yellowBright,
-  // blueBright,
-  // cyanBright,
-  // whiteBright
-} = require('chalk')
+const {greenBright, magentaBright} = require('chalk')
 const {
   Affiliation,
   Blog,
@@ -187,10 +179,6 @@ const presentationData = [
   },
   {
     name: `Jesus' Lesser-Known Parables`,
-    // org: 'Frassati Fellowship of NYC',
-    // url: 'http://frassati.nyc',
-    // location: 'New York, NY',
-    // the above 3 come through via the foreign key: should test via joins
     dateStart: '2015-06-08',
     dateEnd: '2015-08-31',
     details: `A thirteen-week series encouraging discussion with context on those parables that do not appear in the Lectionary, those that are often overshadowed by the 'more important' parables they reside next to, and those that are just plain difficult, no matter what.`
@@ -213,10 +201,6 @@ const presentationData = [
   },
   {
     name: 'Crash Course on Latin and Chant',
-    // org: 'Archdiocese of Atlanta',
-    // url: 'http://archatl.com',
-    // location: 'Smyrna, GA',
-    // the above 3 come through via the foreign key: should test via joins
     dateStart: '2012-02-12',
     details:
       'Delivered to the directors of music ministry of nearly all the parishes in the archdiocese, and their prominent cantors, with the intention of bridging the gap between technical (musical) expertise and theological expertise.'
@@ -234,7 +218,6 @@ const projectData = [
       'Analyzed then captured full archive (posts, comments, uploaded photos, links), scraping with Puppeteer'
     ],
     github: 'https://github.com/feminaprovita/masks-rescue'
-    // other: 'blog post'
   },
   {
     name: 'Moodify',
@@ -283,8 +266,11 @@ const projectData = [
     role: 'Solo Analyst',
     paragraph:
       'A recurring question had come up, when the liturgical books the magazine took its texts from didn\'t have all 3 prayers for the saint of the day, but rather had only one, and sent us to the "commons" for the other two. In the commons, the phrase "blessed N." appeared, with the "N." to be replaced by the saint of the day. But how the magazine settled this had been questioned several times, so an analysis of the book of origin was due. \n\nDid they want "blessed Saint Catherine", since Catherine (or whichever saint) was indeed canonized, and "Blessed" is a technical designation for someone who\'s almost (but not quite) a saint? Or was "Blessed Catherine" sufficient? \n\nTo determine this, a thorough analysis was needed not only of all the instances of "blessed N." but also of all paralle instances for prayers whose saints are named, several hundred in all.\n\nDuring analysis, another question came up: Should she be "Catherine" or "Catherine of Alexandria"? And is the answer the same for all 3 prayers, or do the prayers behave differently based on their function? \n\nIn the end, after looking at carefully organized data, the decision was a consistent: full name, no "Saint" (a departure from previous inconsistent policy).',
-    bullets: []
-    // job: magnificat
+    bullets: [
+      'Problem: twofold question of how exactly to fill in blanks marked "N." in the Roman Missal (include title? full name or abbreviated?)',
+      'Carefully identified and analyzed 157 prayers containing "N." in comparison to 426 parallel instances containing names throughout the missal',
+      'Identified trends in the data, prepared handouts to demonstrate said trends, and presented on the question, which was then quickly settled'
+    ]
   },
   {
     name: 'Website Copy',
@@ -295,7 +281,6 @@ const projectData = [
       'Harmonized copy and formatting, improved links, in HTML of product pages'
     ],
     url: 'http://bookstore.magnificat.net'
-    // job: magnificat
   },
   {
     name: 'New Translation Analysis',
@@ -303,7 +288,6 @@ const projectData = [
     paragraph:
       'After Rome released a new translation of the Mass, closely examined the instructional texts at the beginning of the missal (~200p) for changes in vocabulary and style (mostly capitalization), and returned a spreadsheet for office use. Corrected a few misplaced periods and commas in the official final edition, to boot.'
     // bullets: []
-    // job: freelance
   }
 ]
 
