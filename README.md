@@ -4,9 +4,9 @@ This website was always designed to be a filterable resumé, since I'm still acc
 work in my two prior fields even now that I've reinvented myself as a software
 engineer.
 
-It's very much been a process of "Wait, didn't I learn how to do this? Then how
-am I failing to accomplish it so utterly now?" In other words, a great learning
-experience.
+It's very much been a process of "Wait, didn't I learn how to do this already?
+Then how am I failing to accomplish it so utterly now?" In other words, a great
+learning experience.
 
 The database is in PostgreSQL, constructed in Sequelize, and is far more complex
 than the current construction takes advantage of. I intend to add individual
