@@ -52,7 +52,7 @@ class Skill extends Component {
         .replace(/[^\d\w]/g, '-')
       s.keyName = s.slug + '-component'
     })
-    console.log('skill state', this.state)
+    console.log('Skill state', this.state)
 
     return (
       <div className="resume-component">

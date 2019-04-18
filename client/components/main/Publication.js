@@ -38,7 +38,7 @@ class Publication extends Component {
         .replace(/[^\d\w]/g, '-')
       p.keyName = p.slug + '-component'
     })
-    console.log('pub state', this.state)
+    console.log('Publication state', this.state)
 
     return (
       <div className="resume-component">

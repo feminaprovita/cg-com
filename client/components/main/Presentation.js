@@ -44,7 +44,7 @@ class Presentation extends Component {
         .replace(/[^\d\w]/g, '-')
       p.keyName = p.slug + '-component'
     })
-    console.log('pres state', this.state)
+    console.log('Presentation state', this.state)
 
     return (
       <div className="resume-component">
