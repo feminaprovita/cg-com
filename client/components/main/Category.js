@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
 import {toggleCategory} from '../../store'
-
+import NotificationSystem from 'react-notification-system'
 import {
   Profile,
   Affiliation,
@@ -17,10 +17,24 @@ import {
 } from '../index'
 
 class Category extends Component {
+  notificationSystem = React.createRef()
+
   handleClick = async (catId, evt) => {
     evt.preventDefault()
     evt.persist()
     await this.props.toggleCategory(catId)
+    const notification = this.notificationSystem.current
+    console.log('****************************', notification)
+    let alertMsg = evt.target.innerHTML.replace(/.*<\/div>/g, '') + ' toggled!'
+    console.log('****************************', alertMsg)
+    notification.addNotification({
+      message: alertMsg,
+      level: 'success'
+    })
+  }
+
+  componentDidMount() {
+    this._notificationSystem = this.refs.notificationSystem
   }
 
   render() {
@@ -43,6 +57,7 @@ class Category extends Component {
             variant="contained"
             color={codeButtonColor}
           >
+            <NotificationSystem ref={this.notificationSystem} />
             Code
           </Button>
           <Button
@@ -52,6 +67,7 @@ class Category extends Component {
             variant="contained"
             color={editorialButtonColor}
           >
+            <NotificationSystem ref={this.notificationSystem} />
             Editorial
           </Button>
           <Button
@@ -61,6 +77,7 @@ class Category extends Component {
             variant="contained"
             color={theologyButtonColor}
           >
+            <NotificationSystem ref={this.notificationSystem} />
             Theology
           </Button>
           <Button
@@ -70,6 +87,7 @@ class Category extends Component {
             variant="contained"
             color={hobbiesButtonColor}
           >
+            <NotificationSystem ref={this.notificationSystem} />
             Hobbies
           </Button>
         </div>
