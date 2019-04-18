@@ -157,3 +157,5 @@ a:hover {
   border: 0.5px dashed white;
   border-radius: 15px;
 }
+
+/* NB notification styling is in the Category component */
