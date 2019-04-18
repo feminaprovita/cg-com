@@ -3,10 +3,10 @@ const Blog = require('./blog')
 const Category = require('./category')
 const Job = require('./job')
 const Presentation = require('./presentation')
-const Project = require('./Project')
-const Publication = require('./Publication')
-const School = require('./School')
-const Skill = require('./Skill')
+const Project = require('./project')
+const Publication = require('./publication')
+const School = require('./school')
+const Skill = require('./skill')
 
 // categories
 Affiliation.belongsTo(Category)
@@ -21,8 +21,8 @@ Category.belongsToMany(Job, {through: 'job_categories'})
 Presentation.belongsTo(Category)
 Category.hasMany(Presentation)
 
-Project.belongsToMany(Category, {through: 'project_categories'})
-Category.belongsToMany(Project, {through: 'project_categories'})
+Project.belongsTo(Category)
+Category.hasMany(Project)
 
 Publication.belongsTo(Category)
 Category.hasMany(Publication)
@@ -51,9 +51,6 @@ Skill.belongsToMany(Blog, {through: 'blog_skills'})
 Presentation.belongsTo(Job)
 Job.hasMany(Presentation)
 
-Project.belongsTo(Job)
-Job.hasMany(Project)
-
 Publication.belongsTo(Job)
 Job.hasMany(Publication)
 
@@ -64,26 +61,23 @@ Skill.belongsToMany(Job, {through: 'job_skills'})
 Publication.belongsTo(Presentation)
 Presentation.hasOne(Publication)
 
-Presentation.belongsToMany(Skill, {
-  through: 'presentation_skills',
-  unique: false
-})
-Skill.belongsToMany(Presentation, {
-  through: 'presentation_skills',
-  unique: false
-})
+Presentation.belongsToMany(Skill, {through: 'presentation_skills'})
+Skill.belongsToMany(Presentation, {through: 'presentation_skills'})
 
 // projects
-Project.belongsTo(School)
-School.hasMany(Project)
+Job.belongsTo(Project)
+Project.hasMany(Job)
 
 Project.belongsToMany(Skill, {through: 'project_skills'})
 Skill.belongsToMany(Project, {through: 'project_skills'})
 
 // publications
-
 Publication.belongsToMany(Skill, {through: 'publication_skills'})
 Skill.belongsToMany(Publication, {through: 'publication_skills'})
+
+// schools
+Project.belongsTo(School)
+School.hasMany(Project)
 
 module.exports = {
   Affiliation,

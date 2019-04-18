@@ -12,7 +12,7 @@ a:hover {
 }
 
 #navbar {
-  padding: 1vw;
+  padding: 0.5vw;
   text-align: center;
   text-decoration: wavy;
   color: #6341a9;
@@ -20,16 +20,44 @@ a:hover {
   font-size: 3em;
 }
 
-#landing-container {
-  padding: 0.1vw;
+#components-holder {
+  padding: 0.5vw;
+  border: 1px dashed black;
+  border-radius: 15px;
+  margin-left: 1vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+}
+
+#resume-both {
+  display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
+}
+
+@media (min-width: 40em) {
+  #resume-both {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 39em) {
+  #resume-both {
+    flex-direction: column;
+  }
+}
+
+#resume-left,
+#resume-right {
+  display: flex;
+  flex-direction: column;
 }
 
 #profile-container {
-  border: 1px dashed black;
+  padding: 1vw;
+  margin: 0.5vw;
+  border: 0.5px dashed gray;
+  border-radius: 15px;
 }
 
 #profile-pic {
@@ -46,7 +74,88 @@ a:hover {
   text-align: center;
 }
 
-#component-tests {
-  padding: 4vw;
-  border: 1px dashed black;
+#category-buttons {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(to right, #87c3fa, #dcccfd);
+  display: flex;
+  justify-content: space-around;
+  padding: 1vw;
+  margin: 0.5vw;
+  border: 0.5px dashed gray;
+  border-radius: 15px;
 }
+
+#affiliation-component,
+#project-component,
+#blog-component,
+#presentation-component,
+#job-component,
+#publication-component,
+#school-component,
+#skill-component {
+  padding: 1vw;
+  margin: 0.5vw;
+  border: 0.5px dashed gray;
+  border-radius: 15px;
+}
+
+#skill-component h1 {
+  text-align: center;
+  padding-left: 0em;
+}
+
+.resume-component h1 {
+  color: #73b9fa;
+  text-shadow: 3px 3px 0 #6341a9, -1px -1px 0 #6341a9, 1px -1px 0 #6341a9,
+    -1px 1px 0 #6341a9, 1px 1px 0 #6341a9;
+  padding-left: 1em;
+}
+
+@media (max-width: 39em) {
+  .resume-component h1 {
+    text-align: center;
+    padding-left: 0em;
+  }
+}
+
+.one-affiliation,
+.one-project,
+.one-presentation,
+.one-job,
+.one-publication,
+.one-school {
+  padding: 1vw 2vw;
+  margin: 0.5vw;
+  border: 0.5px dashed white;
+  border-radius: 15px;
+}
+
+.one-blog {
+  padding: 1vw;
+  margin: 0.5vw;
+  border: 0.5px dashed white;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.blog-thumbnail {
+  padding: 1vw;
+  margin: 0.5vw;
+  max-width: 22vw;
+  max-height: 22vh;
+  flex-shrink: 1;
+}
+
+#expert-skill-list,
+#proficient-skill-list,
+#familiar-skill-list {
+  padding: 0.3vw 2vw;
+  margin: 0.5vw;
+  border: 0.5px dashed white;
+  border-radius: 15px;
+}
+
+/* NB notification styling is in the Category component */

@@ -1,42 +1,50 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import affiliation from './affiliation'
-import blog from './blog'
-import category from './category'
-import job from './job'
-import presentation from './presentation'
-import project from './project'
-import publication from './publication'
-import school from './school'
-import skill from './skill'
+import axios from 'axios'
 
-const reducer = combineReducers({
-  affiliation,
-  blog,
-  category,
-  job,
-  presentation,
-  project,
-  publication,
-  school,
-  skill
+export const TOGGLE_CATEGORY = 'TOGGLE_CATEGORY'
+
+export const toggleCategory = categoryId => ({
+  type: TOGGLE_CATEGORY,
+  categoryId
 })
+
+export const flipCategory = categoryId => {
+  return async dispatch => {
+    const {data} = await axios.get(`/api/categories/${categoryId}`, categoryId)
+    dispatch(toggleCategory(data))
+  }
+}
+
+const initialState = {
+  categories: {
+    1: true,
+    2: false,
+    3: false,
+    4: false
+  }
+}
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case TOGGLE_CATEGORY:
+      return {
+        ...state,
+        categories: {
+          ...state.categories,
+          [action.categoryId]: !state.categories[action.categoryId]
+        }
+      }
+    default:
+      return state
+  }
+}
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
 const store = createStore(reducer, middleware)
-
-export * from './affiliation'
-export * from './blog'
-export * from './category'
-export * from './job'
-export * from './presentation'
-export * from './project'
-export * from './publication'
-export * from './school'
-export * from './skill'
 
 export default store

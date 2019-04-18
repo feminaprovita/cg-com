@@ -1,15 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {
-  redBright,
-  greenBright,
-  yellowBright,
-  blueBright,
-  magentaBright,
-  cyanBright,
-  whiteBright
-} = require('chalk')
+const {greenBright, magentaBright} = require('chalk')
 const {
   Affiliation,
   Blog,
@@ -138,7 +130,7 @@ const jobData = [
     monthEnd: 'April 2018',
     bullets: [
       'Coordinated, designed, and led bible studies for young adults in NYC, in 3 sessions of 10 weeks each throughout the year',
-      'Served in additional service, leadership, and liturgical roles as needed.'
+      'Served in additional service, leadership, and liturgical roles as needed'
     ],
     paragraph:
       'Coordinated, designed, and led bible studies for young adults in NYC, in three sessions of ten weeks each throughout the year. Also served in additional service, leadership, and liturgical roles as needed.',
@@ -157,6 +149,20 @@ const jobData = [
     ],
     paragraph:
       'Duties included preparing and executing workshops and training sessions, mostly for parish liturgical leaders; answering questions from pastors, parish staffs, and parishioners; planning major archdiocesan liturgies; designing website updates; organizing and working with various committees and groups in promoting the liturgical life of the archdiocese. Major events included the annual Southeastern Liturgical Music Symposium, wake and funeral services for an archbishop emeritus, and hosting a USCCB Plenary Assembly.'
+  },
+  {
+    company: 'Various choirs',
+    jobTitle: 'Vocalist / Alto',
+    monthStart: 'September 1996',
+    bullets: [
+      'Have sung in over a dozen choirs (breaks: July 2014–Aug 2017; June 2018–Feb 2019)',
+      'Usually alto, but roles have included cantor, soprano, tenor, and “make up a new harmony now, please”',
+      'Mostly church choirs, at varying skill levels (inc. professional), across a wide range of styles and languages',
+      'Currently: Metropolitan Catholic Chorale (based in Bronx, NY)'
+    ],
+    paragraph:
+      'Have sung in over a dozen choirs with breaks rarely longer than a few months (exceptions: July 2014–Aug 2017; June 2018–Feb 2019). Usually an alto, but roles have also included cantor, soprano, tenor, and “make up a new harmony now, please.” Mostly church choirs, at varying skill levels (up to professional), across a wide range of styles and languages. Currently in NYC’s Metropolitan Catholic Chorale.',
+    volunteer: true
   }
 ]
 
@@ -173,10 +179,6 @@ const presentationData = [
   },
   {
     name: `Jesus' Lesser-Known Parables`,
-    // org: 'Frassati Fellowship of NYC',
-    // url: 'http://frassati.nyc',
-    // location: 'New York, NY',
-    // the above 3 come through via the foreign key: should test via joins
     dateStart: '2015-06-08',
     dateEnd: '2015-08-31',
     details: `A thirteen-week series encouraging discussion with context on those parables that do not appear in the Lectionary, those that are often overshadowed by the 'more important' parables they reside next to, and those that are just plain difficult, no matter what.`
@@ -199,10 +201,6 @@ const presentationData = [
   },
   {
     name: 'Crash Course on Latin and Chant',
-    // org: 'Archdiocese of Atlanta',
-    // url: 'http://archatl.com',
-    // location: 'Smyrna, GA',
-    // the above 3 come through via the foreign key: should test via joins
     dateStart: '2012-02-12',
     details:
       'Delivered to the directors of music ministry of nearly all the parishes in the archdiocese, and their prominent cantors, with the intention of bridging the gap between technical (musical) expertise and theological expertise.'
@@ -220,7 +218,6 @@ const projectData = [
       'Analyzed then captured full archive (posts, comments, uploaded photos, links), scraping with Puppeteer'
     ],
     github: 'https://github.com/feminaprovita/masks-rescue'
-    // other: 'blog post'
   },
   {
     name: 'Moodify',
@@ -252,7 +249,7 @@ const projectData = [
   },
   {
     name: 'Timelink Travel Services',
-    role: 'Fullstack Softwear Engineer',
+    role: 'Fullstack Software Engineer',
     paragraph:
       'Premise: our client had recently outgrown their etsy shop, and needed a functional e-commerce site that could display their wares.',
     bullets: [
@@ -269,8 +266,11 @@ const projectData = [
     role: 'Solo Analyst',
     paragraph:
       'A recurring question had come up, when the liturgical books the magazine took its texts from didn\'t have all 3 prayers for the saint of the day, but rather had only one, and sent us to the "commons" for the other two. In the commons, the phrase "blessed N." appeared, with the "N." to be replaced by the saint of the day. But how the magazine settled this had been questioned several times, so an analysis of the book of origin was due. \n\nDid they want "blessed Saint Catherine", since Catherine (or whichever saint) was indeed canonized, and "Blessed" is a technical designation for someone who\'s almost (but not quite) a saint? Or was "Blessed Catherine" sufficient? \n\nTo determine this, a thorough analysis was needed not only of all the instances of "blessed N." but also of all paralle instances for prayers whose saints are named, several hundred in all.\n\nDuring analysis, another question came up: Should she be "Catherine" or "Catherine of Alexandria"? And is the answer the same for all 3 prayers, or do the prayers behave differently based on their function? \n\nIn the end, after looking at carefully organized data, the decision was a consistent: full name, no "Saint" (a departure from previous inconsistent policy).',
-    bullets: []
-    // job: magnificat
+    bullets: [
+      'Problem: twofold question of how exactly to fill in blanks marked "N." in the Roman Missal (include title? full name or abbreviated?)',
+      'Carefully identified and analyzed 157 prayers containing "N." in comparison to 426 parallel instances containing names throughout the missal',
+      'Identified trends in the data, prepared handouts to demonstrate said trends, and presented on the question, which was then quickly settled'
+    ]
   },
   {
     name: 'Website Copy',
@@ -281,7 +281,6 @@ const projectData = [
       'Harmonized copy and formatting, improved links, in HTML of product pages'
     ],
     url: 'http://bookstore.magnificat.net'
-    // job: magnificat
   },
   {
     name: 'New Translation Analysis',
@@ -289,7 +288,6 @@ const projectData = [
     paragraph:
       'After Rome released a new translation of the Mass, closely examined the instructional texts at the beginning of the missal (~200p) for changes in vocabulary and style (mostly capitalization), and returned a spreadsheet for office use. Corrected a few misplaced periods and commas in the official final edition, to boot.'
     // bullets: []
-    // job: freelance
   }
 ]
 
@@ -455,6 +453,10 @@ const skillData = [
   {
     name: 'Agile',
     level: 'proficient'
+  },
+  {
+    name: 'RegEx',
+    level: 'familiar'
   }
 ]
 
@@ -539,7 +541,7 @@ async function seed() {
   const [scl, cmaa, aces] = affiliations
   const [errors, masks] = blogs
   const [code, editorial, theology, hobbies] = categories
-  const [freelance, mag, ttf, frassati, atl] = jobs
+  const [freelance, mag, ttf, frassati, atl, choir] = jobs
   const [arsCelebrandi, parables, tertiumQuid, bxvi, chant] = presentations
   const [
     masksRescue,
@@ -575,7 +577,8 @@ async function seed() {
     python,
     json,
     chalk,
-    agile
+    agile,
+    regex
   ] = skills
 
   await Promise.all([
@@ -595,6 +598,8 @@ async function seed() {
     frassati.setCategories(theology),
     frassati.setCategories(hobbies),
     atl.setCategories(theology),
+    choir.setCategories(theology),
+    choir.setCategories(hobbies),
 
     // affiliations
     latin.setAffiliations(scl),
@@ -617,14 +622,11 @@ async function seed() {
     // jobs
     tertiumQuid.setJob(freelance),
     bxvi.setJob(freelance),
-    girm.setJob(freelance),
     proofing.setJobs(freelance),
     copyediting.setJobs(freelance),
 
     scl.setJobs(mag),
     aces.setJobs(mag),
-    blessedN.setJob(mag),
-    website.setJob(mag),
     proofing.setJobs(mag),
     copyediting.setJobs(mag),
     excel.setJobs(mag),
@@ -639,6 +641,9 @@ async function seed() {
     cmaa.setJobs(atl),
     chant.setJob(atl),
     latin.setJobs(atl),
+
+    cmaa.setJobs(choir),
+    latin.setJobs(choir),
 
     // presentations
     arsCelebrandi.setCategory(theology),
@@ -656,17 +661,20 @@ async function seed() {
     latin.setPresentations(chant),
 
     // projects
-    masksRescue.setCategories(code),
-    masksRescue.setCategories(hobbies),
+    freelance.setProject(girm),
+    mag.setProject(blessedN),
+    mag.setProject(website),
+
+    masksRescue.setCategory(code),
     js.setProjects(masksRescue),
     node.setProjects(masksRescue),
     git.setProjects(masksRescue),
     puppeteer.setProjects(masksRescue),
     vscode.setProjects(masksRescue),
     json.setProjects(masksRescue),
+    regex.setProjects(masksRescue),
 
-    moodify.setCategories(code),
-    moodify.setSchool(gh),
+    moodify.setCategory(code),
     js.setProjects(moodify),
     node.setProjects(moodify),
     express.setProjects(moodify),
@@ -677,9 +685,7 @@ async function seed() {
     heroku.setProjects(moodify),
     agile.setProjects(moodify),
 
-    kfbc.setCategories(code),
-    kfbc.setCategories(hobbies),
-    kfbc.setSchool(gh),
+    kfbc.setCategory(code),
     js.setProjects(kfbc),
     node.setProjects(kfbc),
     express.setProjects(kfbc),
@@ -695,8 +701,7 @@ async function seed() {
     puppeteer.setProjects(kfbc),
     chalk.setProjects(kfbc),
 
-    timelink.setCategories(code),
-    timelink.setSchool(gh),
+    timelink.setCategory(code),
     js.setProjects(timelink),
     node.setProjects(timelink),
     express.setProjects(timelink),
@@ -711,19 +716,16 @@ async function seed() {
     heroku.setProjects(timelink),
     agile.setProjects(timelink),
 
-    blessedN.setCategories(theology),
-    blessedN.setJob(mag),
+    blessedN.setCategory(theology),
     proofing.setProjects(blessedN),
     excel.setProjects(blessedN),
 
-    website.setCategories(editorial),
-    website.setJob(mag),
+    website.setCategory(editorial),
     proofing.setProjects(website),
     copyediting.setProjects(website),
     html.setProjects(website),
 
-    girm.setCategories(editorial),
-    girm.setJob(freelance),
+    girm.setCategory(editorial),
     proofing.setProjects(girm),
     excel.setProjects(girm),
 
@@ -768,6 +770,7 @@ async function seed() {
     json.setCategory(code),
     chalk.setCategory(code),
     agile.setCategory(code),
+    regex.setCategory(code),
     proofing.setCategory(editorial),
     copyediting.setCategory(editorial),
     french.setCategory(theology),
