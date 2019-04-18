@@ -27,10 +27,10 @@ export const style = {
   },
   NotificationItem: {
     success: {
-      color: '#6341a9',
-      borderTop: '3px solid ##f50057',
-      border: '3px solid ##f50057',
-      backgroundColor: '#daebfb'
+      color: '#white',
+      borderTop: '2px solid #f50057',
+      border: '2px solid #f50057',
+      backgroundColor: '#3f51b5'
     }
   }
 }

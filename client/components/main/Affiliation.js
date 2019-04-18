@@ -40,7 +40,7 @@ class Affiliation extends Component {
         .replace(/[^\d\w]/g, '-')
       a.keyName = a.slug + '-component'
     })
-    console.log('aff state', this.state)
+    console.log('Affiliation state', this.state)
 
     return (
       <div className="resume-component">

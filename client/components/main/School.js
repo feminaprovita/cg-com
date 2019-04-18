@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import React, {Component} from 'react'
 import axios from 'axios'
 
@@ -25,7 +24,7 @@ class School extends Component {
         .replace(/[^\d\w]/g, '-')
       s.keyName = s.slug + '-component'
     })
-    console.log('school state', this.state)
+    console.log('School state', this.state)
 
     return (
       <div className="resume-component">

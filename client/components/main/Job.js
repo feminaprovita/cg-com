@@ -53,7 +53,7 @@ class Job extends Component {
         .replace(/[^\d\w]/g, '-')
       j.keyName = j.slug + '-component'
     })
-    console.log('job state', this.state)
+    console.log('Job state', this.state)
 
     return (
       <div className="resume-component">

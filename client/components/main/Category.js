@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
@@ -26,7 +25,7 @@ class Category extends Component {
     await this.props.toggleCategory(catId)
     const notification = this.notificationSystem.current
     let alertMsg = evt.target.innerHTML.replace(/.*<\/div>/g, '')
-    alertMsg = alertMsg.replace(/<\/.*$/g, '') + ' toggled!'
+    alertMsg = alertMsg.replace(/<\/.*$/g, '') + ' content toggled!'
     notification.addNotification({
       message: alertMsg,
       level: 'success'
@@ -38,8 +37,7 @@ class Category extends Component {
   }
 
   render() {
-    // console.log('category rendering')
-    console.log('cat props', this.props)
+    console.log('Category props', this.props)
     let codeButtonColor = this.props.categories[1] ? 'secondary' : 'primary'
     let editorialButtonColor = this.props.categories[2]
       ? 'secondary'
