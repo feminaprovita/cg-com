@@ -11,13 +11,28 @@ a:hover {
   cursor: pointer;
 }
 
-#navbar {
-  padding: 0.5vw;
-  text-align: center;
+#navbar #nav-name {
   text-decoration: wavy;
   color: #6341a9;
   text-shadow: 0.13em 0.11em #73b9fa;
   font-size: 3em;
+}
+
+#navbar {
+  padding: 0.5vw;
+  text-align: center;
+  color: black;
+  font-size: 1em;
+}
+
+#pink-add {
+  color: #f50057;
+  text-shadow: 0.08em 0.12em white;
+}
+
+#blue-remove {
+  color: #3f51b5;
+  text-shadow: 0.08em 0.12em white;
 }
 
 #components-holder {
@@ -70,7 +85,7 @@ a:hover {
 
 #profile-text {
   padding: 4vw;
-  color: darkblue;
+  /* color: darkblue; */
   text-align: center;
 }
 

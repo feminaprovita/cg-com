@@ -47,6 +47,9 @@ const Job = db.define('job', {
       notEmpty: true
     }
   },
+  lectures: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
+  },
   always: {
     type: Sequelize.BOOLEAN,
     allowNull: false,

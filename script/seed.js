@@ -134,6 +134,16 @@ const jobData = [
     ],
     paragraph:
       'Coordinated, designed, and led bible studies for young adults in NYC, in three sessions of ten weeks each throughout the year. Also served in additional service, leadership, and liturgical roles as needed.',
+    lectures: [
+      'The Psalms',
+      'The Beatitudes',
+      'The Spiritual Works of Mercy',
+      'The Corporal Works of Mercy',
+      'What is a Jubilee?',
+      "Jesus' Lesser-Known Parables",
+      'Easter Vigil Readings: Discussion and Reflection',
+      'The Small Books: Diving into the Old Testament'
+    ],
     volunteer: true
   },
   {
@@ -148,10 +158,17 @@ const jobData = [
       'Served as ongoing resource for pastors and staffs, worked with other committees and groups, including national bishops conference'
     ],
     paragraph:
-      'Duties included preparing and executing workshops and training sessions, mostly for parish liturgical leaders; answering questions from pastors, parish staffs, and parishioners; planning major archdiocesan liturgies; designing website updates; organizing and working with various committees and groups in promoting the liturgical life of the archdiocese. Major events included the annual Southeastern Liturgical Music Symposium, wake and funeral services for an archbishop emeritus, and hosting a USCCB Plenary Assembly.'
+      'Duties included preparing and executing workshops and training sessions, mostly for parish liturgical leaders; answering questions from pastors, parish staffs, and parishioners; planning major archdiocesan liturgies; designing website updates; organizing and working with various committees and groups in promoting the liturgical life of the archdiocese. Major events included the annual Southeastern Liturgical Music Symposium, wake and funeral services for an archbishop emeritus, and hosting a USCCB Plenary Assembly.',
+    lectures: [
+      'Crash Course on Latin and Chant',
+      'Theology of Liturgical Music for Cantors',
+      'Shadow, Image, Reality: Liturgical Background for Altar Server Programs',
+      'Theology and Rite: Visiting the Sick and Bringing Them Communion'
+    ]
   },
   {
     company: 'Various choirs',
+    url: 'http://nymcc.org/about-us',
     jobTitle: 'Vocalist / Alto',
     monthStart: 'September 1996',
     bullets: [
@@ -395,6 +412,10 @@ const skillData = [
     level: 'proficient'
   },
   {
+    name: 'PostgreSQL',
+    level: 'familiar'
+  },
+  {
     name: 'React',
     level: 'proficient'
   },
@@ -417,10 +438,6 @@ const skillData = [
   {
     name: 'Git/Github',
     level: 'proficient'
-  },
-  {
-    name: 'PostgreSQL',
-    level: 'postgres'
   },
   {
     name: 'Microsoft Excel',
@@ -449,6 +466,14 @@ const skillData = [
   {
     name: 'Chalk',
     level: 'familiar'
+  },
+  {
+    name: 'Axios',
+    level: 'proficient'
+  },
+  {
+    name: 'Postman',
+    level: 'proficient'
   },
   {
     name: 'Agile',
@@ -563,13 +588,13 @@ async function seed() {
     node,
     express,
     sequelize,
+    pg,
     react,
     redux,
     html,
     css,
     flexbox,
     git,
-    pg,
     excel,
     vscode,
     heroku,
@@ -577,6 +602,8 @@ async function seed() {
     python,
     json,
     chalk,
+    axios,
+    postman,
     agile,
     regex
   ] = skills
@@ -678,6 +705,8 @@ async function seed() {
     js.setProjects(moodify),
     node.setProjects(moodify),
     express.setProjects(moodify),
+    axios.setProjects(moodify),
+    postman.setProjects(moodify),
     react.setProjects(moodify),
     css.setProjects(moodify),
     git.setProjects(moodify),
@@ -689,6 +718,7 @@ async function seed() {
     js.setProjects(kfbc),
     node.setProjects(kfbc),
     express.setProjects(kfbc),
+    axios.setProjects(kfbc),
     sequelize.setProjects(kfbc),
     react.setProjects(kfbc),
     redux.setProjects(kfbc),
@@ -705,6 +735,8 @@ async function seed() {
     js.setProjects(timelink),
     node.setProjects(timelink),
     express.setProjects(timelink),
+    axios.setProjects(timelink),
+    postman.setProjects(timelink),
     sequelize.setProjects(timelink),
     react.setProjects(timelink),
     redux.setProjects(timelink),
@@ -754,6 +786,8 @@ async function seed() {
     js.setCategory(code),
     node.setCategory(code),
     express.setCategory(code),
+    axios.setCategory(code),
+    postman.setCategory(code),
     sequelize.setCategory(code),
     react.setCategory(code),
     redux.setCategory(code),
