@@ -32,7 +32,7 @@ class Skill extends Component {
     const latest = this.props.categories
     const prev = prevProps.categories
     if (latest !== prev) {
-      let currentSkills = prevState.filter(s => this.props.categories[s.categoryId])
+      let currentSkills = prevState.allSkills.filter(s => this.props.categories[s.categoryId])
       let fam = currentSkills.filter(s => s.level === 'familiar')
       let prof = currentSkills.filter(s => s.level === 'proficient')
       let exp = currentSkills.filter(s => s.level === 'expert')
