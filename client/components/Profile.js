@@ -12,6 +12,19 @@ const Profile = () => (
     <div id="profile-text">
       <p>Welcome to clairegilligan.com!</p>
       <p>
+        Software development is my third career&mdash;I've always been a nerd
+        who hung out with / learned from the techies, but until very recently
+        I'd been under the misapprehension that programming is mostly
+        math&mdash;yet I still take occasional jobs in my other fields, too!
+      </p>
+      <p>
+        So I thought I'd throw together a more interesting sort of resume,
+        something that lets you filter which content is and is not visible at a
+        given moment. Ya' know, now that I <i>can</i> make such a thing just
+        because I've had the idea for it...
+      </p>
+      <p>❧ ❧ ❧</p>
+      <p>
         You can find me on{' '}
         <a href="https://www.linkedin.com/in/claire-gilligan/" target="blank">
           LinkedIn
