@@ -27,7 +27,7 @@ class Project extends Component {
       let currentProjects = prevState.allProjects.filter(
         p => this.props.categories[p.categoryId]
       )
-      this.setState({projects: currentProjects})
+      this.setState({filteredProjects: currentProjects})
     }
   }
 

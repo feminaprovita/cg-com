@@ -1,12 +1,5 @@
-├── LICENSE
-├── README.md
-└── TREE.md
 ├── client
-│   ├── app.js
 │   ├── components
-│   │   ├── Landing.js
-│   │   ├── Profile.js
-│   │   ├── index.js
 │   │   ├── main
 │   │   │   ├── Affiliation.js
 │   │   │   ├── Blog.js
@@ -18,21 +11,24 @@
 │   │   │   ├── Publication.js
 │   │   │   ├── School.js
 │   │   │   └── Skill.js
-│   │   └── navbar.js
+│   │   ├── index.js
+│   │   ├── Landing.js
+│   │   ├── Navbar.js
+│   │   └── Profile.js
+│   ├── store
+│   |   └── index.js
+│   ├── app.js
 │   ├── history.js
 │   ├── index.js
-│   ├── routes.js
-│   ├── socket.js
-│   └── store
-│   └── index.js
+│   └── routes.js
 ├── node-modules
-├── package-lock.json
-├── package.json
 ├── public
 │   ├── bundle.js
 │   ├── bundle.js.map
 │   ├── favicon.ico
 │   ├── index.html
+│   ├── profile-preview.png
+│   ├── profile.jpg
 │   ├── profile.png
 │   ├── style-notification.js
 │   └── style.css
@@ -55,20 +51,24 @@
 │   │   ├── schools.js
 │   │   └── skills.js
 │   ├── db
+│   │   ├── models
+│   │   │   ├── affiliation.js
+│   │   │   ├── blog.js
+│   │   │   ├── category.js
+│   │   │   ├── index.js
+│   │   │   ├── job.js
+│   │   │   ├── presentation.js
+│   │   │   ├── project.js
+│   │   │   ├── publication.js
+│   │   │   ├── school.js
+│   │   │   └── skill.js
 │   │   ├── db.js
-│   │   ├── index.js
-│   │   └── models
-│   │   ├── affiliation.js
-│   │   ├── blog.js
-│   │   ├── category.js
-│   │   ├── index.js
-│   │   ├── job.js
-│   │   ├── presentation.js
-│   │   ├── project.js
-│   │   ├── publication.js
-│   │   ├── school.js
-│   │   └── skill.js
-│   ├── index.js
-│   └── socket
+│   │   └── ndex.js
 │   └── index.js
+├── .babelrc
+├── LICENSE
+├── README.md
+├── TREE.md
+├── package-lock.json
+├── package.json
 └── webpack.config.js
