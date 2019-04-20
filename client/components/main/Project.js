@@ -6,22 +6,25 @@ class Project extends Component {
   constructor() {
     super()
     this.state = {
-      projects: []
+      allProjects: [],
+      filteredProjects: []
     }
   }
 
   async componentDidMount() {
     const {data} = await axios.get('/api/projects')
     let currentProjects = data.filter(p => this.props.categories[p.categoryId])
-    this.setState({projects: currentProjects})
+    this.setState({
+      allProjects: data,
+      filteredProjects: currentProjects
+    })
   }
 
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const latest = this.props.categories
     const prev = prevProps.categories
     if (latest !== prev) {
-      const {data} = await axios.get('/api/projects')
-      let currentProjects = data.filter(
+      let currentProjects = prevState.allProjects.filter(
         p => this.props.categories[p.categoryId]
       )
       this.setState({projects: currentProjects})
@@ -29,21 +32,21 @@ class Project extends Component {
   }
 
   render() {
-    this.state.projects.forEach(p => {
+    this.state.allProjects.forEach(p => {
       p.slug = p.name
         .replace(/[^\d\w\s]/g, '')
         .toLowerCase()
         .replace(/[^\d\w]/g, '-')
       p.keyName = p.slug + '-component'
     })
-    console.log('Project state', this.state.projects)
+    console.log('Project state', this.state)
 
     return (
       <div className="resume-component">
-        {this.state.projects.length > 0 ? (
+        {this.state.filteredProjects.length > 0 ? (
           <div id="project-component">
             <h1>Projects</h1>
-            {this.state.projects.map(p => (
+            {this.state.filteredProjects.map(p => (
               <ProjectOne key={p.keyName} project={p} />
             ))}
           </div>

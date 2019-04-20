@@ -5,7 +5,8 @@ class Publication extends Component {
   constructor() {
     super()
     this.state = {
-      publications: []
+      allPublications: [],
+      filteredPublications: []
     }
   }
 
@@ -14,23 +15,25 @@ class Publication extends Component {
     let currentPublications = data.filter(
       p => this.props.categories[p.categoryId]
     )
-    this.setState({publications: currentPublications})
+    this.setState({
+      allPublications: data,
+      filteredPublications: currentPublications
+    })
   }
 
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const latest = this.props.categories
     const prev = prevProps.categories
     if (latest !== prev) {
-      const {data} = await axios.get('/api/publications')
-      let currentPublications = data.filter(
+      let currentPublications = prevState.allPublications.filter(
         p => this.props.categories[p.categoryId]
       )
-      this.setState({publications: currentPublications})
+      this.setState({filteredPublications: currentPublications})
     }
   }
 
   render() {
-    this.state.publications.forEach(p => {
+    this.state.allPublications.forEach(p => {
       p.slug = (p.title.match(/^.*(?=[\.,:;!?(–—])/g) || p.title)
         .toString()
         .replace(/[^\d\w\s]/g, '')
@@ -42,19 +45,14 @@ class Publication extends Component {
 
     return (
       <div className="resume-component">
-        {this.state.publications.length > 0 ? (
+        {this.state.filteredPublications.length > 0 ? (
           <div id="publication-component">
             <h1>Publications</h1>
-            {this.state.publications.map(p => {
+            {this.state.filteredPublications.map(p => {
               return (
                 <div className="one-publication" key={p.keyName}>
                   <h4>{p.title}</h4>
-                  <p>
-                    in{' '}
-                    <a href={p.url} target="blank">
-                      <i>{p.book}</i>
-                    </a>, {p.footnote}.
-                  </p>
+                  <p>in{' '}<a href={p.url} target="blank"><i>{p.book}</i></a>, {p.footnote}.</p>
                   <p>{p.summary}</p>
                 </div>
               )

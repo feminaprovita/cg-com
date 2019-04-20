@@ -5,7 +5,8 @@ class Presentation extends Component {
   constructor() {
     super()
     this.state = {
-      presentations: []
+      allPresentations: [],
+      filteredPresentations: []
     }
   }
 
@@ -17,26 +18,28 @@ class Presentation extends Component {
     currentPresentations.sort(
       (a, b) => new Date(b.dateStart) - new Date(a.dateStart)
     )
-    this.setState({presentations: currentPresentations})
+    this.setState({
+      allPresentations: data,
+      filteredPresentations: currentPresentations
+    })
   }
 
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const latest = this.props.categories
     const prev = prevProps.categories
     if (latest !== prev) {
-      const {data} = await axios.get('/api/presentations')
-      let currentPresentations = data.filter(
+      let currentPresentations = prevState.allPresentations.filter(
         p => this.props.categories[p.categoryId]
       )
       currentPresentations.sort(
         (a, b) => new Date(b.dateStart) - new Date(a.dateStart)
       )
-      this.setState({presentations: currentPresentations})
+      this.setState({filteredPresentations: currentPresentations})
     }
   }
 
   render() {
-    this.state.presentations.forEach(p => {
+    this.state.allPresentations.forEach(p => {
       p.slug = (p.name.match(/^.*(?=[\.,:;!?(–—])/g) || p.name)
         .toString()
         .replace(/[^\d\w\s]/g, '')
@@ -48,33 +51,20 @@ class Presentation extends Component {
 
     return (
       <div className="resume-component">
-        {this.state.presentations.length > 0 ? (
+        {this.state.filteredPresentations.length > 0 ? (
           <div id="presentation-component">
             <h1>Selected Presentations</h1>
-            {this.state.presentations.length > 0 ? (
-              this.state.presentations.map(p => {
+              {this.state.filteredPresentations.map(p => {
                 return (
                   <div className="one-presentation" key={p.keyName}>
                     <h4>{p.name}</h4>
                     {p.url ? (
-                      <p>
-                        Presented to the{' '}
-                        <a href={p.url} target="blank">
-                          {p.org}
-                        </a>
-                      </p>
+                      <p>Presented to the{' '}<a href={p.url} target="blank">{p.org}</a></p>
                     ) : (
-                      <p>
-                        Presented to the{' '}
-                        <a href={p.job.url} target="blank">
-                          {p.job.company}
-                        </a>
-                      </p>
+                      <p>Presented to the{' '}<a href={p.job.url} target="blank">{p.job.company}</a></p>
                     )}
                     {p.dateEnd ? (
-                      <p>
-                        {p.dateStart} through {p.dateEnd}
-                      </p>
+                      <p>{p.dateStart} through {p.dateEnd}</p>
                     ) : (
                       <p>{p.dateStart}</p>
                     )}
@@ -86,10 +76,7 @@ class Presentation extends Component {
                     {p.details ? <p>{p.details}</p> : <div />}
                   </div>
                 )
-              })
-            ) : (
-              <div />
-            )}
+              })}
           </div>
         ) : (
           <span id="no-presentations" />

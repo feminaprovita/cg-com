@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, {Component} from 'react'
 import axios from 'axios'
 
@@ -39,26 +40,13 @@ class School extends Component {
                   <h4>{s.shortName}</h4>
                 )}
                 {s.major ? (
-                  <p>
-                    <a href={s.url} target="blank">
-                      {s.degree} in {s.major}
-                    </a>
-                  </p>
+                  <p><a href={s.url} target="blank">{s.degree} in {s.major}</a></p>
                 ) : (
-                  <p>
-                    <a href={s.url} target="blank">
-                      {s.degree}
-                    </a>
-                  </p>
+                  <p><a href={s.url} target="blank">{s.degree}</a></p>
                 )}
-                <p>
-                  <b>{s.graduation}</b>, {s.location}
-                </p>
+                <p><b>{s.graduation}</b>, {s.location}</p>
                 {this.props.categories[s.categoryId] && s.thesis ? (
-                  <p>
-                    Thesis: <i>{s.thesis}</i>
-                    <br />Advisor: {s.advisor}
-                  </p>
+                  <p>Thesis: <i>{s.thesis}</i><br />Advisor: {s.advisor}</p>
                 ) : (
                   <span />
                 )}
@@ -67,8 +55,7 @@ class School extends Component {
                 ) : (
                   <span />
                 )}
-                {this.props.categories[s.categoryId] &&
-                s.projects.length > 0 ? (
+                {this.props.categories[s.categoryId] && s.projects.length > 0 ? (
                   <ul>{s.projects.map((p, i) => <li key={i}>{p.name}</li>)}</ul>
                 ) : (
                   <span />
