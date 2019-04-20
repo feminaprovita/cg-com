@@ -5,7 +5,7 @@ const Profile = () => (
     <div id="profile">
       <img
         id="profile-pic"
-        src="/profile.png"
+        src="/profile.jpg"
         alt="Claire Gilligan profile picture"
       />
     </div>
