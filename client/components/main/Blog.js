@@ -5,28 +5,31 @@ class Blog extends Component {
   constructor() {
     super()
     this.state = {
-      blogs: []
+      allBlogs: [],
+      filteredBlogs: []
     }
   }
 
   async componentDidMount() {
     const {data} = await axios.get('/api/blogs')
     let currentBlogs = data.filter(b => this.props.categories[b.categoryId])
-    this.setState({blogs: currentBlogs})
+    this.setState({
+      allBlogs: data,
+      filteredBlogs: currentBlogs
+    })
   }
 
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const latest = this.props.categories
     const prev = prevProps.categories
     if (latest !== prev) {
-      const {data} = await axios.get('/api/blogs')
-      let currentBlogs = data.filter(b => this.props.categories[b.categoryId])
-      this.setState({blogs: currentBlogs})
+      let currentBlogs = prevState.allBlogs.filter(b => this.props.categories[b.categoryId])
+      this.setState({filteredBlogs: currentBlogs})
     }
   }
 
   render() {
-    this.state.blogs.forEach(b => {
+    this.state.allBlogs.forEach(b => {
       b.slug = (b.title.match(/^.*(?=[\.,:;!?(–—])/g) || b.title)
         .toString()
         .replace(/[^\d\w\s]/g, '')
@@ -39,10 +42,10 @@ class Blog extends Component {
 
     return (
       <div className="resume-component">
-        {this.state.blogs.length > 0 ? (
+        {this.state.filteredBlogs.length > 0 ? (
           <div id="blog-component">
             <h1>Blog Posts</h1>
-            {this.state.blogs.map(b => {
+            {this.state.filteredBlogs.map(b => {
               return (
                 <div className="one-blog" key={b.keyName}>
                   <img
@@ -53,12 +56,8 @@ class Blog extends Component {
                   <div className="blog-info">
                     <h4>{b.title}</h4>
                     {b.summary ? <p>{b.summary}</p> : <p>{b.teaser}</p>}
-                    <p>
-                      <a href={b.postUrl} target="blank">
-                        Read more...
-                      </a>
-                    </p>
-                    {/* <p>{b.date}</p> */}
+                    <p><a href={b.postUrl} target="blank">
+                        Read more...</a></p>
                   </div>
                 </div>
               )

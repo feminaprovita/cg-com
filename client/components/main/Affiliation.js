@@ -6,7 +6,8 @@ class Affiliation extends Component {
   constructor() {
     super()
     this.state = {
-      affiliations: []
+      allAffiliations: [],
+      filteredAffiliations: []
     }
   }
 
@@ -16,24 +17,26 @@ class Affiliation extends Component {
       a => this.props.categories[a.categoryId]
     )
     componentSort(currentAffiliations)
-    this.setState({affiliations: currentAffiliations})
+    this.setState({
+      allAffiliations: data,
+      filteredAffiliations: currentAffiliations
+    })
   }
 
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const latest = this.props.categories
     const prev = prevProps.categories
     if (latest !== prev) {
-      const {data} = await axios.get('/api/affiliations')
-      let currentAffiliations = data.filter(
+      let currentAffiliations = prevState.allAffiliations.filter(
         a => this.props.categories[a.categoryId]
       )
       componentSort(currentAffiliations)
-      this.setState({affiliations: currentAffiliations})
+      this.setState({filteredAffiliations: currentAffiliations})
     }
   }
 
   render() {
-    this.state.affiliations.forEach(a => {
+    this.state.allAffiliations.forEach(a => {
       a.slug = a.name
         .replace(/[^\d\w\s]/g, '')
         .toLowerCase()
@@ -44,20 +47,14 @@ class Affiliation extends Component {
 
     return (
       <div className="resume-component">
-        {this.state.affiliations.length > 0 ? (
+        {this.state.filteredAffiliations.length > 0 ? (
           <div id="affiliation-component">
             <h1>Professional Affiliations</h1>
-            {this.state.affiliations.map(a => {
+            {this.state.filteredAffiliations.map(a => {
               return (
                 <div className="one-affiliation" key={a.keyName}>
-                  <p>
-                    <b>
-                      <a href={a.url}>{a.name}</a>
-                    </b>
-                  </p>
-                  <p>
-                    {a.monthStart}&ndash;{a.monthEnd}
-                  </p>
+                  <p><b><a href={a.url}>{a.name}</a></b></p>
+                  <p>{a.monthStart}&ndash;{a.monthEnd}</p>
                 </div>
               )
             })}

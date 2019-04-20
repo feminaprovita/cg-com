@@ -8,93 +8,57 @@ class Project extends Component {
     return (
       <div className="one-project" id={subKey}>
         <h3>{p.name}</h3>
-        <p>
-          <i>{p.role}</i>
-        </p>
+        <p><i>{p.role}</i></p>
         {p.bullets && p.bullets.length > 0 ? (
           <ul>{p.bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>
         ) : (
           <p>{p.paragraph}</p>
         )}
         {p.url && !p.github && !p.video ? (
-          <p>
-            <a href={p.url} target="blank">
-              Website
-            </a>
-          </p>
+          <p><a href={p.url} target="blank">Website</a></p>
         ) : (
           <div />
         )}
         {p.url && p.github && !p.video ? (
-          <p>
-            <a href={p.url} target="blank">
-              Website
+          <p><a href={p.url} target="blank">Website
             </a>&nbsp;&nbsp;&nbsp;❦&nbsp;&nbsp;&nbsp;{' '}
-            <a href={p.github} target="blank">
-              Github
-            </a>
-          </p>
+            <a href={p.github} target="blank">Github</a></p>
         ) : (
           <div />
         )}
         {p.url && p.github && p.video ? (
-          <p>
-            <a href={p.url} target="blank">
-              Website
+          <p><a href={p.url} target="blank">Website
             </a>&nbsp;&nbsp;&nbsp;❦&nbsp;&nbsp;&nbsp;{' '}
-            <a href={p.github} target="blank">
-              Github
+            <a href={p.github} target="blank">Github
             </a>&nbsp;&nbsp;&nbsp;❦&nbsp;&nbsp;&nbsp;{' '}
-            <a href={p.video} target="blank">
-              Video presentation
-            </a>
-          </p>
+            <a href={p.video} target="blank">Video presentation</a></p>
         ) : (
           <div />
         )}
         {!p.url && p.github && p.video ? (
-          <p>
-            <a href={p.github} target="blank">
-              Github
+          <p><a href={p.github} target="blank">Github
             </a>&nbsp;&nbsp;&nbsp;❦&nbsp;&nbsp;&nbsp;{' '}
-            <a href={p.video} target="blank">
-              Video presentation
-            </a>
-          </p>
+            <a href={p.video} target="blank">Video presentation</a></p>
         ) : (
           <div />
         )}
         {!p.url && p.github && !p.video ? (
-          <p>
-            <a href={p.github} target="blank">
-              Github
-            </a>
-          </p>
+          <p><a href={p.github} target="blank">Github</a></p>
         ) : (
           <div />
         )}
         {!p.url && !p.github && p.video ? (
-          <p>
-            <a href={p.video} target="blank">
-              Video presentation
-            </a>
-          </p>
+          <p><a href={p.video} target="blank">Video presentation</a></p>
         ) : (
           <div />
         )}
         {p.url && !p.github && p.video ? (
-          <p>
-            <a href={p.url} target="blank">
-              Website
+          <p><a href={p.url} target="blank">Website
             </a>&nbsp;&nbsp;&nbsp;❦&nbsp;&nbsp;&nbsp;{' '}
-            <a href={p.video} target="blank">
-              Video presentation
-            </a>
-          </p>
+            <a href={p.video} target="blank">Video presentation</a></p>
         ) : (
           <div />
         )}
-        {/* <p>❦❦❦</p> */}
       </div>
     )
   }

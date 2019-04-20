@@ -5,7 +5,8 @@ class Skill extends Component {
   constructor() {
     super()
     this.state = {
-      skills: [],
+      allSkills: [],
+      filteredSkills: [],
       familiarSkills: [],
       proficientSkills: [],
       expertSkills: []
@@ -19,24 +20,24 @@ class Skill extends Component {
     let prof = currentSkills.filter(s => s.level === 'proficient')
     let exp = currentSkills.filter(s => s.level === 'expert')
     this.setState({
-      skills: currentSkills,
+      allSkills: data,
+      filteredSkills: currentSkills,
       familiarSkills: fam,
       proficientSkills: prof,
       expertSkills: exp
     })
   }
 
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const latest = this.props.categories
     const prev = prevProps.categories
     if (latest !== prev) {
-      const {data} = await axios.get('/api/skills')
-      let currentSkills = data.filter(s => this.props.categories[s.categoryId])
+      let currentSkills = prevState.filter(s => this.props.categories[s.categoryId])
       let fam = currentSkills.filter(s => s.level === 'familiar')
       let prof = currentSkills.filter(s => s.level === 'proficient')
       let exp = currentSkills.filter(s => s.level === 'expert')
       this.setState({
-        skills: currentSkills,
+        filteredSkills: currentSkills,
         familiarSkills: fam,
         proficientSkills: prof,
         expertSkills: exp
@@ -45,7 +46,7 @@ class Skill extends Component {
   }
 
   render() {
-    this.state.skills.forEach(s => {
+    this.state.allSkills.forEach(s => {
       s.slug = s.name
         .replace(/[^\d\w\s/]/g, '')
         .toLowerCase()
@@ -56,7 +57,7 @@ class Skill extends Component {
 
     return (
       <div className="resume-component">
-        {this.state.skills.length > 0 ? (
+        {this.state.filteredSkills.length > 0 ? (
           <div id="skill-component">
             <h1>Skills</h1>
             {this.state.expertSkills.length > 0 ? (
