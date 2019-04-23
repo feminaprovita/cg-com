@@ -40,12 +40,14 @@ class Presentation extends Component {
 
   render() {
     this.state.allPresentations.forEach(p => {
-      p.slug = (p.name.match(/^.*(?=[\.,:;!?(–—])/g) || p.name)
-        .toString()
-        .replace(/[^\d\w\s]/g, '')
-        .toLowerCase()
-        .replace(/[^\d\w]/g, '-')
-      p.keyName = p.slug + '-component'
+      if(!p.slug) {
+        p.slug = (p.name.match(/^.*(?=[\.,:;!?(–—])/g) || p.name)
+          .toString()
+          .replace(/[^\d\w\s]/g, '')
+          .toLowerCase()
+          .replace(/[^\d\w]/g, '-')
+        p.keyName = p.slug + '-component'
+      }
     })
     console.log('Presentation state', this.state)
 

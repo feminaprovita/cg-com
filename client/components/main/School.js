@@ -19,11 +19,13 @@ class School extends Component {
 
   render() {
     this.state.schools.forEach(s => {
-      s.slug = s.shortName
-        .replace(/[^\d\w\s]/g, '')
-        .toLowerCase()
-        .replace(/[^\d\w]/g, '-')
-      s.keyName = s.slug + '-component'
+      if(!s.slug) {
+        s.slug = s.shortName
+          .replace(/[^\d\w\s]/g, '')
+          .toLowerCase()
+          .replace(/[^\d\w]/g, '-')
+        s.keyName = s.slug + '-component'
+      }
     })
     console.log('School state', this.state)
 

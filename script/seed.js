@@ -226,6 +226,53 @@ const presentationData = [
 
 const projectData = [
   {
+    name: 'Portfolio Website',
+    role: 'Engineer',
+    bullets: [
+      'Database-driven portfolio site with buttons that filter data into or out of render',
+      'Built with Node, Express, PostgreSQL, Sequelize, React, and Redux, and hosted on Heroku',
+      'Used a combination of responsive design and media queries to style for desktop and mobile',
+      'Planned expansion: individual pages for each component that showcase database relationships',
+      // 'Learned that git is case-insensitive (and how to fix that), repurposed data with RegEx, added HTML meta tags',
+      // 'Did a lot of post-deployment troubleshooting',
+    ],
+    // paragraph: '',
+    github: 'https://github.com/feminaprovita/cg-com'
+  },
+  {
+    name: 'Online Bookstore Copy',
+    role: 'Editor',
+    // paragraph: '',
+    bullets: [
+      'Requested edit permissions for bookstore website to correct obvious errors',
+      'Harmonized marketing copy and formatting, improved links, removed typos in HTML of product pages'
+    ],
+    url: 'http://bookstore.magnificat.net'
+  },
+  {
+    name: 'Moodify',
+    role: 'Fullstack Software Engineer',
+    paragraph:
+    "The user takes a selfie, or uploads a photo, which we then upload to Google Cloud Vision. Cloud Vision returns to us an image analysis object, which we run through our own home-brewed function (transforming Google's word data into numerical values, crunching them based on positivity or negativity and importance, and using a fixed-point radius to get a range for Spotify). This yields a search query that we pass to Spotify along with the relevant user data, permitting the user to play the songs and/or save the playlist to their account.",
+    bullets: [
+      'User takes or uploads a selfie, and receives a unique Spotify playlist matching image’s mood',
+      `Wrote/updated function mapping Google Cloud Vision's analysis object to a string for Spotify’s search`
+    ],
+    url: 'https://my-moodify.herokuapp.com',
+    github: 'https://github.com/grape-emu/my-moodify',
+    video: 'http://bit.ly/moodify-presentation'
+  },
+  {
+    name: 'Bacon Friday (annual party)',
+    role: 'Co-Host, Event Planner',
+    bullets: [
+      'Plan and throw a silly meat-themed Easter party for about 50 people annually (after six successive meatlesss Fridays during Lent)',
+      'Craft several unique bacon/meat-themed quizzes and/or games each year',
+      'Design and lead various meat-themed party games and activities'
+    ],
+    paragraph: 'After Catholics spend Fridays of Lent abstaining from meat, the Friday of Easter week is the perfect time to feast upon meat! Organized logistics for 50-person party, hosted at someone else\'s house; created and/or commissioned unique meat-themed games and activities each year.'
+  },
+  {
     name: 'Masks Google Plus Rescue',
     role: 'Engineer',
     paragraph:
@@ -237,17 +284,11 @@ const projectData = [
     github: 'https://github.com/feminaprovita/masks-rescue'
   },
   {
-    name: 'Moodify',
-    role: 'Fullstack Software Engineer',
+    name: 'New Translation Analysis',
+    role: 'Solo Analyst',
     paragraph:
-      "The user takes a selfie, or uploads a photo, which we then upload to Google Cloud Vision. Cloud Vision returns to us an image analysis object, which we run through our own home-brewed function (transforming Google's word data into numerical values, crunching them based on positivity or negativity and importance, and using a fixed-point radius to get a range for Spotify). This yields a search query that we pass to Spotify along with the relevant user data, permitting the user to play the songs and/or save the playlist to their account.",
-    bullets: [
-      'User takes or uploads a selfie, and receives a unique Spotify playlist matching image’s mood',
-      `Wrote/updated function mapping Google Cloud Vision's analysis object to a string for Spotify’s search`
-    ],
-    url: 'https://my-moodify.herokuapp.com',
-    github: 'https://github.com/grape-emu/my-moodify',
-    video: 'http://bit.ly/moodify-presentation'
+      'After Rome released a new translation of the Mass, closely examined the instructional texts at the beginning of the missal (~200p) for changes in vocabulary and style (mostly capitalization), and returned a spreadsheet for office use. Corrected a few misplaced periods and commas in the official final edition, to boot.',
+    // bullets: []
   },
   {
     name: 'Keeping Facebook Cheerful',
@@ -265,6 +306,17 @@ const projectData = [
     video: 'http://bit.ly/kfbc'
   },
   {
+    name: 'blessed N.',
+    role: 'Solo Analyst',
+    paragraph:
+      'A recurring question had come up, when the liturgical books the magazine took its texts from didn\'t have all 3 prayers for the saint of the day, but rather had only one, and sent us to the "commons" for the other two. In the commons, the phrase "blessed N." appeared, with the "N." to be replaced by the saint of the day. But how the magazine settled this had been questioned several times, so an analysis of the book of origin was due. \n\nDid they want "blessed Saint Catherine", since Catherine (or whichever saint) was indeed canonized, and "Blessed" is a technical designation for someone who\'s almost (but not quite) a saint? Or was "Blessed Catherine" sufficient? \n\nTo determine this, a thorough analysis was needed not only of all the instances of "blessed N." but also of all paralle instances for prayers whose saints are named, several hundred in all.\n\nDuring analysis, another question came up: Should she be "Catherine" or "Catherine of Alexandria"? And is the answer the same for all 3 prayers, or do the prayers behave differently based on their function? \n\nIn the end, after looking at carefully organized data, the decision was a consistent: full name, no "Saint" (a departure from previous inconsistent policy).',
+    bullets: [
+      'Problem: twofold question of how exactly to fill in blanks marked "N." in the Roman Missal (include title? full name or abbreviated?)',
+      'Carefully identified and analyzed 157 prayers containing "N." in comparison to 426 parallel instances containing names throughout the missal',
+      'Identified trends in the data, prepared handouts to demonstrate said trends, and presented on the question, which was then quickly settled'
+    ]
+  },
+  {
     name: 'Timelink Travel Services',
     role: 'Fullstack Software Engineer',
     paragraph:
@@ -277,34 +329,6 @@ const projectData = [
     ],
     url: 'https://pm-grace-shopper.herokuapp.com',
     github: 'https://github.com/pigMercury/grace-shopper'
-  },
-  {
-    name: 'blessed N.',
-    role: 'Solo Analyst',
-    paragraph:
-      'A recurring question had come up, when the liturgical books the magazine took its texts from didn\'t have all 3 prayers for the saint of the day, but rather had only one, and sent us to the "commons" for the other two. In the commons, the phrase "blessed N." appeared, with the "N." to be replaced by the saint of the day. But how the magazine settled this had been questioned several times, so an analysis of the book of origin was due. \n\nDid they want "blessed Saint Catherine", since Catherine (or whichever saint) was indeed canonized, and "Blessed" is a technical designation for someone who\'s almost (but not quite) a saint? Or was "Blessed Catherine" sufficient? \n\nTo determine this, a thorough analysis was needed not only of all the instances of "blessed N." but also of all paralle instances for prayers whose saints are named, several hundred in all.\n\nDuring analysis, another question came up: Should she be "Catherine" or "Catherine of Alexandria"? And is the answer the same for all 3 prayers, or do the prayers behave differently based on their function? \n\nIn the end, after looking at carefully organized data, the decision was a consistent: full name, no "Saint" (a departure from previous inconsistent policy).',
-    bullets: [
-      'Problem: twofold question of how exactly to fill in blanks marked "N." in the Roman Missal (include title? full name or abbreviated?)',
-      'Carefully identified and analyzed 157 prayers containing "N." in comparison to 426 parallel instances containing names throughout the missal',
-      'Identified trends in the data, prepared handouts to demonstrate said trends, and presented on the question, which was then quickly settled'
-    ]
-  },
-  {
-    name: 'Website Copy',
-    role: 'Editor',
-    // paragraph: '',
-    bullets: [
-      'Requested edit permissions for bookstore website to correct obvious errors',
-      'Harmonized copy and formatting, improved links, in HTML of product pages'
-    ],
-    url: 'http://bookstore.magnificat.net'
-  },
-  {
-    name: 'New Translation Analysis',
-    role: 'Solo Analyst',
-    paragraph:
-      'After Rome released a new translation of the Mass, closely examined the instructional texts at the beginning of the missal (~200p) for changes in vocabulary and style (mostly capitalization), and returned a spreadsheet for office use. Corrected a few misplaced periods and commas in the official final edition, to boot.'
-    // bullets: []
   }
 ]
 
@@ -569,13 +593,15 @@ async function seed() {
   const [freelance, mag, ttf, frassati, atl, choir] = jobs
   const [arsCelebrandi, parables, tertiumQuid, bxvi, chant] = presentations
   const [
-    masksRescue,
-    moodify,
-    kfbc,
-    timelink,
-    blessedN,
+    portfolio,
     website,
-    girm
+    moodify,
+    bacon,
+    masksRescue,
+    girm,
+    kfbc,
+    blessedN,
+    timelink
   ] = projects
   const [antiphon, spiritualCommunion, bookOfBlessings] = publications
   const [fus, li, gh] = schools
@@ -692,14 +718,29 @@ async function seed() {
     mag.setProject(blessedN),
     mag.setProject(website),
 
-    masksRescue.setCategory(code),
-    js.setProjects(masksRescue),
-    node.setProjects(masksRescue),
-    git.setProjects(masksRescue),
-    puppeteer.setProjects(masksRescue),
-    vscode.setProjects(masksRescue),
-    json.setProjects(masksRescue),
-    regex.setProjects(masksRescue),
+    portfolio.setCategory(code),
+    js.setProjects(portfolio),
+    node.setProjects(portfolio),
+    express.setProjects(portfolio),
+    sequelize.setProjects(portfolio),
+    pg.setProjects(portfolio),
+    react.setProjects(portfolio),
+    redux.setProjects(portfolio),
+    html.setProjects(portfolio),
+    css.setProjects(portfolio),
+    flexbox.setProjects(portfolio),
+    git.setProjects(portfolio),
+    vscode.setProjects(portfolio),
+    heroku.setProjects(portfolio),
+    chalk.setProjects(portfolio),
+    axios.setProjects(portfolio),
+    postman.setProjects(portfolio),
+    regex.setProjects(portfolio),
+
+    website.setCategory(editorial),
+    proofing.setProjects(website),
+    copyediting.setProjects(website),
+    html.setProjects(website),
 
     moodify.setCategory(code),
     js.setProjects(moodify),
@@ -713,6 +754,21 @@ async function seed() {
     vscode.setProjects(moodify),
     heroku.setProjects(moodify),
     agile.setProjects(moodify),
+
+    bacon.setCategory(hobbies),
+
+    masksRescue.setCategory(code),
+    js.setProjects(masksRescue),
+    node.setProjects(masksRescue),
+    git.setProjects(masksRescue),
+    puppeteer.setProjects(masksRescue),
+    vscode.setProjects(masksRescue),
+    json.setProjects(masksRescue),
+    regex.setProjects(masksRescue),
+
+    girm.setCategory(editorial),
+    proofing.setProjects(girm),
+    excel.setProjects(girm),
 
     kfbc.setCategory(code),
     js.setProjects(kfbc),
@@ -731,6 +787,10 @@ async function seed() {
     puppeteer.setProjects(kfbc),
     chalk.setProjects(kfbc),
 
+    blessedN.setCategory(theology),
+    proofing.setProjects(blessedN),
+    excel.setProjects(blessedN),
+
     timelink.setCategory(code),
     js.setProjects(timelink),
     node.setProjects(timelink),
@@ -747,19 +807,6 @@ async function seed() {
     vscode.setProjects(timelink),
     heroku.setProjects(timelink),
     agile.setProjects(timelink),
-
-    blessedN.setCategory(theology),
-    proofing.setProjects(blessedN),
-    excel.setProjects(blessedN),
-
-    website.setCategory(editorial),
-    proofing.setProjects(website),
-    copyediting.setProjects(website),
-    html.setProjects(website),
-
-    girm.setCategory(editorial),
-    proofing.setProjects(girm),
-    excel.setProjects(girm),
 
     // publications
     antiphon.setCategory(theology),

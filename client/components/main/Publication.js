@@ -34,12 +34,14 @@ class Publication extends Component {
 
   render() {
     this.state.allPublications.forEach(p => {
-      p.slug = (p.title.match(/^.*(?=[\.,:;!?(–—])/g) || p.title)
-        .toString()
-        .replace(/[^\d\w\s]/g, '')
-        .toLowerCase()
-        .replace(/[^\d\w]/g, '-')
-      p.keyName = p.slug + '-component'
+      if(!p.slug) {
+        p.slug = (p.title.match(/^.*(?=[\.,:;!?(–—])/g) || p.title)
+          .toString()
+          .replace(/[^\d\w\s]/g, '')
+          .toLowerCase()
+          .replace(/[^\d\w]/g, '-')
+        p.keyName = p.slug + '-component'
+      }
     })
     console.log('Publication state', this.state)
 

@@ -27,17 +27,19 @@ class Project extends Component {
       let currentProjects = prevState.allProjects.filter(
         p => this.props.categories[p.categoryId]
       )
-      this.setState({projects: currentProjects})
+      this.setState({filteredProjects: currentProjects})
     }
   }
 
   render() {
     this.state.allProjects.forEach(p => {
-      p.slug = p.name
-        .replace(/[^\d\w\s]/g, '')
-        .toLowerCase()
-        .replace(/[^\d\w]/g, '-')
-      p.keyName = p.slug + '-component'
+      if(!p.slug) {
+        p.slug = p.name
+          .replace(/[^\d\w\s]/g, '')
+          .toLowerCase()
+          .replace(/[^\d\w]/g, '-')
+        p.keyName = p.slug + '-component'
+      }
     })
     console.log('Project state', this.state)
 
