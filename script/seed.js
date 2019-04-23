@@ -226,15 +226,29 @@ const presentationData = [
 
 const projectData = [
   {
-    name: 'Masks Google Plus Rescue',
+    name: 'Portfolio Website',
     role: 'Engineer',
-    paragraph:
-      'Scraped, organized, and cleaned up data from a Google Plus community before Google pulled the plug on Plus. It went so well, we did the same for other communities run by the same game company!',
     bullets: [
-      'Co-wrote functions and scraped data from active Google+ community in advance of planned shutdown',
-      'Analyzed then captured full archive (posts, comments, uploaded photos, links), scraping with Puppeteer'
+      'Database-driven portfolio site with buttons that filter data into or out of render',
+      'Built with Node, Express, PostgreSQL, Sequelize, React, and Redux, and hosted on Heroku',
+      'Used a combination of responsive design and media queries to style for desktop and mobile',
+      'Planned expansion: individual pages for each component that showcase database relationships',
+      // 'Learned that git is case-insensitive (and how to fix that), repurposed data with RegEx, added HTML meta tags',
+      // 'Did a lot of post-deployment troubleshooting',
     ],
-    github: 'https://github.com/feminaprovita/masks-rescue'
+    paragraph: '',
+    url: 'http://www.clairegilligan.com',
+    github: 'https://github.com/feminaprovita/cg-com'
+  },
+  {
+    name: 'Bacon Friday (annual party)',
+    role: 'Co-Founder, Co-Host, Event Planner',
+    bullets: [
+      'Planned and threw a silly meat-themed Easter party for about 50 people (after six successive meatlesss Fridays during Lent)',
+      'Crafted several unique bacon/meat-themed quizzes and/or games each year',
+      'Designed and led various meat-themed party games and activities'
+    ],
+    paragraph: 'After Catholics spend Fridays of Lent abstaining from meat, the Friday of Easter week is the perfect time to feast upon meat! Organized logistics for 50-person party, hosted at someone else\'s house; created and/or commissioned unique meat-themed games and activities each year.'
   },
   {
     name: 'Moodify',
@@ -248,6 +262,34 @@ const projectData = [
     url: 'https://my-moodify.herokuapp.com',
     github: 'https://github.com/grape-emu/my-moodify',
     video: 'http://bit.ly/moodify-presentation'
+  },
+  {
+    name: 'Website Copy',
+    role: 'Editor',
+    // paragraph: '',
+    bullets: [
+      'Requested edit permissions for bookstore website to correct obvious errors',
+      'Harmonized copy and formatting, improved links, in HTML of product pages'
+    ],
+    url: 'http://bookstore.magnificat.net'
+  },
+  {
+    name: 'Masks Google Plus Rescue',
+    role: 'Engineer',
+    paragraph:
+      'Scraped, organized, and cleaned up data from a Google Plus community before Google pulled the plug on Plus. It went so well, we did the same for other communities run by the same game company!',
+    bullets: [
+      'Co-wrote functions and scraped data from active Google+ community in advance of planned shutdown',
+      'Analyzed then captured full archive (posts, comments, uploaded photos, links), scraping with Puppeteer'
+    ],
+    github: 'https://github.com/feminaprovita/masks-rescue'
+  },
+  {
+    name: 'New Translation Analysis',
+    role: 'Solo Analyst',
+    paragraph:
+      'After Rome released a new translation of the Mass, closely examined the instructional texts at the beginning of the missal (~200p) for changes in vocabulary and style (mostly capitalization), and returned a spreadsheet for office use. Corrected a few misplaced periods and commas in the official final edition, to boot.'
+    // bullets: []
   },
   {
     name: 'Keeping Facebook Cheerful',
@@ -265,6 +307,17 @@ const projectData = [
     video: 'http://bit.ly/kfbc'
   },
   {
+    name: 'blessed N.',
+    role: 'Solo Analyst',
+    paragraph:
+      'A recurring question had come up, when the liturgical books the magazine took its texts from didn\'t have all 3 prayers for the saint of the day, but rather had only one, and sent us to the "commons" for the other two. In the commons, the phrase "blessed N." appeared, with the "N." to be replaced by the saint of the day. But how the magazine settled this had been questioned several times, so an analysis of the book of origin was due. \n\nDid they want "blessed Saint Catherine", since Catherine (or whichever saint) was indeed canonized, and "Blessed" is a technical designation for someone who\'s almost (but not quite) a saint? Or was "Blessed Catherine" sufficient? \n\nTo determine this, a thorough analysis was needed not only of all the instances of "blessed N." but also of all paralle instances for prayers whose saints are named, several hundred in all.\n\nDuring analysis, another question came up: Should she be "Catherine" or "Catherine of Alexandria"? And is the answer the same for all 3 prayers, or do the prayers behave differently based on their function? \n\nIn the end, after looking at carefully organized data, the decision was a consistent: full name, no "Saint" (a departure from previous inconsistent policy).',
+    bullets: [
+      'Problem: twofold question of how exactly to fill in blanks marked "N." in the Roman Missal (include title? full name or abbreviated?)',
+      'Carefully identified and analyzed 157 prayers containing "N." in comparison to 426 parallel instances containing names throughout the missal',
+      'Identified trends in the data, prepared handouts to demonstrate said trends, and presented on the question, which was then quickly settled'
+    ]
+  },
+  {
     name: 'Timelink Travel Services',
     role: 'Fullstack Software Engineer',
     paragraph:
@@ -277,34 +330,6 @@ const projectData = [
     ],
     url: 'https://pm-grace-shopper.herokuapp.com',
     github: 'https://github.com/pigMercury/grace-shopper'
-  },
-  {
-    name: 'blessed N.',
-    role: 'Solo Analyst',
-    paragraph:
-      'A recurring question had come up, when the liturgical books the magazine took its texts from didn\'t have all 3 prayers for the saint of the day, but rather had only one, and sent us to the "commons" for the other two. In the commons, the phrase "blessed N." appeared, with the "N." to be replaced by the saint of the day. But how the magazine settled this had been questioned several times, so an analysis of the book of origin was due. \n\nDid they want "blessed Saint Catherine", since Catherine (or whichever saint) was indeed canonized, and "Blessed" is a technical designation for someone who\'s almost (but not quite) a saint? Or was "Blessed Catherine" sufficient? \n\nTo determine this, a thorough analysis was needed not only of all the instances of "blessed N." but also of all paralle instances for prayers whose saints are named, several hundred in all.\n\nDuring analysis, another question came up: Should she be "Catherine" or "Catherine of Alexandria"? And is the answer the same for all 3 prayers, or do the prayers behave differently based on their function? \n\nIn the end, after looking at carefully organized data, the decision was a consistent: full name, no "Saint" (a departure from previous inconsistent policy).',
-    bullets: [
-      'Problem: twofold question of how exactly to fill in blanks marked "N." in the Roman Missal (include title? full name or abbreviated?)',
-      'Carefully identified and analyzed 157 prayers containing "N." in comparison to 426 parallel instances containing names throughout the missal',
-      'Identified trends in the data, prepared handouts to demonstrate said trends, and presented on the question, which was then quickly settled'
-    ]
-  },
-  {
-    name: 'Website Copy',
-    role: 'Editor',
-    // paragraph: '',
-    bullets: [
-      'Requested edit permissions for bookstore website to correct obvious errors',
-      'Harmonized copy and formatting, improved links, in HTML of product pages'
-    ],
-    url: 'http://bookstore.magnificat.net'
-  },
-  {
-    name: 'New Translation Analysis',
-    role: 'Solo Analyst',
-    paragraph:
-      'After Rome released a new translation of the Mass, closely examined the instructional texts at the beginning of the missal (~200p) for changes in vocabulary and style (mostly capitalization), and returned a spreadsheet for office use. Corrected a few misplaced periods and commas in the official final edition, to boot.'
-    // bullets: []
   }
 ]
 
@@ -569,13 +594,15 @@ async function seed() {
   const [freelance, mag, ttf, frassati, atl, choir] = jobs
   const [arsCelebrandi, parables, tertiumQuid, bxvi, chant] = presentations
   const [
-    masksRescue,
+    portfolio,
+    bacon,
     moodify,
-    kfbc,
-    timelink,
-    blessedN,
     website,
-    girm
+    masksRescue,
+    girm,
+    kfbc,
+    blessedN,
+    timelink
   ] = projects
   const [antiphon, spiritualCommunion, bookOfBlessings] = publications
   const [fus, li, gh] = schools
@@ -692,14 +719,26 @@ async function seed() {
     mag.setProject(blessedN),
     mag.setProject(website),
 
-    masksRescue.setCategory(code),
-    js.setProjects(masksRescue),
-    node.setProjects(masksRescue),
-    git.setProjects(masksRescue),
-    puppeteer.setProjects(masksRescue),
-    vscode.setProjects(masksRescue),
-    json.setProjects(masksRescue),
-    regex.setProjects(masksRescue),
+    portfolio.setCategory(code),
+    js.setProjects(portfolio),
+    node.setProjects(portfolio),
+    express.setProjects(portfolio),
+    sequelize.setProjects(portfolio),
+    pg.setProjects(portfolio),
+    react.setProjects(portfolio),
+    redux.setProjects(portfolio),
+    html.setProjects(portfolio),
+    css.setProjects(portfolio),
+    flexbox.setProjects(portfolio),
+    git.setProjects(portfolio),
+    vscode.setProjects(portfolio),
+    heroku.setProjects(portfolio),
+    chalk.setProjects(portfolio),
+    axios.setProjects(portfolio),
+    postman.setProjects(portfolio),
+    regex.setProjects(portfolio),
+
+    bacon.setCategory(hobbies),
 
     moodify.setCategory(code),
     js.setProjects(moodify),
@@ -713,6 +752,24 @@ async function seed() {
     vscode.setProjects(moodify),
     heroku.setProjects(moodify),
     agile.setProjects(moodify),
+
+    website.setCategory(editorial),
+    proofing.setProjects(website),
+    copyediting.setProjects(website),
+    html.setProjects(website),
+
+    masksRescue.setCategory(code),
+    js.setProjects(masksRescue),
+    node.setProjects(masksRescue),
+    git.setProjects(masksRescue),
+    puppeteer.setProjects(masksRescue),
+    vscode.setProjects(masksRescue),
+    json.setProjects(masksRescue),
+    regex.setProjects(masksRescue),
+
+    girm.setCategory(editorial),
+    proofing.setProjects(girm),
+    excel.setProjects(girm),
 
     kfbc.setCategory(code),
     js.setProjects(kfbc),
@@ -731,6 +788,10 @@ async function seed() {
     puppeteer.setProjects(kfbc),
     chalk.setProjects(kfbc),
 
+    blessedN.setCategory(theology),
+    proofing.setProjects(blessedN),
+    excel.setProjects(blessedN),
+
     timelink.setCategory(code),
     js.setProjects(timelink),
     node.setProjects(timelink),
@@ -747,19 +808,6 @@ async function seed() {
     vscode.setProjects(timelink),
     heroku.setProjects(timelink),
     agile.setProjects(timelink),
-
-    blessedN.setCategory(theology),
-    proofing.setProjects(blessedN),
-    excel.setProjects(blessedN),
-
-    website.setCategory(editorial),
-    proofing.setProjects(website),
-    copyediting.setProjects(website),
-    html.setProjects(website),
-
-    girm.setCategory(editorial),
-    proofing.setProjects(girm),
-    excel.setProjects(girm),
 
     // publications
     antiphon.setCategory(theology),
