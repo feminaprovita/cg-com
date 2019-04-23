@@ -49,12 +49,14 @@ class Job extends Component {
 
   render() {
     this.state.allJobs.forEach(j => {
-      const hold = j.company ? j.company : j.jobTitle
-      j.slug = hold
-        .replace(/[^\d\w\s]/g, '')
-        .toLowerCase()
-        .replace(/[^\d\w]/g, '-')
-      j.keyName = j.slug + '-component'
+      if(!j.slug) {
+        const hold = j.company ? j.company : j.jobTitle
+        j.slug = hold
+          .replace(/[^\d\w\s]/g, '')
+          .toLowerCase()
+          .replace(/[^\d\w]/g, '-')
+        j.keyName = j.slug + '-component'
+      }
     })
     console.log('Job state', this.state)
 

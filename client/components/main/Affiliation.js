@@ -37,11 +37,13 @@ class Affiliation extends Component {
 
   render() {
     this.state.allAffiliations.forEach(a => {
-      a.slug = a.name
-        .replace(/[^\d\w\s]/g, '')
-        .toLowerCase()
-        .replace(/[^\d\w]/g, '-')
-      a.keyName = a.slug + '-component'
+      if(!a.slug) {
+        a.slug = a.name
+          .replace(/[^\d\w\s]/g, '')
+          .toLowerCase()
+          .replace(/[^\d\w]/g, '-')
+        a.keyName = a.slug + '-component'
+      }
     })
     console.log('Affiliation state', this.state)
 

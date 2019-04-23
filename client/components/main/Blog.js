@@ -30,13 +30,15 @@ class Blog extends Component {
 
   render() {
     this.state.allBlogs.forEach(b => {
-      b.slug = (b.title.match(/^.*(?=[\.,:;!?(–—])/g) || b.title)
-        .toString()
-        .replace(/[^\d\w\s]/g, '')
-        .toLowerCase()
-        .replace(/[^\d\w]/g, '-')
-      b.keyName = b.slug + '-component'
-      b.imgAlt = b.slug + '-thumbnail-' + b.date
+      if(!b.slug) {
+        b.slug = (b.title.match(/^.*(?=[\.,:;!?(–—])/g) || b.title)
+          .toString()
+          .replace(/[^\d\w\s]/g, '')
+          .toLowerCase()
+          .replace(/[^\d\w]/g, '-')
+        b.keyName = b.slug + '-component'
+        b.imgAlt = b.slug + '-thumbnail-' + b.date
+      }
     })
     console.log('Blog state', this.state)
 

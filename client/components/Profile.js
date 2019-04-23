@@ -15,7 +15,7 @@ const Profile = () => (
         Software development is my third career&mdash;I've always been a nerd
         who hung out with / learned from the techies, but until very recently
         I'd been under the misapprehension that programming is mostly
-        math&mdash;yet I still take occasional jobs in my other fields, too!
+        math&mdash;yet I still take occasional jobs in my previous fields, too!
       </p>
       <p>
         So I thought I'd throw together a more interesting sort of resume,
@@ -25,7 +25,7 @@ const Profile = () => (
       </p>
       <p>❧ ❧ ❧</p>
       <p>
-        You can find me on{' '}
+        You can also find me on{' '}
         <a href="https://www.linkedin.com/in/claire-gilligan/" target="blank">
           LinkedIn
         </a>
@@ -52,18 +52,13 @@ const Profile = () => (
           claire.gilligan.dev@gmail.com
         </a>.
       </p>
-      <p>❧ ❧ ❧</p>
-      <p>
-        This website has been fun to tinker with. Built with Node, Express,
-        PostgreSQL, Sequelize, React, and Redux (among other things), spiffed up
-        with RegEx, and hosted on Heroku.
-      </p>
+      {/* <p>❧ ❧ ❧</p>
       <p>
         <a href="https://github.com/feminaprovita/cg-com/" target="blank">
           Peruse my code
         </a>{' '}
         at your leisure!
-      </p>
+      </p> */}
     </div>
   </div>
 )

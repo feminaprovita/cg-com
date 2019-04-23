@@ -33,11 +33,13 @@ class Project extends Component {
 
   render() {
     this.state.allProjects.forEach(p => {
-      p.slug = p.name
-        .replace(/[^\d\w\s]/g, '')
-        .toLowerCase()
-        .replace(/[^\d\w]/g, '-')
-      p.keyName = p.slug + '-component'
+      if(!p.slug) {
+        p.slug = p.name
+          .replace(/[^\d\w\s]/g, '')
+          .toLowerCase()
+          .replace(/[^\d\w]/g, '-')
+        p.keyName = p.slug + '-component'
+      }
     })
     console.log('Project state', this.state)
 

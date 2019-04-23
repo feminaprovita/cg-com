@@ -47,11 +47,13 @@ class Skill extends Component {
 
   render() {
     this.state.allSkills.forEach(s => {
-      s.slug = s.name
-        .replace(/[^\d\w\s/]/g, '')
-        .toLowerCase()
-        .replace(/[^\d\w]/g, '-')
-      s.keyName = s.slug + '-component'
+      if(!s.slug) {
+        s.slug = s.name
+          .replace(/[^\d\w\s/]/g, '')
+          .toLowerCase()
+          .replace(/[^\d\w]/g, '-')
+        s.keyName = s.slug + '-component'
+      }
     })
     console.log('Skill state', this.state)
 

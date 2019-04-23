@@ -14,7 +14,7 @@ const Navbar = () => (
       <span id="blue-remove">
         <b>remove</b>
       </span>{' '}
-      the relevant content from the page below
+      the relevant components from the page below
     </p>
   </nav>
 )

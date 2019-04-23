@@ -236,25 +236,24 @@ const projectData = [
       // 'Learned that git is case-insensitive (and how to fix that), repurposed data with RegEx, added HTML meta tags',
       // 'Did a lot of post-deployment troubleshooting',
     ],
-    paragraph: '',
-    url: 'http://www.clairegilligan.com',
+    // paragraph: '',
     github: 'https://github.com/feminaprovita/cg-com'
   },
   {
-    name: 'Bacon Friday (annual party)',
-    role: 'Co-Founder, Co-Host, Event Planner',
+    name: 'Online Bookstore Copy',
+    role: 'Editor',
+    // paragraph: '',
     bullets: [
-      'Planned and threw a silly meat-themed Easter party for about 50 people (after six successive meatlesss Fridays during Lent)',
-      'Crafted several unique bacon/meat-themed quizzes and/or games each year',
-      'Designed and led various meat-themed party games and activities'
+      'Requested edit permissions for bookstore website to correct obvious errors',
+      'Harmonized marketing copy and formatting, improved links, removed typos in HTML of product pages'
     ],
-    paragraph: 'After Catholics spend Fridays of Lent abstaining from meat, the Friday of Easter week is the perfect time to feast upon meat! Organized logistics for 50-person party, hosted at someone else\'s house; created and/or commissioned unique meat-themed games and activities each year.'
+    url: 'http://bookstore.magnificat.net'
   },
   {
     name: 'Moodify',
     role: 'Fullstack Software Engineer',
     paragraph:
-      "The user takes a selfie, or uploads a photo, which we then upload to Google Cloud Vision. Cloud Vision returns to us an image analysis object, which we run through our own home-brewed function (transforming Google's word data into numerical values, crunching them based on positivity or negativity and importance, and using a fixed-point radius to get a range for Spotify). This yields a search query that we pass to Spotify along with the relevant user data, permitting the user to play the songs and/or save the playlist to their account.",
+    "The user takes a selfie, or uploads a photo, which we then upload to Google Cloud Vision. Cloud Vision returns to us an image analysis object, which we run through our own home-brewed function (transforming Google's word data into numerical values, crunching them based on positivity or negativity and importance, and using a fixed-point radius to get a range for Spotify). This yields a search query that we pass to Spotify along with the relevant user data, permitting the user to play the songs and/or save the playlist to their account.",
     bullets: [
       'User takes or uploads a selfie, and receives a unique Spotify playlist matching image’s mood',
       `Wrote/updated function mapping Google Cloud Vision's analysis object to a string for Spotify’s search`
@@ -264,14 +263,14 @@ const projectData = [
     video: 'http://bit.ly/moodify-presentation'
   },
   {
-    name: 'Website Copy',
-    role: 'Editor',
-    // paragraph: '',
+    name: 'Bacon Friday (annual party)',
+    role: 'Co-Host, Event Planner',
     bullets: [
-      'Requested edit permissions for bookstore website to correct obvious errors',
-      'Harmonized copy and formatting, improved links, in HTML of product pages'
+      'Plan and throw a silly meat-themed Easter party for about 50 people annually (after six successive meatlesss Fridays during Lent)',
+      'Craft several unique bacon/meat-themed quizzes and/or games each year',
+      'Design and lead various meat-themed party games and activities'
     ],
-    url: 'http://bookstore.magnificat.net'
+    paragraph: 'After Catholics spend Fridays of Lent abstaining from meat, the Friday of Easter week is the perfect time to feast upon meat! Organized logistics for 50-person party, hosted at someone else\'s house; created and/or commissioned unique meat-themed games and activities each year.'
   },
   {
     name: 'Masks Google Plus Rescue',
@@ -288,7 +287,7 @@ const projectData = [
     name: 'New Translation Analysis',
     role: 'Solo Analyst',
     paragraph:
-      'After Rome released a new translation of the Mass, closely examined the instructional texts at the beginning of the missal (~200p) for changes in vocabulary and style (mostly capitalization), and returned a spreadsheet for office use. Corrected a few misplaced periods and commas in the official final edition, to boot.'
+      'After Rome released a new translation of the Mass, closely examined the instructional texts at the beginning of the missal (~200p) for changes in vocabulary and style (mostly capitalization), and returned a spreadsheet for office use. Corrected a few misplaced periods and commas in the official final edition, to boot.',
     // bullets: []
   },
   {
@@ -595,9 +594,9 @@ async function seed() {
   const [arsCelebrandi, parables, tertiumQuid, bxvi, chant] = presentations
   const [
     portfolio,
-    bacon,
-    moodify,
     website,
+    moodify,
+    bacon,
     masksRescue,
     girm,
     kfbc,
@@ -738,7 +737,10 @@ async function seed() {
     postman.setProjects(portfolio),
     regex.setProjects(portfolio),
 
-    bacon.setCategory(hobbies),
+    website.setCategory(editorial),
+    proofing.setProjects(website),
+    copyediting.setProjects(website),
+    html.setProjects(website),
 
     moodify.setCategory(code),
     js.setProjects(moodify),
@@ -753,10 +755,7 @@ async function seed() {
     heroku.setProjects(moodify),
     agile.setProjects(moodify),
 
-    website.setCategory(editorial),
-    proofing.setProjects(website),
-    copyediting.setProjects(website),
-    html.setProjects(website),
+    bacon.setCategory(hobbies),
 
     masksRescue.setCategory(code),
     js.setProjects(masksRescue),
