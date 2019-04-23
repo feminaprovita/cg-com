@@ -237,7 +237,8 @@ const projectData = [
       // 'Did a lot of post-deployment troubleshooting',
     ],
     // paragraph: '',
-    github: 'https://github.com/feminaprovita/cg-com'
+    github: 'https://github.com/feminaprovita/cg-com',
+    id: 1
   },
   {
     name: 'Online Bookstore Copy',
@@ -247,7 +248,8 @@ const projectData = [
       'Requested edit permissions for bookstore website to correct obvious errors',
       'Harmonized marketing copy and formatting, improved links, removed typos in HTML of product pages'
     ],
-    url: 'http://bookstore.magnificat.net'
+    url: 'http://bookstore.magnificat.net',
+    id: 2
   },
   {
     name: 'Moodify',
@@ -260,7 +262,8 @@ const projectData = [
     ],
     url: 'https://my-moodify.herokuapp.com',
     github: 'https://github.com/grape-emu/my-moodify',
-    video: 'http://bit.ly/moodify-presentation'
+    video: 'http://bit.ly/moodify-presentation',
+    id: 3
   },
   {
     name: 'Bacon Friday (annual party)',
@@ -270,7 +273,8 @@ const projectData = [
       'Craft several unique bacon/meat-themed quizzes and/or games each year',
       'Design and lead various meat-themed party games and activities'
     ],
-    paragraph: 'After Catholics spend Fridays of Lent abstaining from meat, the Friday of Easter week is the perfect time to feast upon meat! Organized logistics for 50-person party, hosted at someone else\'s house; created and/or commissioned unique meat-themed games and activities each year.'
+    paragraph: 'After Catholics spend Fridays of Lent abstaining from meat, the Friday of Easter week is the perfect time to feast upon meat! Organized logistics for 50-person party, hosted at someone else\'s house; created and/or commissioned unique meat-themed games and activities each year.',
+    id: 4
   },
   {
     name: 'Masks Google Plus Rescue',
@@ -281,14 +285,16 @@ const projectData = [
       'Co-wrote functions and scraped data from active Google+ community in advance of planned shutdown',
       'Analyzed then captured full archive (posts, comments, uploaded photos, links), scraping with Puppeteer'
     ],
-    github: 'https://github.com/feminaprovita/masks-rescue'
+    github: 'https://github.com/feminaprovita/masks-rescue',
+    id: 5
   },
   {
     name: 'New Translation Analysis',
     role: 'Solo Analyst',
     paragraph:
       'After Rome released a new translation of the Mass, closely examined the instructional texts at the beginning of the missal (~200p) for changes in vocabulary and style (mostly capitalization), and returned a spreadsheet for office use. Corrected a few misplaced periods and commas in the official final edition, to boot.',
-    // bullets: []
+    // bullets: [],
+    id: 6
   },
   {
     name: 'Keeping Facebook Cheerful',
@@ -303,7 +309,8 @@ const projectData = [
     ],
     // url: 'kfbc.herokuapp.com OR clairegilligan.com/kfbc',
     github: 'https://github.com/feminaprovita/kfbc-website',
-    video: 'http://bit.ly/kfbc'
+    video: 'http://bit.ly/kfbc',
+    id: 7
   },
   {
     name: 'blessed N.',
@@ -314,7 +321,8 @@ const projectData = [
       'Problem: twofold question of how exactly to fill in blanks marked "N." in the Roman Missal (include title? full name or abbreviated?)',
       'Carefully identified and analyzed 157 prayers containing "N." in comparison to 426 parallel instances containing names throughout the missal',
       'Identified trends in the data, prepared handouts to demonstrate said trends, and presented on the question, which was then quickly settled'
-    ]
+    ],
+    id: 8
   },
   {
     name: 'Timelink Travel Services',
@@ -328,7 +336,8 @@ const projectData = [
       'Involved with all facets of production, styled with CSS and Bootstrap'
     ],
     url: 'https://pm-grace-shopper.herokuapp.com',
-    github: 'https://github.com/pigMercury/grace-shopper'
+    github: 'https://github.com/pigMercury/grace-shopper',
+    id: 9
   }
 ]
 
