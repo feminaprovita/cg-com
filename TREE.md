@@ -28,9 +28,10 @@
 │   ├── bundle.js.map
 │   ├── favicon.ico
 │   ├── index.html
-│   ├── profile-preview.png
+│   ├── manifest.json
+│   ├── profile-preview.jpg
 │   ├── profile.jpg
-│   ├── profile.png
+│   ├── service-worker.js
 │   ├── style-notification.js
 │   └── style.css
 ├── script
@@ -71,4 +72,5 @@
 ├── TREE.md
 ├── package-lock.json
 ├── package.json
-└── webpack.config.js
+├── webpack.config.js
+└── workbox-config.js

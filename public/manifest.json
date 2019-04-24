@@ -1,0 +1,33 @@
+{
+  "background_color": "#dcccfd",
+  "theme_color": "#6341a9",
+  "description": "Interactive resume of Claire Gilligan, NYC-based software developer, editorial expert, and theologian.",
+  "dir": "rtl",
+  "lang": "en-US",
+  "display": "fullscreen",
+  "icons": [{
+    "src": "/favicon.ico",
+    "sizes": "372x212",
+    "type": "image/ico"
+    }, {
+    "src": "/profile-preview.jpg",
+    "sizes": "512x512",
+    "type": "image/jpg"
+    }, {
+      "src": "/profile.jpg",
+      "sizes": "272x390",
+      "type": "image/jpg"
+    }, {
+      "src": "https://i.imgur.com/jhxCzGv.jpg",
+      "sizes": "208x273",
+      "type": "image/jpg"
+    }, {
+      "src": "https://i.imgur.com/cmVXobL.jpg",
+      "sizes": "290x382",
+      "type": "image/jpg"
+    }],
+  "name": "Claire Gilligan",
+  "orientation": "portrait-primary",
+  "short_name": "Claire Gilligan",
+  "start_url": "/"
+}

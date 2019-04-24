@@ -5,6 +5,7 @@
     <title>Claire Gilligan</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <meta name="theme-color" content="#6341a9" />
 
     <meta name="title" content="Claire Gilligan">
     <meta name="author" content="Claire Gilligan">
@@ -14,7 +15,7 @@
     <!-- Google / Search Engine Tags -->
     <meta itemprop="name" content="Claire Gilligan">
     <meta itemprop="description" content="Claire Gilligan - Interactive resume of Claire Gilligan, NYC-based software developer, editorial expert, and theologian.">
-    <meta itemprop="image" content="/profile-preview.png">
+    <meta itemprop="image" content="/profile-preview.jpg">
 
     <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:type" content="website">
@@ -22,21 +23,40 @@
     <meta property="og:title" content="Claire Gilligan">
     <meta property="og:site_name" content="Claire Gilligan">
     <meta property="og:description" content="Claire Gilligan - Interactive resume of Claire Gilligan, NYC-based software developer, editorial expert, and theologian.">
-    <meta property="og:image" content="/profile-preview.png">
+    <meta property="og:image" content="/profile.jpg">
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="http://www.clairegilligan.com/">
     <meta name="twitter:title" content="Claire Gilligan">
     <meta name="twitter:description" content="Claire Gilligan - Interactive resume of Claire Gilligan, NYC-based software developer, editorial expert, and theologian.">
-    <meta name="twitter:image" content="/profile-preview.png">
+    <meta name="twitter:image" content="/profile.jpg">
     <meta name="twitter:image:alt" content="Claire Gilligan profile picture">
     <meta name="twitter:site" content="@feminaprovita">
-    <!-- Meta tags generated with help from https://css-tricks.com/essential-meta-tags-social-media/, https://metatags.io/, and http://heymeta.com -->
+
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Claire Gilligan">
+    <link rel="apple-touch-icon" href="/profile-preview.jpg">
+
+    <!-- Meta tags generated with help from https://css-tricks.com/essential-meta-tags-social-media/, https://metatags.io/, http://heymeta.com, and https://developers.google.com/web/fundamentals/codelabs/your-first-pwapp/ -->
 
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="manifest" href="/manifest.json">
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./service-worker.js')
+          .then((reg) => {
+            console.log('Service worker registered.', reg);
+          })
+        })
+      }
+      </script>
     <script defer src="/bundle.js"></script>
   </head>
   <body>
