@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import componentSort from '../../../script/utils.js'
+import componentSort from '../../componentSort'
 
 class Affiliation extends Component {
   constructor() {

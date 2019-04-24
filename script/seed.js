@@ -238,7 +238,7 @@ const projectData = [
     ],
     // paragraph: '',
     github: 'https://github.com/feminaprovita/cg-com',
-    id: 1
+    renderOrder: 1
   },
   {
     name: 'Online Bookstore Copy',
@@ -249,7 +249,7 @@ const projectData = [
       'Harmonized marketing copy and formatting, improved links, removed typos in HTML of product pages'
     ],
     url: 'http://bookstore.magnificat.net',
-    id: 2
+    renderOrder: 2
   },
   {
     name: 'Moodify',
@@ -263,7 +263,7 @@ const projectData = [
     url: 'https://my-moodify.herokuapp.com',
     github: 'https://github.com/grape-emu/my-moodify',
     video: 'http://bit.ly/moodify-presentation',
-    id: 3
+    renderOrder: 3
   },
   {
     name: 'Bacon Friday (annual party)',
@@ -274,7 +274,7 @@ const projectData = [
       'Design and lead various meat-themed party games and activities'
     ],
     paragraph: 'After Catholics spend Fridays of Lent abstaining from meat, the Friday of Easter week is the perfect time to feast upon meat! Organized logistics for 50-person party, hosted at someone else\'s house; created and/or commissioned unique meat-themed games and activities each year.',
-    id: 4
+    renderOrder: 4
   },
   {
     name: 'Masks Google Plus Rescue',
@@ -286,7 +286,7 @@ const projectData = [
       'Analyzed then captured full archive (posts, comments, uploaded photos, links), scraping with Puppeteer'
     ],
     github: 'https://github.com/feminaprovita/masks-rescue',
-    id: 5
+    renderOrder: 5
   },
   {
     name: 'New Translation Analysis',
@@ -294,7 +294,7 @@ const projectData = [
     paragraph:
       'After Rome released a new translation of the Mass, closely examined the instructional texts at the beginning of the missal (~200p) for changes in vocabulary and style (mostly capitalization), and returned a spreadsheet for office use. Corrected a few misplaced periods and commas in the official final edition, to boot.',
     // bullets: [],
-    id: 6
+    renderOrder: 6
   },
   {
     name: 'Keeping Facebook Cheerful',
@@ -310,7 +310,7 @@ const projectData = [
     // url: 'kfbc.herokuapp.com OR clairegilligan.com/kfbc',
     github: 'https://github.com/feminaprovita/kfbc-website',
     video: 'http://bit.ly/kfbc',
-    id: 7
+    renderOrder: 7
   },
   {
     name: 'blessed N.',
@@ -322,7 +322,7 @@ const projectData = [
       'Carefully identified and analyzed 157 prayers containing "N." in comparison to 426 parallel instances containing names throughout the missal',
       'Identified trends in the data, prepared handouts to demonstrate said trends, and presented on the question, which was then quickly settled'
     ],
-    id: 8
+    renderOrder: 8
   },
   {
     name: 'Timelink Travel Services',
@@ -337,7 +337,18 @@ const projectData = [
     ],
     url: 'https://pm-grace-shopper.herokuapp.com',
     github: 'https://github.com/pigMercury/grace-shopper',
-    id: 9
+    renderOrder: 9
+  },
+  {
+    name: 'Style Guide',
+    role: 'Author/Compiler',
+    paragraph: 'Client wanted me to craft, from nothing, an extensive style guide that would be a one-stop shop for all their editorial staff\'s needs and questions. Required consulting relevant texts, making suggestions based on their unique situation, anticipating unusual situations, and highlighting common errors.',
+    bullets: [
+      'Media client wanted an extensive custom style guide (rather than relying on several industry standards and many game-time decisions)',
+      'Compiled data from relevant reference texts as well as their own trends and made suggestions; anticipated unusual situations/questions and provided guidance; highlighted common errors and explained corrections',
+      'Later, implemented a similar project for a different client (again, customized to their needs, but based on the same standard texts)'
+    ],
+    renderOrder: 10
   }
 ]
 
@@ -610,7 +621,8 @@ async function seed() {
     girm,
     kfbc,
     blessedN,
-    timelink
+    timelink,
+    style
   ] = projects
   const [antiphon, spiritualCommunion, bookOfBlessings] = publications
   const [fus, li, gh] = schools
@@ -726,6 +738,7 @@ async function seed() {
     freelance.setProject(girm),
     mag.setProject(blessedN),
     mag.setProject(website),
+    freelance.setProject(style),
 
     portfolio.setCategory(code),
     js.setProjects(portfolio),
@@ -816,6 +829,9 @@ async function seed() {
     vscode.setProjects(timelink),
     heroku.setProjects(timelink),
     agile.setProjects(timelink),
+
+    style.setCategory(editorial),
+    copyediting.setProjects(style),
 
     // publications
     antiphon.setCategory(theology),

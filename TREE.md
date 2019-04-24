@@ -18,6 +18,7 @@
 │   ├── store
 │   |   └── index.js
 │   ├── app.js
+│   ├── componentSort.js
 │   ├── history.js
 │   ├── index.js
 │   └── routes.js
@@ -35,8 +36,7 @@
 ├── script
 │   ├── deploy
 │   ├── encrypt-heroku-auth-token
-│   ├── seed.js
-│   └── utils.js
+│   └── seed.js
 ├── server
 │   ├── api
 │   │   ├── affiliations.js
