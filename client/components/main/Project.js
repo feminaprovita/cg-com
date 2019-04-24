@@ -2,6 +2,12 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import ProjectOne from './ProjectOne'
 
+const sortProjects = arr => {
+  arr.sort((a,b) => {
+    return a.renderOrder - b.renderOrder
+  })
+}
+
 class Project extends Component {
   constructor() {
     super()
@@ -14,6 +20,7 @@ class Project extends Component {
   async componentDidMount() {
     const {data} = await axios.get('/api/projects')
     let currentProjects = data.filter(p => this.props.categories[p.categoryId])
+    sortProjects(currentProjects)
     this.setState({
       allProjects: data,
       filteredProjects: currentProjects
@@ -27,6 +34,7 @@ class Project extends Component {
       let currentProjects = prevState.allProjects.filter(
         p => this.props.categories[p.categoryId]
       )
+      sortProjects(currentProjects)
       this.setState({filteredProjects: currentProjects})
     }
   }

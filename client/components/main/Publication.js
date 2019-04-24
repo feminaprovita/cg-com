@@ -49,7 +49,7 @@ class Publication extends Component {
       <div className="resume-component">
         {this.state.filteredPublications.length > 0 ? (
           <div id="publication-component">
-            <h1>Publications</h1>
+            <h1>Selected Publications</h1>
             {this.state.filteredPublications.map(p => {
               return (
                 <div className="one-publication" key={p.keyName}>

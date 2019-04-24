@@ -43,6 +43,9 @@ const Project = db.define('project', {
   },
   other: {
     type: Sequelize.STRING
+  },
+  renderOrder: {
+    type: Sequelize.INTEGER
   }
 })
 
