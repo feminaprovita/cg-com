@@ -50,11 +50,26 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js')
-          .then((reg) => {
+          navigator.serviceWorker.register('service-worker.js').then((reg) => {
+            reg.onupdatefound = () => {
+              var newSW = reg.installing;
+              // newSW.onstatechange = () => {
+              //   if (newSW.state === 'waiting') {
+              //     // This assumes there's a button with id='skip-waiting-button' that
+              //     // users should click to get the new SW to activate immediately.
+              //     var button = document.querySelector('#skip-waiting-button');
+              //     button.addEventListener('click', () => {
+              //       newSW.postMessage('skipWaiting');
+              //     });
+              //     // Assume that 'display' is 'none' initially.
+              //     button.style.display = 'inline';
+              //   }
+              //   // Handle whatever other SW states you care about, like 'active'.
+              // };
+            };
             console.log('Service worker registered.', reg);
           })
-        })
+        });
       }
       </script>
     <script defer src="/bundle.js"></script>

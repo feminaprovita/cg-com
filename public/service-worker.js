@@ -1,9 +1,18 @@
+// none of this matters until i get https working, duh
+
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.2.0/workbox-sw.js')
 
 if (workbox) console.log(`Yay! Workbox is loaded 🎉`)
 else console.log(`Boo! Workbox didn't load 😬`)
 
-workbox.skipWaiting()
+
+self.addEventListener('message', event => {
+  if (event.data === 'skipWaiting') {
+    self.skipWaiting();
+  }
+})
+// does the above suggest that all these 'workbox's should be 'self's?
+
 workbox.clientsClaim()
 
 // cache name
