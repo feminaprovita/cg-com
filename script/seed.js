@@ -484,6 +484,10 @@ const skillData = [
     level: 'proficient'
   },
   {
+    name: 'Webpack/Babel',
+    level: 'proficient'
+  },
+  {
     name: 'Microsoft Excel',
     level: 'expert'
   },
@@ -493,7 +497,7 @@ const skillData = [
   },
   {
     name: 'Heroku',
-    level: 'familiar'
+    level: 'proficient'
   },
   {
     name: 'Puppeteer',
@@ -642,6 +646,7 @@ async function seed() {
     css,
     flexbox,
     git,
+    webpack,
     excel,
     vscode,
     heroku,
@@ -752,6 +757,7 @@ async function seed() {
     css.setProjects(portfolio),
     flexbox.setProjects(portfolio),
     git.setProjects(portfolio),
+    webpack.setProjects(portfolio),
     vscode.setProjects(portfolio),
     heroku.setProjects(portfolio),
     chalk.setProjects(portfolio),
@@ -773,6 +779,7 @@ async function seed() {
     react.setProjects(moodify),
     css.setProjects(moodify),
     git.setProjects(moodify),
+    webpack.setProjects(moodify),
     vscode.setProjects(moodify),
     heroku.setProjects(moodify),
     agile.setProjects(moodify),
@@ -825,6 +832,7 @@ async function seed() {
     css.setProjects(timelink),
     flexbox.setProjects(timelink),
     git.setProjects(timelink),
+    webpack.setProjects(timelink),
     pg.setProjects(timelink),
     vscode.setProjects(timelink),
     heroku.setProjects(timelink),
@@ -867,6 +875,7 @@ async function seed() {
     css.setCategory(code),
     flexbox.setCategory(code),
     git.setCategory(code),
+    webpack.setCategory(code),
     pg.setCategory(code),
     excel.setCategory(code),
     vscode.setCategory(code),
