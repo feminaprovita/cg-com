@@ -232,7 +232,7 @@ const projectData = [
       'Database-driven portfolio site with buttons that filter data into or out of render',
       'Built with Node, Express, PostgreSQL, Sequelize, React, and Redux, and hosted on Heroku',
       'Used a combination of responsive design and media queries to style for desktop and mobile',
-      'Planned expansion: individual pages for each component that showcase database relationships',
+      'Planned expansions: CI/CD, meta-tagging for increased accessibility, individual pages for each component that showcase database relationships',
       // 'Learned that git is case-insensitive (and how to fix that), repurposed data with RegEx, added HTML meta tags',
       // 'Did a lot of post-deployment troubleshooting',
     ],
