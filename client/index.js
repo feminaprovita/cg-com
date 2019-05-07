@@ -8,11 +8,9 @@ import App from './app'
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
       <Router history={history}>
         <App />
       </Router>
-    </div>
   </Provider>,
   document.getElementById('app')
 )

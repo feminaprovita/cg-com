@@ -5,12 +5,3 @@
  */
 export {default as Navbar} from './Navbar'
 export {default as Profile} from './Profile'
-export {default as Category} from './main/Category'
-export {default as Affiliation} from './main/Affiliation'
-export {default as Blog} from './main/Blog'
-export {default as Job} from './main/Job'
-export {default as Presentation} from './main/Presentation'
-export {default as Project} from './main/Project'
-export {default as Publication} from './main/Publication'
-export {default as School} from './main/School'
-export {default as Skill} from './main/Skill'
